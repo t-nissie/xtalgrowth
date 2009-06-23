@@ -1,8 +1,21 @@
 =begin
 = xtalgrowth
-2次元結晶成長をシミュレートするXアプリケーション
+2次元結晶成長をシミュレートするＸアプリケーション
 
 使用方法: ./xtalgrowth [オプション...] | lpr
+
+== 参考文献
+[1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
+in the book of "Fractals and disordered systems" edited by Armin Bunde and Shlomo Havlin,
+pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
+
+[2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
+
+[3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
 
 == 計算条件
 x方向は周期的境界条件
