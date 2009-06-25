@@ -2,7 +2,11 @@
 = xtalgrowth
 2次元結晶成長をシミュレートするＸアプリケーション
 
-使用方法: ./xtalgrowth [オプション...] | lpr
+使用方法:
+ ./xtalgrowth [オプション...] | lpr
+
+印刷がうまくいかないときは次のようにgsを間に入れて下さい
+ ./xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 
 == 参考文献
 [1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
@@ -17,6 +21,13 @@ Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
 
+
+== インストール方法
+When you get a message like
+ /usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
+edit src/Makefile, change from -L/usr/X11R6/lib to -L/usr/X11R6/lib64.
+
+
 == 計算条件
 x方向は周期的境界条件
 
@@ -27,10 +38,10 @@ x方向は周期的境界条件
 
 === 基板は球を等間隔に並べており, また, 計算が大雑把なので
 ==== 球の大きさがキツキツだと綺麗に並ばない
-./xtalgrowth -r 0.033333
+ ./xtalgrowth -r 0.033333
 
 ==== 球の大きさにゆとりがあると綺麗に並ぶ
-./xtalgrowth -r 0.033
+ ./xtalgrowth -r 0.033
 
 
 === 球が動かなくなる条件を変えると…
