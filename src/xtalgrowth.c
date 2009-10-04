@@ -97,7 +97,8 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
     params->criterion = 3;
   }
 
-  if (params->n_ball <= 0 || (int)(params->height/(params->diameter * params->diameter)) < params->n_ball) {
+  /* (params->n_ball <= 0 || (int)(params->height/(params->diameter * params->diameter)) < params->n_ball) */
+  if (params->n_ball <= 0) {
     params->n_ball = (int)(params->height*0.8/(params->diameter * params->diameter));
   }
 
