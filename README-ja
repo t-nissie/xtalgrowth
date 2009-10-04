@@ -23,6 +23,10 @@ Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
 
 
 == インストール方法
+ $ ./configure
+ $ make
+You will find src/xtalgrowth.
+
 When you get a message like
  /usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
 edit src/Makefile, change from -L/usr/X11R6/lib to -L/usr/X11R6/lib64.
@@ -32,42 +36,52 @@ edit src/Makefile, change from -L/usr/X11R6/lib to -L/usr/X11R6/lib64.
 x方向は周期的境界条件
 
 球と球とが接したかどうかの計算とそのあとの軌道計算が大雑把.
-この大雑把な計算（精度）が「乱雑さ」として表れる.
+この大雑把な計算精度が「乱雑さ」として表れる.
 
 == 結果の解釈
-
 === 基板は球を等間隔に並べており, また, 計算が大雑把なので
 ==== 球の大きさがキツキツだと綺麗に並ばない
- ./xtalgrowth -r 0.033333
+ ./xtalgrowth -d 0.033333
 
 ==== 球の大きさにゆとりがあると綺麗に並ぶ
- ./xtalgrowth -r 0.033
-
+ ./xtalgrowth -d 0.033
 
 === 球が動かなくなる条件を変えると…
 ==== ３つ以上の球と接したら動かなくなる→綺麗に並ぶ
-./xtalgrowth -r 0.033 -c 3
+./xtalgrowth -d 0.033 -c 3
 
 ==== ２つ以上の球と接したら動かなくなる→空孔ができる
-./xtalgrowth -r 0.033 -c 2
+./xtalgrowth -d 0.033 -c 2
 
 ==== １つ以上の球と接したら動かなくなる→フラクタル的になる
-./xtalgrowth -r 0.033 -c 1 -n 100
+./xtalgrowth -d 0.033 -c 1 -n 100
 
 ==== もう少し細かくて美しいもの
-./xtalgrowth -r 0.015 -c 1 -n 520
+./xtalgrowth -d 0.015 -c 1 -n 520
 
+== Acknowledgements
+http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
 =end
 
-お客さんがいないときは ./againagain.sh を実行しておくこと.
+# お客さんがいないときは ./againagain.sh を実行しておくこと.
 
+# 印刷方法
+# a2ps -Pkawaqms4 --portrait --pretty-print=c --columns=1 --margin=30 --borders=off Xsim.c
 
+#
+# for ulmul.rb
+#
+require 'rubygems'
+require 'ulmul'
+u=Ulmul.new()
+u.subs_rules << [/(README-ja\S*)(\s|$)/,     '<a href="\1">\1</a>\2']
+u.subs_rules << [/&package_id/,              '&amp;package_id']
+u.subs_rules << [/SourceForge.net/,          '<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>']
 
+u.parse(ARGF)
+puts u.html(["style.css"],[],"Takeshi Nishimatsu","ja")
 
-
-
-
-
-
-印刷方法
-a2ps -Pkawaqms4 --portrait --pretty-print=c --columns=1 --margin=30 --borders=off Xsim.c
+# Local variables:
+#   mode: RD
+#   compile-command: "ruby README-ja README-ja > README-ja.html"
+# End:

@@ -4,11 +4,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+#if defined HAVE_CONFIG_H
+#  include "config.h"
+#endif
+
 #ifdef HAVE_POPT_H
 #  include <popt.h>
-#else /* HAVE_POPT_H */
+#else
 #  include <unistd.h>
-#endif /* HAVE_POPT_H */
+#endif
 
 #include "xtalgrowth.h"
 #include "Xsim.h"
@@ -114,7 +118,7 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
       params->diameter = atof(optarg);
       if (params->diameter <= 0.0) params->diameter = DEFAULT_DIAMETER;
       break;
-    case 'd':
+    case 'h':
       params->height = atof(optarg);
       if (params->height <= 0.0) params->height = DEFAULT_HEIGHT;
       break;
