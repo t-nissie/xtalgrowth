@@ -5,7 +5,7 @@
 使用方法:
  ./xtalgrowth [オプション...] | lpr
 
-印刷がうまくいかないときは次のようにgsを間に入れて下さい
+印刷がうまくいかないときは次のようにgsを間に入れて下さい：
  ./xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 
 == 参考文献
@@ -23,23 +23,26 @@ Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
 
 
 == インストール方法
+ $ tar zxf xtalgrowth-X.Y.Z.tar.gz
+ $ cd xtalgrowth-X.Y.Z
  $ ./configure
  $ make
-You will find src/xtalgrowth.
+これで src/xtalgrowth ができるはずです。
 
-When you get a message like
+64ビットのシステムでは、
  /usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
-edit src/Makefile, change from -L/usr/X11R6/lib to -L/usr/X11R6/lib64.
-
+というようなメッセージが出てリンクに失敗することがあります。その場合はconfigureのときに
+ $ LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
+などとLDFLAGSを調節してください。
 
 == 計算条件
 x方向は周期的境界条件
 
-球と球とが接したかどうかの計算とそのあとの軌道計算が大雑把.
-この大雑把な計算精度が「乱雑さ」として表れる.
+球と球とが接したかどうかの計算とそのあとの軌道計算が大雑把。
+この大雑把な計算精度が「乱雑さ」として表れる。
 
 == 結果の解釈
-=== 基板は球を等間隔に並べており, また, 計算が大雑把なので
+=== 基板は球を等間隔に並べており、また、計算が大雑把なので
 ==== 球の大きさがキツキツだと綺麗に並ばない
  ./xtalgrowth -d 0.033333
 
@@ -63,7 +66,7 @@ x方向は周期的境界条件
 http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
 =end
 
-# お客さんがいないときは ./againagain.sh を実行しておくこと.
+# お客さんがいないときは ./againagain.sh を実行しておくこと。
 
 # 印刷方法
 # a2ps -Pkawaqms4 --portrait --pretty-print=c --columns=1 --margin=30 --borders=off Xsim.c
