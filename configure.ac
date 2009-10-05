@@ -1,6 +1,6 @@
 dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2009-10-05 10:51:17 takeshi>
+dnl Time-stamp: <2009-10-05 11:03:44 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
@@ -10,8 +10,9 @@ AC_CONFIG_SRCDIR(src/xtalgrowth.c)
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h])
 
-## Some OS does not see /usr/local/lib.
-LDFLAGS="$LDFLAGS -L/usr/local/lib -L/usr/X11R6/lib"
+## CFLAGS and LDFLAGS
+test -n  "$CFLAGS" ||  CFLAGS="-g -Wall -O3"
+test -n "$LDFLAGS" || LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib"
 
 ## Checks for some libraries
 AC_CHECK_LIB(X11, main)
