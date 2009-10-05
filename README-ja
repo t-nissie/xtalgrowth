@@ -1,39 +1,57 @@
 =begin
 = xtalgrowth
-2次元結晶成長をシミュレートするＸアプリケーション
+xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです。xtalgrowthを
+起動すると、画面の上から剛体球が落ちてきて画面の底に降り積もり、２次元の結晶が成長します。
+コマンドラインオプションで計算条件を変更することができます。賞状の形をした計算結果が
+PostScriptファイルとして標準出力 (STDOUT) から出力されます。オープンキャンパスや研究所の
+一般公開の来場者参加型の展示物に適しています。Linux や Mac OS X などのUNIX系の
+コンピュータで動きます。
 
 使用方法:
- ./xtalgrowth [オプション...] | lpr
+ $ xtalgrowth --help
+ $ xtalgrowth -d 0.033 -c 3
+ $ xtalgrowth -d 0.033 -c 2
+ $ xtalgrowth -d 0.015 -c 1 -n 2000
+ $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
+賞状が必要な場合はカレントディレクトリにパッケージに同梱されているような
+certification.eps を置いてください。賞状のタイトルとして使われ、-g
+オプションで指定した名前と今日の日付が賞状に入ります。
 
 印刷がうまくいかないときは次のようにgsを間に入れて下さい：
- ./xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
+ $ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 
-== 参考文献
-[1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
-in the book of "Fractals and disordered systems" edited by Armin Bunde and Shlomo Havlin,
-pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
+== ホームページとダウンロード
+xtalgrowthのホームページは http://loto.sourceforge.net/xtalgrowth/ です。
+最新のtar.gzパッケージ (xtalgrowth-X.Y.Z.tar.gz) を
+http://sourceforge.net/projects/loto/files/
+からダウンロードすることができます。
 
-[2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
-Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
-Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
-
-[3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
-Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
-Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
-
-
-== インストール方法
+== コンパイルおよびインストールの方法
+コンパイルには
+ * gccなどのＣコンパイラ
+ * X11ライブラリとそのインクルード・ファイル
+ * poptライブラリとそのインクルード・ファイル
+が必要です。必要なものがそろっていれば
  $ tar zxf xtalgrowth-X.Y.Z.tar.gz
  $ cd xtalgrowth-X.Y.Z
  $ ./configure
  $ make
-これで src/xtalgrowth ができるはずです。
+とすることで src/xtalgrowth ができるはずです。
+ $ cd src
+ $ ./xtalgrowth --help
+ $ ./xtalgrowth
+と試しに実行してみましょう。
+さらに /usr/local/bin/xtalgrowth をインストールしたい場合は
+ $ sudo make install
+としてください。
 
-64ビットのシステムでは、
+一部の64ビットのシステムでは、
  /usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
 というようなメッセージが出てリンクに失敗することがあります。その場合はconfigureのときに
  $ LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
-などとLDFLAGSを調節してください。
+などとLDFLAGSを調節してください。csh系をお使いの場合には
+ % env LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
+とenvコマンドを使ってください。
 
 == 計算条件
 x方向は周期的境界条件
@@ -61,6 +79,19 @@ x方向は周期的境界条件
 
 ==== もう少し細かくて美しいもの
 ./xtalgrowth -d 0.015 -c 1 -n 520
+
+== 参考文献
+[1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
+in the book of "Fractals and disordered systems" edited by Armin Bunde and Shlomo Havlin,
+pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
+
+[2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
+
+[3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
 
 == Acknowledgements
 http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
