@@ -1,11 +1,11 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2009-10-06 11:50:40 takeshi>
+# Time-stamp: <2009-10-06 16:31:12 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 AUTOMAKE_OPTIONS = foreign
 SUBDIRS = src
-EXTRA_DIST = README-ja README-ja.html COPYING
+EXTRA_DIST = README-ja README-ja.html COPYING figures
 CLEANFILES = *.html
 SNAPSHOT_NAME=$(PACKAGE)-$(VERSION)_`date +"%Y-%m-%d_%H"`
 SOURCEFORGE_XTALGROWTH=web.sourceforge.net:/home/groups/l/lo/loto/htdocs/xtalgrowth
