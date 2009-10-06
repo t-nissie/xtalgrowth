@@ -1,6 +1,6 @@
 /* -*-CSS-*-
  * Style.css for xtalgrowth
- * Time-stamp: <2009-10-04 19:15:09 takeshi>
+ * Time-stamp: <2009-10-06 11:37:56 takeshi>
  * Author: Takeshi NISHIMATSU
  */
 body
@@ -16,8 +16,11 @@ h1, h2, h3, h4, h6
 
 h1
 {
+  border-top:       blue 7px solid;
+  border-bottom:    blue 3px solid;
   color:            darkblue;
   background-color: #f0f0ff;
+  font-size:        360%;
 }
 
 h2
