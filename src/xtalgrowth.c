@@ -42,7 +42,7 @@ int main(int argc, char **argv)
   params->guest = "Ms. Crystal Growth";
 
   parse_opt(argc, argv, params);
-  fprintf(stderr, "velocity=%.16g, diameter=%.16g, height=%.16g, n_ball=%d, criterion=%d, guest=%s\n",
+  fprintf(stderr, "velocity=%.6f, diameter=%.6f, height=%.3f, n_ball=%5d, criterion=%1d, guest=%s\n",
           params->velocity, params->diameter, params->height, params->n_ball, params->criterion, params->guest);
 
   n_fixed = Xsim(params, &x, &y);
