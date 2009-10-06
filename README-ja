@@ -1,11 +1,12 @@
 =begin
 = xtalgrowth
-xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです。xtalgrowthを
-起動すると、画面の上から剛体球が落ちてきて画面の底に降り積もり、２次元の結晶が成長します。
-コマンドラインオプションで計算条件を変更することができます。賞状の形をした計算結果が
-PostScriptファイルとして標準出力 (STDOUT) から出力されます。オープンキャンパスや研究所の
-一般公開の来場者参加型の展示物に適しています。Linux や Mac OS X などのUNIX系の
-コンピュータで動きます。
+xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです。
+xtalgrowthを起動すると、画面の上からランダムに剛体球が落ちてきて画面
+の底に降り積もり、２次元の結晶が成長します。コマンドラインオプションで
+計算条件を変更することができます。賞状の形をした計算結果がPostScript
+ファイルとして標準出力 (stdout) から出力されます（図１）。オープン
+キャンパスや研究所の一般公開の来場者参加型の展示物に適しています。
+Linux や Mac OS X などのUNIX系のコンピュータで動きます。
 
 使用方法:
  $ xtalgrowth --help
@@ -19,6 +20,11 @@ certification.eps を置いてください。賞状のタイトルとして使�
 
 印刷がうまくいかないときは次のようにgsを間に入れて下さい：
  $ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
+
+Fig. 1 figures/example.jpg
+  図１　xtalgrowthによって出力される賞状の例。
+  名前と今日の日付が入ります。
+/Fig.
 
 == ホームページとダウンロード
 xtalgrowthのホームページは http://loto.sourceforge.net/xtalgrowth/ です。
@@ -53,32 +59,38 @@ http://sourceforge.net/projects/loto/files/
  % env LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
 とenvコマンドを使ってください。
 
-== 計算条件
-x方向は周期的境界条件
+== シミュレーションの計算条件と結果
+ｘ方向（箱の幅方向）は周期的境界条件です。
+球と球とが接したかどうかの計算とその後の軌道計算が大雑把です。
+この大雑把な計算精度が「乱雑さ」として表れます。
 
-球と球とが接したかどうかの計算とそのあとの軌道計算が大雑把。
-この大雑把な計算精度が「乱雑さ」として表れる。
+基板は球を等間隔に並べています。そのため、球の大きさがキツキツだと
+きれいに並ばないことが多くなります：
+ $ xtalgrowth -d 0.033333
+球の直径 (diameter) は箱の幅に対する比で与えます。
+球の大きさにゆとりを与えるときれいに並ぶことが多くなります：
+ $ xtalgrowth -d 0.033
+-cオプションで球が動かなくなる条件を変えることができます。
+３つ以上の球と接したら動かなくなるようにすると、きれいに並ぶことが多くなります：
+ $ xtalgrowth -d 0.033 -c 3
+２つ以上の球と接したら動かなくなるようにすると、空孔がでやすくなります：
+ $ xtalgrowth -d 0.033 -c 2
+１つでも球と接したら動かなくなるようにすると、フラクタル的になります（参考文献[1]）：
+ $ xtalgrowth -d 0.033 -c 1 -n 100
+細かくて美しいものを作ることもできます。-nオプションで球の数を指定できます：
+ $ xtalgrowth -d 0.015 -c 1 -n 1500
 
-== 結果の解釈
-=== 基板は球を等間隔に並べており、また、計算が大雑把なので
-==== 球の大きさがキツキツだと綺麗に並ばない
- ./xtalgrowth -d 0.033333
+== 展示方法
+来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
+Fig. 2 figures/large.jpg
+  図２　２枚のアクリル板の間に直径６mmのＢＢ弾（おもちゃのピストルの弾丸）をはさんだもの。
+  格子欠陥の伝播などが観察できます。レオナルド・ダ・ヴィンチ科学技術博物館の展示のマネです。
+/Fig.
 
-==== 球の大きさにゆとりがあると綺麗に並ぶ
- ./xtalgrowth -d 0.033
-
-=== 球が動かなくなる条件を変えると…
-==== ３つ以上の球と接したら動かなくなる→綺麗に並ぶ
-./xtalgrowth -d 0.033 -c 3
-
-==== ２つ以上の球と接したら動かなくなる→空孔ができる
-./xtalgrowth -d 0.033 -c 2
-
-==== １つ以上の球と接したら動かなくなる→フラクタル的になる
-./xtalgrowth -d 0.033 -c 1 -n 100
-
-==== もう少し細かくて美しいもの
-./xtalgrowth -d 0.015 -c 1 -n 520
+Fig. 3 figures/cd.jpg
+  図３　音楽ＣＤのケースにＢＢ弾をはさんだもの。
+  手軽に工作できます。大きさの比較のため十円玉を脇に置いてあります。
+/Fig.
 
 == 参考文献
 [1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
@@ -92,6 +104,18 @@ Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
 [3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
+
+== 作者とソフトウエアの再配布について
+作者：西松毅 (t-nissie{at}imr.tohoku.ac.jp)
+
+Copyright © 2009 by Takeshi Nishimatsu
+
+xtalgrowth is distributed in the hope that
+it will be useful, but WITHOUT ANY WARRANTY.
+You can copy, modify and redistribute xtalgrowth,
+but only under the conditions described in
+the GNU General Public License (the "GPL").
+For more detail, see COPYING.
 
 == Acknowledgements
 http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
@@ -108,8 +132,7 @@ http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
 require 'rubygems'
 require 'ulmul'
 u=Ulmul.new()
-u.subs_rules << [/(README-ja\S*)(\s|$)/,     '<a href="\1">\1</a>\2']
-u.subs_rules << [/&package_id/,              '&amp;package_id']
+u.subs_rules << [/COPYING/,                  '<a href="COPYING">COPYING</a>']
 u.subs_rules << [/SourceForge.net/,          '<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>']
 
 u.parse(ARGF)
