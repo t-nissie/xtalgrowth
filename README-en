@@ -1,0 +1,139 @@
+=begin
+= xtalgrowth
+xtalgrowth is an X application which simulate a crystal
+growth of 2-dimensional hard spheres. If you execute
+xtalgrowth, a window opens, hard spheres fall from random
+positions, and they stacks at the bottom of the window.
+You can adjust growth conditions with command line options.
+You will get calculated results as PostScriot files from
+stdout (standard output) in a cirtification-like form (Fig.1).
+xtalgrowth is suitable for demonstrations of computer
+simulations of materials science, for example, in
+museums or at open campus events.
+
+Usage:
+ $ xtalgrowth --help
+ $ xtalgrowth -d 0.033 -c 3
+ $ xtalgrowth -d 0.033 -c 2
+ $ xtalgrowth -d 0.015 -c 1 -n 2000
+ $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
+賞状が必要な場合はカレントディレクトリにパッケージに同梱されているような
+certification.eps を置いてください。賞状のタイトルとして使われ、-g
+オプションで指定した名前と今日の日付が賞状に入ります。
+
+印刷がうまくいかないときは次のようにgsを間に入れて下さい：
+ $ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
+
+Fig. 1 figures/example.jpg
+  Fig. 1 Cirtification-like calculated result from xtalgrowth.
+  Guest's name and the date will be in the form.
+/Fig.
+
+== ホームページとダウンロード
+xtalgrowthのホームページは http://loto.sourceforge.net/xtalgrowth/ です。
+最新のtar.gzパッケージ (xtalgrowth-X.Y.Z.tar.gz) を
+http://sourceforge.net/projects/loto/files/
+からダウンロードすることができます。
+
+== Compilation and installation
+Requirements are
+ * C compiler (gcc)
+ * X11  libraries and their include files
+ * popt libraries and their include files
+If you have all of them, You can generate src/xtalgrowth with
+ $ tar zxf xtalgrowth-X.Y.Z.tar.gz
+ $ cd xtalgrowth-X.Y.Z
+ $ ./configure
+ $ make
+Test the executable
+ $ cd src
+ $ ./xtalgrowth --help
+ $ ./xtalgrowth
+If you want to install /usr/local/bin/xtalgrowth,
+ $ sudo make install
+
+In some 64 bit systems, you may get link errors like
+ /usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
+In this case, give some LDFLAGS in the configure step
+ $ LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
+or, if you are csh user, use env command
+ % env LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
+
+== Calculation conditions and results
+ｘ方向（箱の幅方向）は周期的境界条件です。
+球と球とが接したかどうかの計算とその後の軌道計算が大雑把です。
+この大雑把な計算精度が「乱雑さ」として表れます。
+
+基板は球を等間隔に並べています。そのため、球の大きさがキツキツだと
+きれいに並ばないことが多くなります：
+ $ xtalgrowth -d 0.033333
+球の直径 (diameter) は箱の幅に対する比で与えます。
+球の大きさにゆとりを与えるときれいに並ぶことが多くなります：
+ $ xtalgrowth -d 0.033
+-cオプションで球が動かなくなる条件を変えることができます。
+３つ以上の球と接したら動かなくなるようにすると、きれいに並ぶことが多くなります：
+ $ xtalgrowth -d 0.033 -c 3
+２つ以上の球と接したら動かなくなるようにすると、空孔ができやすくなります：
+ $ xtalgrowth -d 0.033 -c 2
+１つでも球と接したら動かなくなるようにすると、フラクタル的になります（参考文献[1]）：
+ $ xtalgrowth -d 0.033 -c 1 -n 100
+細かくて美しいものを作ることもできます。-nオプションで球の数を指定できます：
+ $ xtalgrowth -d 0.015 -c 1 -n 1500
+
+== 展示方法
+来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
+Fig. 2 figures/large.jpg
+  Fig. 2 ２枚のアクリル板の間に直径６mmのＢＢ弾（おもちゃのピストルの弾丸）をはさんだもの。
+  格子欠陥の伝播などが観察できます。レオナルド・ダ・ヴィンチ科学技術博物館の展示のマネです。
+/Fig.
+
+Fig. 3 figures/cd.jpg
+   Fig. 3 BB projectiles in a music CD case.
+   A Japanese 10 yen coin besides.
+/Fig.
+
+==  References
+[1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
+in the book of "Fractals and disordered systems" edited by Armin Bunde and Shlomo Havlin,
+pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
+
+[2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
+
+[3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
+
+== COPYING
+Author: Takeshi Nishimatsu (t-nissie{at}imr.tohoku.ac.jp)
+
+Copyright © 2009 by Takeshi Nishimatsu
+
+xtalgrowth is distributed in the hope that
+it will be useful, but WITHOUT ANY WARRANTY.
+You can copy, modify and redistribute xtalgrowth,
+but only under the conditions described in
+the GNU General Public License (the "GPL").
+For more detail, see COPYING.
+
+== Acknowledgements
+http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
+=end
+
+#
+# for ulmul.rb
+#
+require 'rubygems'
+require 'ulmul'
+u=Ulmul.new()
+u.subs_rules << [/COPYING/,                  '<a href="COPYING">COPYING</a>']
+u.subs_rules << [/SourceForge.net/,          '<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>']
+
+u.parse(ARGF)
+puts u.html(["style.css"],[],"Takeshi Nishimatsu","en")
+
+# Local variables:
+#   mode: RD
+#   compile-command: "ruby README-en README-en > README-en.html"
+# End:
