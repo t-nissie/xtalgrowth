@@ -17,23 +17,23 @@ Usage:
  $ xtalgrowth -d 0.033 -c 2
  $ xtalgrowth -d 0.015 -c 1 -n 2000
  $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
-賞状が必要な場合はカレントディレクトリにパッケージに同梱されているような
-certification.eps を置いてください。賞状のタイトルとして使われ、-g
-オプションで指定した名前と今日の日付が賞状に入ります。
+Put certification.eps in the current directory to get a cirtification letter.
+certification.eps will be used as a title of the cirtification letter.
+Name of the guest given by -g option and today's date will also be on the cirtification letter.
 
-印刷がうまくいかないときは次のようにgsを間に入れて下さい：
- $ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
+If your printer cannot print xtalgrowth's output correctly,
+pipe it through gs command:
+ $ xtalgrowth [OPTIONS...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 
 Fig. 1 figures/example.jpg
   Fig. 1 Cirtification-like calculated result from xtalgrowth.
   Guest's name and the date will be in the form.
 /Fig.
 
-== ホームページとダウンロード
-xtalgrowthのホームページは http://loto.sourceforge.net/xtalgrowth/ です。
-最新のtar.gzパッケージ (xtalgrowth-X.Y.Z.tar.gz) を
-http://sourceforge.net/projects/loto/files/
-からダウンロードすることができます。
+== Homepage and DOWNLOAD
+Home page of xtalgrowth is http://loto.sourceforge.net/xtalgrowth/ .
+Latest tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
+http://sourceforge.net/projects/loto/files/ .
 
 == Compilation and installation
 Requirements are
@@ -60,9 +60,10 @@ or, if you are csh user, use env command
  % env LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
 
 == Calculation conditions and results
-ｘ方向（箱の幅方向）は周期的境界条件です。
-球と球とが接したかどうかの計算とその後の軌道計算が大雑把です。
-この大雑把な計算精度が「乱雑さ」として表れます。
+Periodic boundary condition is employed
+for x-direction (width of the box).
+Collision detection of balls is rough.
+This computational roughness results in defects of crystals.
 
 基板は球を等間隔に並べています。そのため、球の大きさがキツキツだと
 きれいに並ばないことが多くなります：
@@ -83,8 +84,7 @@ or, if you are csh user, use env command
 == 展示方法
 来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
 Fig. 2 figures/large.jpg
-  Fig. 2 ２枚のアクリル板の間に直径６mmのＢＢ弾（おもちゃのピストルの弾丸）をはさんだもの。
-  格子欠陥の伝播などが観察できます。レオナルド・ダ・ヴィンチ科学技術博物館の展示のマネです。
+  Fig. 2 BB projectiles in a pair of acrylic glasses.
 /Fig.
 
 Fig. 3 figures/cd.jpg

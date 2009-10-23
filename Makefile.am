@@ -1,6 +1,6 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2009-10-06 17:19:43 takeshi>
+# Time-stamp: <2009-10-23 12:04:08 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 AUTOMAKE_OPTIONS = foreign
@@ -17,7 +17,7 @@ sourceforge: README-ja.html README-ja style.css COPYING favicon.ico
 	scp $^         $(SOURCEFORGE_XTALGROWTH)
 	scp -r figures $(SOURCEFORGE_XTALGROWTH)
 
-README-ja.html:  README-ja
+%.html: %
 	ruby -I $(srcdir) $< $< > $@
 
 dist-hook:
