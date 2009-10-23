@@ -1,6 +1,6 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2009-10-23 12:13:42 takeshi>
+# Time-stamp: <2009-10-23 12:17:56 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 AUTOMAKE_OPTIONS = foreign
@@ -11,11 +11,12 @@ SNAPSHOT_NAME=$(PACKAGE)-$(VERSION)_`date +"%Y-%m-%d_%H"`
 SOURCEFORGE_XTALGROWTH=web.sourceforge.net:/home/groups/l/lo/loto/htdocs/xtalgrowth
 
 sf: sourceforge
-sourceforge: README-ja.html README-ja style.css COPYING favicon.ico
-	scp $<         $(SOURCEFORGE_XTALGROWTH)/index.html
-	scp $<         $(SOURCEFORGE_XTALGROWTH)/index-ja.html
-	scp $^         $(SOURCEFORGE_XTALGROWTH)
-	scp -r figures $(SOURCEFORGE_XTALGROWTH)
+sourceforge: README.en.html README.en README.ja.html README.ja style.css COPYING favicon.ico
+	scp $<             $(SOURCEFORGE_XTALGROWTH)/index.html
+	scp $<             $(SOURCEFORGE_XTALGROWTH)/index.en.html
+	scp README.ja.html $(SOURCEFORGE_XTALGROWTH)/index.ja.html
+	scp $^             $(SOURCEFORGE_XTALGROWTH)
+########scp -r figures     $(SOURCEFORGE_XTALGROWTH)
 
 %.html: %
 	ruby -I $(srcdir) $< $< > $@
