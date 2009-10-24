@@ -84,7 +84,8 @@ This computational roughness results in defects of crystals.
 == 展示方法
 来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
 Fig. 2 figures/large.jpg
-  Fig. 2 BB projectiles in a pair of acrylic glasses.
+  Fig. 2 Model of 2-dimentional ballistic crystal.
+  BB projectiles (diameter: 6 mm) in a pair of acrylic glasses.
 /Fig.
 
 Fig. 3 figures/cd.jpg
@@ -135,5 +136,5 @@ puts u.html(["style.css"],[],"Takeshi Nishimatsu","en")
 
 # Local variables:
 #   mode: RD
-#   compile-command: "ruby README-en README-en > README-en.html"
+#   compile-command: "ruby README.en README.en > README.en.html"
 # End:

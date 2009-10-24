@@ -84,7 +84,7 @@ http://sourceforge.net/projects/loto/files/
 来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
 Fig. 2 figures/large.jpg
   図２　２枚のアクリル板の間に直径６mmのＢＢ弾（おもちゃのピストルの弾丸）をはさんだもの。
-  格子欠陥の伝播などが観察できます。レオナルド・ダ・ヴィンチ科学技術博物館の展示のマネです。
+  格子欠陥の伝播などが観察できます。
 /Fig.
 
 Fig. 3 figures/cd.jpg
@@ -140,5 +140,5 @@ puts u.html(["style.css"],[],"Takeshi Nishimatsu","ja")
 
 # Local variables:
 #   mode: RD
-#   compile-command: "ruby README-ja README-ja > README-ja.html"
+#   compile-command: "ruby README.ja README.ja > README.ja.html"
 # End:
