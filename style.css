@@ -1,6 +1,6 @@
 /* -*-CSS-*-
  * Style.css for xtalgrowth
- * Time-stamp: <2009-11-01 18:17:17 takeshi>
+ * Time-stamp: <2009-11-02 08:07:23 takeshi>
  * Author: Takeshi NISHIMATSU
  */
 body
@@ -76,3 +76,6 @@ div.figure img { width:30%;
 div.figure div.caption { width:40%;
                          margin-left:auto;
                          margin-right:auto;}
+
+div.navi { text-align: right;
+	   margin-right: 1.0em; }

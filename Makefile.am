@@ -1,25 +1,24 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2009-10-23 12:17:56 takeshi>
+# Time-stamp: <2009-11-02 08:09:06 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 AUTOMAKE_OPTIONS = foreign
 SUBDIRS = src
-EXTRA_DIST = README.ja README.ja.html README.en README.en.html COPYING figures style.css favicon.ico
+EXTRA_DIST = README.ja index.ja.html README.en index.en.html COPYING figures style.css favicon.ico
 CLEANFILES = *.html
 SNAPSHOT_NAME=$(PACKAGE)-$(VERSION)_`date +"%Y-%m-%d_%H"`
 SOURCEFORGE_XTALGROWTH=web.sourceforge.net:/home/groups/l/lo/loto/htdocs/xtalgrowth
 
 sf: sourceforge
-sourceforge: README.en.html README.en README.ja.html README.ja style.css COPYING favicon.ico
+sourceforge: index.en.html README.en index.ja.html README.ja index.var style.css COPYING favicon.ico dot.htaccess
 	scp $<             $(SOURCEFORGE_XTALGROWTH)/index.html
-	scp $<             $(SOURCEFORGE_XTALGROWTH)/index.en.html
-	scp README.ja.html $(SOURCEFORGE_XTALGROWTH)/index.ja.html
+	scp dot.htaccess   $(SOURCEFORGE_XTALGROWTH)/.htaccess
 	scp $^             $(SOURCEFORGE_XTALGROWTH)
 ########scp -r figures     $(SOURCEFORGE_XTALGROWTH)
 
-%.html: %
-	ruby -I $(srcdir) $< $< > $@
+index.%.html: README.%
+	ruby -I $(srcdir) $< $< | sed -e 's%</h1>%</h1><div class="navi">[<a href="index.en.html">English</a>/<a href="index.ja.html">Japanese</a>]</div>%' > $@
 
 dist-hook:
 	rm -rf `find $(distdir) -type d -name .svn`

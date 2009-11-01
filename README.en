@@ -130,13 +130,13 @@ http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
 require 'rubygems'
 require 'ulmul'
 u=Ulmul.new()
-u.subs_rules << [/COPYING/,                  '<a href="COPYING">COPYING</a>']
-u.subs_rules << [/SourceForge.net/,          '<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>']
+u.subs_rules << [/COPYING/,                          '<a href="COPYING">COPYING</a>']
+u.subs_rules << [/SourceForge.net/,                  '<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>']
 
 u.parse(ARGF)
 puts u.html(["style.css"],[],"Takeshi Nishimatsu","en")
 
 # Local variables:
 #   mode: RD
-#   compile-command: "ruby README.en README.en > README.en.html"
+#   compile-command: "make index.en.html"
 # End:

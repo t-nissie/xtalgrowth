@@ -140,5 +140,5 @@ puts u.html(["style.css"],[],"Takeshi Nishimatsu","ja")
 
 # Local variables:
 #   mode: RD
-#   compile-command: "ruby README.ja README.ja > README.ja.html"
+#   compile-command: "make index.ja.html"
 # End:
