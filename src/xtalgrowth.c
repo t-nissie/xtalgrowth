@@ -109,7 +109,7 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
 #else /* HAVE_POPT_H */
   int c;
   extern char *optarg;
-  while ((c = getopt(argc, argv, "v:r:n:c:g:")) != -1) {
+  while ((c = getopt(argc, argv, "v:d:n:c:g:")) != -1) {
     switch (c) {
     case 'v':
       params->velocity = atof(optarg);

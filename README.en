@@ -1,12 +1,12 @@
 =begin
 = xtalgrowth
-xtalgrowth is an X application which simulate a crystal
+xtalgrowth is an X application which simulate crystal
 growth of 2-dimensional hard spheres. If you execute
 xtalgrowth, a window opens, hard spheres fall from random
 positions, and they stacks at the bottom of the window.
 You can adjust growth conditions with command line options.
-You will get calculated results as PostScriot files from
-stdout (standard output) in a cirtification-like form (Fig.1).
+You will get calculated results as PostScript files from
+stdout (standard output) in a certification-like form (Fig.1).
 xtalgrowth is suitable for demonstrations of computer
 simulations of materials science, for example, in
 museums or at open campus events.
@@ -17,9 +17,9 @@ Usage:
  $ xtalgrowth -d 0.033 -c 2
  $ xtalgrowth -d 0.015 -c 1 -n 2000
  $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
-Put certification.eps in the current directory to get a cirtification letter.
-certification.eps will be used as a title of the cirtification letter.
-Name of the guest given by -g option and today's date will also be on the cirtification letter.
+Put certification.eps in the current directory to get a certification letter.
+certification.eps will be used as a title of the certification letter.
+Name of the guest given by -g option and today's date will also be on the certification letter.
 
 If your printer cannot print xtalgrowth's output correctly,
 pipe it through gs command:
@@ -62,34 +62,36 @@ or, if you are csh user, use env command
 == Calculation conditions and results
 Periodic boundary condition is employed
 for x-direction (width of the box).
-Collision detection of balls is rough.
+Collision detection of hard spheres is rough.
 This computational roughness results in defects of crystals.
 
-基板は球を等間隔に並べています。そのため、球の大きさがキツキツだと
-きれいに並ばないことが多くなります：
+It starts from periodic substrates.
+If diameter is tight, you will not get perfect stacking:
  $ xtalgrowth -d 0.033333
-球の直径 (diameter) は箱の幅に対する比で与えます。
-球の大きさにゆとりを与えるときれいに並ぶことが多くなります：
+You can give the diameter of hard spheres with ration to the box width.
+Loose diameter may result in perfect stacking:
  $ xtalgrowth -d 0.033
--cオプションで球が動かなくなる条件を変えることができます。
-３つ以上の球と接したら動かなくなるようにすると、きれいに並ぶことが多くなります：
+You can change criterion of stacking with -c option from 3 to 1.
+If -c 3, hard spheres stops falling when it touches 3 other spheres:
  $ xtalgrowth -d 0.033 -c 3
-２つ以上の球と接したら動かなくなるようにすると、空孔ができやすくなります：
+If -c 2, hard spheres stops falling when it touches 2 other spheres.
+Defects will be included in the crystal:
  $ xtalgrowth -d 0.033 -c 2
-１つでも球と接したら動かなくなるようにすると、フラクタル的になります（参考文献[1]）：
+If -c 1, you will get fractal structures (See Reference [1]):
  $ xtalgrowth -d 0.033 -c 1 -n 100
-細かくて美しいものを作ることもできます。-nオプションで球の数を指定できます：
+You can change number of balls with -n option:
  $ xtalgrowth -d 0.015 -c 1 -n 1500
 
-== 展示方法
-来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
+== Display
+Display this program with real models like Fig.2 and Fig.3.
+
 Fig. 2 figures/large.jpg
-  Fig. 2 Model of 2-dimentional ballistic crystal.
+  Fig. 2. Model of 2-dimensional ballistic crystal.
   BB projectiles (diameter: 6 mm) in a pair of acrylic glasses.
 /Fig.
 
 Fig. 3 figures/cd.jpg
-   Fig. 3 BB projectiles in a music CD case.
+   Fig. 3. BB projectiles in a music CD case.
    A Japanese 10 yen coin besides.
 /Fig.
 
