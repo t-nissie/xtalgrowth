@@ -55,9 +55,7 @@ If you want to install /usr/local/bin/xtalgrowth,
 In some 64 bit systems, you may get link errors like
  /usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
 In this case, give some LDFLAGS in the configure step
- $ LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
-or, if you are csh user, use env command
- % env LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
+ $ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 
 == Calculation conditions and results
 Periodic boundary condition is employed

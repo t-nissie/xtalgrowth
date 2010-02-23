@@ -54,10 +54,8 @@ http://sourceforge.net/projects/loto/files/
 一部の64ビットのシステムでは、
  /usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
 というようなメッセージが出てリンクに失敗することがあります。その場合はconfigureのときに
- $ LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
-などとLDFLAGSを調節してください。csh系をお使いの場合には
- % env LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64" ./configure
-とenvコマンドを使ってください。
+ $ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
+などとLDFLAGSを調節してください。
 
 == シミュレーションの計算条件と結果
 ｘ方向（箱の幅方向）は周期的境界条件です。
