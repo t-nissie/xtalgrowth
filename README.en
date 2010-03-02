@@ -39,7 +39,7 @@ http://sourceforge.net/projects/loto/files/ .
 Requirements are
  * C compiler (gcc)
  * X11  libraries and their include files
- * popt libraries and their include files
+ * popt libraries and their include files (apt-get install libpopt-dev or see http://rpm5.org/files/popt/ )
 If you have all of them, You can generate src/xtalgrowth with
  $ tar zxf xtalgrowth-X.Y.Z.tar.gz
  $ cd xtalgrowth-X.Y.Z

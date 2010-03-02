@@ -36,7 +36,7 @@ http://sourceforge.net/projects/loto/files/
 コンパイルには
  * gccなどのＣコンパイラ
  * X11ライブラリとそのインクルード・ファイル
- * poptライブラリとそのインクルード・ファイル
+ * poptライブラリとそのインクルード・ファイル（apt-get install libpopt-dev または http://rpm5.org/files/popt/ から入手して下さい）
 が必要です。必要なものがそろっていれば
  $ tar zxf xtalgrowth-X.Y.Z.tar.gz
  $ cd xtalgrowth-X.Y.Z
