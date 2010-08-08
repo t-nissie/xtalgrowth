@@ -12,7 +12,7 @@ Linux や Mac OS X などのUNIX系のコンピュータで動きます。
  $ xtalgrowth --help
  $ xtalgrowth -d 0.033 -c 3
  $ xtalgrowth -d 0.033 -c 2
- $ xtalgrowth -d 0.015 -c 1 -n 2000
+ $ xtalgrowth -d 0.010 -c 1
  $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
 賞状が必要な場合はカレントディレクトリにパッケージに同梱されているような
 certification.eps を置いてください。賞状のタイトルとして使われ、-g
@@ -74,9 +74,7 @@ http://sourceforge.net/projects/loto/files/xtalgrowth/
 ２つ以上の球と接したら動かなくなるようにすると、空孔ができやすくなります：
  $ xtalgrowth -d 0.033 -c 2
 １つでも球と接したら動かなくなるようにすると、フラクタル的になります（参考文献[1]）：
- $ xtalgrowth -d 0.033 -c 1 -n 100
-細かくて美しいものを作ることもできます。-nオプションで球の数を指定できます：
- $ xtalgrowth -d 0.015 -c 1 -n 1500
+ $ xtalgrowth -d 0.010 -c 1
 
 == 展示方法
 来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
@@ -106,7 +104,7 @@ Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
 == 作者とソフトウエアの再配布について
 作者：西松毅 (t-nissie{at}imr.tohoku.ac.jp)
 
-Copyright © 2009 by Takeshi Nishimatsu
+Copyright © 2009-2010 by Takeshi Nishimatsu
 
 xtalgrowth is distributed in the hope that
 it will be useful, but WITHOUT ANY WARRANTY.

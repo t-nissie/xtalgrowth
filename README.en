@@ -76,9 +76,7 @@ If -c 2, hard spheres stops falling when it touches 2 other spheres.
 Defects will be included in the crystal:
  $ xtalgrowth -d 0.033 -c 2
 If -c 1, you will get fractal structures (See Reference [1]):
- $ xtalgrowth -d 0.033 -c 1 -n 100
-You can change number of balls with -n option:
- $ xtalgrowth -d 0.015 -c 1 -n 1500
+ $ xtalgrowth -d 0.01 -c 1
 
 == Display
 Display this program with real models like Fig.2 and Fig.3.
@@ -109,7 +107,7 @@ Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
 == Author and COPYING
 Author: Takeshi Nishimatsu (t-nissie{at}imr.tohoku.ac.jp)
 
-Copyright © 2009 by Takeshi Nishimatsu
+Copyright © 2009-2010 by Takeshi Nishimatsu
 
 xtalgrowth is distributed in the hope that
 it will be useful, but WITHOUT ANY WARRANTY.

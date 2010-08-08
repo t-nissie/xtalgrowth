@@ -1,5 +1,5 @@
 /* Xsim.c
-   Time-stamp: <2009-06-19 14:17:36 takeshi>
+   Time-stamp: <2010-08-08 17:41:51 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <unistd.h>
@@ -11,6 +11,7 @@
 #include "rand_ary.h"
 #define WIDTH 600
 #define MAX_N_TOUCH 3
+#define MAX_N_BALL 10000
 const double ratio=0.2;
 double diameter, diameter3, dxd, radius;
 int diameter_dot;
@@ -89,7 +90,6 @@ void exposure(const int n_fixed,
   }
 }
 
-/* int Xsim(double velocity, double r, int n_ball, int criterion, input */
 int Xsim(struct GrowthParameters *params, /* input */
 	 double **x_result, double **y_result)   /* output */
 {
@@ -98,10 +98,10 @@ int Xsim(struct GrowthParameters *params, /* input */
   double x, y, dx, dy, dx1, tmp;
   double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
 
-  *x_result = malloc(2*params->n_ball*sizeof(double));
-  *y_result = malloc(2*params->n_ball*sizeof(double));
+  *x_result = malloc(2*MAX_N_BALL*sizeof(double));
+  *y_result = malloc(2*MAX_N_BALL*sizeof(double));
 
-  ary = rand_ary(params->n_ball*2);
+  ary = rand_ary(MAX_N_BALL*2);
 
   /* Set global arguments in this file */
   diameter = params->diameter;
@@ -142,7 +142,8 @@ int Xsim(struct GrowthParameters *params, /* input */
   usleep(2000000); 
 
   /* main loop */
-  for (i=0; i<params->n_ball; i++) {
+  y = 0.0;
+  for (i=0; i<MAX_N_BALL && y<(0.97*height-diameter); i++) {
     x = ary[i];
     y = height;
     arc(x, y);
