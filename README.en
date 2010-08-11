@@ -15,7 +15,7 @@ Usage:
  $ xtalgrowth --help
  $ xtalgrowth -d 0.033 -c 3
  $ xtalgrowth -d 0.033 -c 2
- $ xtalgrowth -d 0.015 -c 1 -n 2000
+ $ xtalgrowth -d 0.015 -c 1
  $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
 Put certification.eps in the current directory to get a certification letter.
 certification.eps will be used as a title of the certification letter.
