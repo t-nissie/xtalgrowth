@@ -1,6 +1,6 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2010-04-04 13:38:32 takeshi>
+# Time-stamp: <2010-08-11 16:43:43 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 AUTOMAKE_OPTIONS = foreign
@@ -17,7 +17,7 @@ sourceforge: index.en.html README.en index.ja.html README.ja index.var style.css
 ########scp -r figures     $(SOURCEFORGE_XTALGROWTH)
 
 index.%.html: README.%
-	ruby --encoding=utf-8 $< $< | sed -e 's%</h1>%</h1><div class="navi">[<a href="index.en.html">English</a>/<a href="index.ja.html">Japanese</a>]</div>%' > $@
+	ruby $< $< | sed -e 's%</h1>%</h1><div class="navi">[<a href="index.en.html">English</a>/<a href="index.ja.html">Japanese</a>]</div>%' > $@
 
 dist-hook:
 	rm -rf `find $(distdir) -type d -name .svn`

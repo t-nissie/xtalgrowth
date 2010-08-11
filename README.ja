@@ -76,6 +76,10 @@ http://sourceforge.net/projects/loto/files/xtalgrowth/
 １つでも球と接したら動かなくなるようにすると、フラクタル的になります（参考文献[1]）：
  $ xtalgrowth -d 0.010 -c 1
 
+なお、コンパイル時にpoptライブラリを使っていれば
+ $ xtalgrowth --help
+でコマンドラインオプションを調べることができます。
+
 == 展示方法
 来場者参加型の展示としては図２と図３のような模型とともに展示するとよいかもしれません。
 Fig. 2 figures/large.jpg
@@ -127,7 +131,7 @@ http://loto.sourceforge.net/xtalgrowth/ is hosted by SourceForge.net .
 #
 require 'rubygems'
 require 'ulmul'
-u=Ulmul.new()
+u=Ulmul.new(2..3,'ulmul2xhtml')
 u.subs_rules << [/COPYING/,                  '<a href="COPYING">COPYING</a>']
 u.subs_rules << [/SourceForge.net/,          '<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>']
 
