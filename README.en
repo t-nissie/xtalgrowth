@@ -103,10 +103,16 @@ pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
 [2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
+You can get a free PDF of this article from doi:10.1098/rspa.1947.0089.
 
 [3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
+You can get a free PDF of this article from doi:10.1098/rspa.1949.0022.
+
+[4] Alfred V. Aho, Ravi Sethi, and Jeffrey D. Ullman:
+"Compilers: Principles, Techniques, and Tools" (1986),
+ISBN:0-201-10088-6, Addison Wesley.
 
 == Author and COPYING
 Author: Takeshi Nishimatsu (t-nissie{at}imr.tohoku.ac.jp)
@@ -131,6 +137,7 @@ require 'rubygems'
 require 'ulmul'
 u=Ulmul.new(2..3,'ulmul2xhtml')
 u.subs_rules << [/COPYING/,                          '<a href="COPYING">COPYING</a>']
+u.subs_rules << [/doi:(.*)\./,  '<a href="http://dx.doi.org/\1">doi:\1</a>.']
 u.subs_rules << [/SourceForge.net/,                  '<a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a>']
 
 u.parse(ARGF)
