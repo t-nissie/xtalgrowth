@@ -5,8 +5,9 @@
    "Compilers: Principles, Techniques, and Tools" (1986),
    ISBN:0-201-10088-6, Addison Wesley).
 
-   Time-stamp: <2010-11-16 13:07:18 takeshi>
+   Time-stamp: <2010-11-16 17:15:35 takeshi>
 */
+#include "hashpjw.h"
 int hashpjw(char *s)
 {
   char *p;
