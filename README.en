@@ -116,7 +116,10 @@ ISBN:0-201-10088-6, Addison Wesley.
 
 [5] George Marsaglia and Wai Wan Tsang: "The 64-bit universal RNG",
 Statistics & Probability Letters, Vol. 66, pp. 183-187 (15 January 2004),
-doi:10.1016/j.spl.2003.11.001.
+doi:10.1016/j.spl.2003.11.001. Note that a part of code in the bottom
+of p.186, "y=(8888*x)%65579;" should be replaced by "y=(8888*y)%65579;".
+Consequently, 5 values of "The correct output" in p.187 are incorrect.
+See http://sci4um.com/about16220-asc.html .
 
 == Author and COPYING
 Author: Takeshi Nishimatsu (t-nissie{at}imr.tohoku.ac.jp)
