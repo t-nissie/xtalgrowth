@@ -1,19 +1,18 @@
 /* uni64.c
-
    Random Number Generator
-
+   Time-stamp: <2010-11-17 11:49:16 takeshi>
    References:
      George Marsaglia and Wai Wan Tsang: "The 64-bit universal RNG",
-     Statistics & Probability Letters, Vol. 66, pp. 183-187 (15 January 2004),
+     Statistics & Probability Letters, Vol.66, pp.183-187 (15 January 2004),
      doi:10.1016/j.spl.2003.11.001. Note that a part of code in the bottom
      of p.186, "y=(8888*x)%65579;" should be replaced by "y=(8888*y)%65579;".
      Consequently, 5 values of "The correct output" in p.187 are incorrect.
      See http://sci4um.com/about16220-asc.html .
-
-   Time-stamp: <2010-11-16 17:07:46 takeshi>
 */
 #include "uni64.h"
+
 static double U[98];
+
 void fillU(int seed1,int seed2)
 {
   double s,t;
@@ -23,7 +22,7 @@ void fillU(int seed1,int seed2)
   for (i=1;i<98;i++) {
     s=0.0;
     t=0.5;
-    for(j=1;j<54;j++) {
+    for (j=1;j<54;j++) {
       x=(6969*x)%65543;
       y=(8888*y)%65579;
       if (((x^y)&32)>0) s=s+t;
@@ -31,7 +30,6 @@ void fillU(int seed1,int seed2)
     }
     U[i]=s;
   }
- printf("%20.10f \n",U[33]);
 }
 
 double uni64()
