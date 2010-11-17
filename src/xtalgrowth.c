@@ -1,5 +1,6 @@
-/* xtalgrowth.c */
-/* 2003,01,05   NISHIMATSU Takeshi */
+/* xtalgrowth.c
+   Time-stamp: <2010-11-17 19:51:13 takeshi>
+   Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -80,7 +81,7 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
   int ierr;
   poptContext optCon;
   struct poptOption optionsTable[] = {
-    {"diameter", 'd', POPT_ARG_STRING, &cDiameter,          0 , "Diameter of a ball, r/width",   "0.nnn"  },
+    {"diameter", 'd', POPT_ARG_STRING, &cDiameter,          0 , "Diameter of a ball, d/width",   "0.nnn"  },
     {"height",   'h', POPT_ARG_STRING, &cHeight,            0 , "Height of the system, h/width", "1.nnn"  },
     {"criterion",'c', POPT_ARG_INT,    &(params->criterion),0 , "Criterion, 1=<n=<3",            "n"      },
     {"velocity", 'v', POPT_ARG_STRING, &cVelocity,          0 , "Falling Velocity par step",     "0.00n"  },
