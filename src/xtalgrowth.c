@@ -19,9 +19,12 @@
 #include "PostScript.h"
 #include "PostScript_memo.h"
 #include "PostScript_eps.h"
-#define DEFAULT_DIAMETER 0.0499999999999;
-#define DEFAULT_HEIGHT   1.2;
-#define DEFAULT_VELOCITY 0.0008;
+#include "uni64.h"
+#include "hashpjw.h"
+#define DEFAULT_DIAMETER 0.0499999999999
+#define DEFAULT_HEIGHT   1.2
+#define DEFAULT_VELOCITY 0.0008
+#define TMP_LEN 200
 
 void parse_opt(int argc, char **argv, struct GrowthParameters *params);
 
@@ -31,6 +34,8 @@ int main(int argc, char **argv)
   double *y;
   struct GrowthParameters *params;
   int n_fixed;
+  int seed1, seed2;
+  char tmp[TMP_LEN]="abcdef";
 
   params = malloc(sizeof(struct GrowthParameters));
   /* Default values */
@@ -44,11 +49,22 @@ int main(int argc, char **argv)
   fprintf(stderr, "velocity=%.6f, diameter=%.6f, height=%.3f, criterion=%1d, guest=%s\n",
           params->velocity, params->diameter, params->height, params->criterion, params->guest);
 
+  /* Make seed1 adn seed2 from params->guest */
+  strlcat(tmp,params->guest,TMP_LEN);
+  strlcat(tmp,"uvwxyz",     TMP_LEN);
+  seed1=hashpjw(params->guest);
+  seed2=hashpjw(tmp);
+  fillU(seed1,seed2);
+
+  /* Simulation */
   n_fixed = Xsim(params, &x, &y);
+
+  /* Generate a PostScript file */
   PostScript_header();
   PostScript_eps();
   PostScript_memo(params);
   PostScript_show_xtal(params, n_fixed, x, y);
+
   free(x);
   free(y);
   free(params);

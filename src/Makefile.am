@@ -1,10 +1,10 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2010-11-17 11:48:30 takeshi>
+# Time-stamp: <2010-11-17 18:55:22 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
-xtalgrowth_SOURCES = PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c rand_ary.c uni64.c hashpjw.c xtalgrowth.c
-EXTRA_DIST         = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h rand_ary.h uni64.h hashpjw.h xtalgrowth.h\
+xtalgrowth_SOURCES = PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c xtalgrowth.c
+EXTRA_DIST         = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h uni64.h hashpjw.h xtalgrowth.h\
                      makefile.c pjw.c certification.eps againagain.sh
 
 .c.ps:

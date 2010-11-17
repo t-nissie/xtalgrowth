@@ -1,5 +1,5 @@
 /* Xsim.c
-   Time-stamp: <2010-08-08 17:41:51 takeshi>
+   Time-stamp: <2010-11-17 19:00:00 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <unistd.h>
@@ -8,7 +8,7 @@
 #include <X11/Xutil.h>
 #include "xtalgrowth.h"
 #include "Xsim.h"
-#include "rand_ary.h"
+#include "uni64.h"
 #define WIDTH 600
 #define MAX_N_TOUCH 3
 #define MAX_N_BALL 10000
@@ -93,15 +93,12 @@ void exposure(const int n_fixed,
 int Xsim(struct GrowthParameters *params, /* input */
 	 double **x_result, double **y_result)   /* output */
 {
-  double *ary;
   int i, n_substrate, n_fixed, n_touching;
   double x, y, dx, dy, dx1, tmp;
   double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
 
   *x_result = malloc(2*MAX_N_BALL*sizeof(double));
   *y_result = malloc(2*MAX_N_BALL*sizeof(double));
-
-  ary = rand_ary(MAX_N_BALL*2);
 
   /* Set global arguments in this file */
   diameter = params->diameter;
@@ -115,7 +112,7 @@ int Xsim(struct GrowthParameters *params, /* input */
   w = XCreateSimpleWindow( d, RootWindow(d,0),
 			   400,   2,
 			   WIDTH, (int)(WIDTH*height),
-			   1, 
+			   1,
 			   BlackPixel(d,0),
 			   WhitePixel(d,0));
   XSelectInput(d, w, ExposureMask);
@@ -136,15 +133,15 @@ int Xsim(struct GrowthParameters *params, /* input */
     x = radius+dx*i;
     (*x_result)[n_fixed]= x; (*y_result)[n_fixed++]=y; arc(x,y);
   }
-  
+
   /* Show the initial state on display. The argument of usleep()
      should be enough long micro-second to show the initial state. */
-  usleep(2000000); 
+  usleep(2000000);
 
   /* main loop */
   y = 0.0;
   for (i=0; i<MAX_N_BALL && y<(0.97*height-diameter); i++) {
-    x = ary[i];
+    x = uni64();
     y = height;
     arc(x, y);
     n_touching = 0;
@@ -181,8 +178,6 @@ int Xsim(struct GrowthParameters *params, /* input */
       }
     }
   }
-
-  free(ary);
 
   return n_fixed;
 }
