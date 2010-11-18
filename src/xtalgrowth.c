@@ -1,5 +1,5 @@
 /* xtalgrowth.c
-   Time-stamp: <2010-11-17 19:51:13 takeshi>
+   Time-stamp: <2010-11-18 17:19:49 takeshi>
    Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +25,6 @@
 #define DEFAULT_DIAMETER 0.0499999999999
 #define DEFAULT_HEIGHT   1.2
 #define DEFAULT_VELOCITY 0.0008
-#define TMP_LEN 200
 
 void parse_opt(int argc, char **argv, struct GrowthParameters *params);
 
@@ -36,7 +35,7 @@ int main(int argc, char **argv)
   struct GrowthParameters *params;
   int n_fixed;
   int seed1, seed2;
-  char tmp[TMP_LEN]="abcdef";
+  char buffer[1024]="abcdef";
 
   params = malloc(sizeof(struct GrowthParameters));
   /* Default values */
@@ -51,10 +50,10 @@ int main(int argc, char **argv)
           params->velocity, params->diameter, params->height, params->criterion, params->guest);
 
   /* Make seed1 adn seed2 from params->guest */
-  strlcat(tmp,params->guest,TMP_LEN);
-  strlcat(tmp,"uvwxyz",     TMP_LEN);
+  strcat(buffer,params->guest);
+  strcat(buffer,"uvwxyz");
   seed1=hashpjw(params->guest);
-  seed2=hashpjw(tmp);
+  seed2=hashpjw(buffer);
   fillU(seed1,seed2);
 
   /* Simulation */
