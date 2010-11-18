@@ -1,11 +1,11 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2010-11-17 18:55:22 takeshi>
+# Time-stamp: <2010-11-18 17:30:52 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
 xtalgrowth_SOURCES = PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c xtalgrowth.c
 EXTRA_DIST         = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h uni64.h hashpjw.h xtalgrowth.h\
-                     makefile.c pjw.c certification.eps againagain.sh
+                     marsaglia.c pjw.c certification.eps againagain.sh
 
 .c.ps:
 	a2ps --header=`date +%Y-%m-%d` --left-title='xtalgrowth' --right-title='Takeshi Nishimatsu'\
