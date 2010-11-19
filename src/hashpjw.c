@@ -5,9 +5,11 @@
    "Compilers: Principles, Techniques, and Tools" (1986),
    ISBN:0-201-10088-6, Addison Wesley).
 
-   Time-stamp: <2010-11-16 17:15:35 takeshi>
+   Time-stamp: <2010-11-19 11:23:27 takeshi>
 */
 #include "hashpjw.h"
+#define PRIME 268435399
+/* The largest prime number bigger than 0x0fffffff=268435455. */
 int hashpjw(char *s)
 {
   char *p;
@@ -20,5 +22,5 @@ int hashpjw(char *s)
       h = h^g;
     }
   }
-  return h;
+  return h%PRIME;
 }

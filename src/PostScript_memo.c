@@ -1,5 +1,5 @@
 /* PostScript_memo.c
-   Time-stamp: <2009-06-19 17:53:15 takeshi>
+   Time-stamp: <2010-11-19 10:54:49 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <sys/time.h>
@@ -84,5 +84,8 @@ void PostScript_memo(struct GrowthParameters *params)
 	 "/Times-Roman findfont 30 scalefont setfont\n"
 	 "195 mm 191 mm moveto\n"
 	 "(%4d-%2.2d-%2.2d    ) rightshow\n"
+	 "/Courier findfont 12 scalefont setfont\n"
+	 "185 mm 18 mm moveto\n"
+	 "(http://loto.sourceforge.net/xtalgrowth/) rightshow\n"
 	 "\n", params->guest, today->tm_year + 1900, today->tm_mon+1, today->tm_mday);
 }

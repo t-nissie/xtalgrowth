@@ -1,5 +1,5 @@
 /* xtalgrowth.c
-   Time-stamp: <2010-11-18 17:19:49 takeshi>
+   Time-stamp: <2010-11-19 11:32:11 takeshi>
    Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
@@ -35,7 +35,7 @@ int main(int argc, char **argv)
   struct GrowthParameters *params;
   int n_fixed;
   int seed1, seed2;
-  char buffer[1024]="abcdef";
+  char buffer[1024]="Additional string for seed2 ";
 
   params = malloc(sizeof(struct GrowthParameters));
   /* Default values */
@@ -51,10 +51,11 @@ int main(int argc, char **argv)
 
   /* Make seed1 adn seed2 from params->guest */
   strcat(buffer,params->guest);
-  strcat(buffer,"uvwxyz");
+  strcat(buffer," More additional string for seed2");
   seed1=hashpjw(params->guest);
   seed2=hashpjw(buffer);
   fillU(seed1,seed2);
+  /* fprintf(stderr, "%s %d %d\n", buffer, seed1, seed2); */
 
   /* Simulation */
   n_fixed = Xsim(params, &x, &y);
