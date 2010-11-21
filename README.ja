@@ -17,6 +17,7 @@ Linux や Mac OS X などのUNIX系のコンピュータで動きます。
 賞状が必要な場合はカレントディレクトリにパッケージに同梱されているような
 certification.eps を置いてください。賞状のタイトルとして使われ、-g
 オプションで指定した名前と今日の日付が賞状に入ります。
+（-gオプションで指定した文字列は疑似乱数の生成のための種としても使われます。）
 
 印刷がうまくいかないときは次のようにgsを間に入れて下さい：
  $ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
@@ -66,8 +67,8 @@ http://sourceforge.net/projects/loto/files/xtalgrowth/
 きれいに並ばないことが多くなります：
  $ xtalgrowth -d 0.033333
 球の直径 (diameter) は箱の幅に対する比で与えます。
-球の大きさにゆとりを与えるときれいに並ぶことが多くなります：
- $ xtalgrowth -d 0.033
+球の大きさにゆとりを与え、「落下速度」を遅くすると、きれいに並ぶことが多くなります：
+ $ xtalgrowth -d 0.033 -v 0.0001
 -cオプションで球が動かなくなる条件を変えることができます。
 ３つ以上の球と接したら動かなくなるようにすると、きれいに並ぶことが多くなります：
  $ xtalgrowth -d 0.033 -c 3
@@ -75,6 +76,10 @@ http://sourceforge.net/projects/loto/files/xtalgrowth/
  $ xtalgrowth -d 0.033 -c 2
 １つでも球と接したら動かなくなるようにすると、フラクタル的になります（参考文献[1]）：
  $ xtalgrowth -d 0.010 -c 1
+-gオプションで指定した名前が入った賞状が標準出力からPostScriptファイルとして出力されます。
+また、-gオプションで指定した文字列をhashpjw.cで２つの整数に変換して、
+その２つの整数を種としてuni64.cで疑似乱数を生成しています（参考文献[4,5]）。
+ $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' > takeshi.ps
 
 なお、コンパイル時にpoptライブラリを使っていれば
  $ xtalgrowth --help

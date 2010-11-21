@@ -19,7 +19,8 @@ Usage:
  $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
 Put certification.eps in the current directory to get a certification letter.
 certification.eps will be used as a title of the certification letter.
-Name of the guest given by -g option and today's date will also be on the certification letter.
+Name of the guest given with -g option and today's date will also be on the certification letter.
+The string given with -g option will be also used as a seed for a pseudo random number generator.
 
 If your printer cannot print xtalgrowth's output correctly,
 pipe it through gs command:
@@ -67,8 +68,8 @@ It starts from periodic substrates.
 If diameter is tight, you will not get perfect stacking:
  $ xtalgrowth -d 0.033333
 You can give the diameter of hard spheres with ration to the box width.
-Loose diameter may result in perfect stacking:
- $ xtalgrowth -d 0.033
+Loose diameter and slow falling velocity may result in perfect stacking:
+ $ xtalgrowth -d 0.033 -v 0.0001
 You can change criterion of stacking with -c option from 3 to 1.
 If -c 3, hard spheres stops falling when it touches 3 other spheres:
  $ xtalgrowth -d 0.033 -c 3
@@ -77,6 +78,11 @@ Defects will be included in the crystal:
  $ xtalgrowth -d 0.033 -c 2
 If -c 1, you will get fractal structures (See Reference [1]):
  $ xtalgrowth -d 0.01 -c 1
+Name of the guest given with -g option will be used in the PostScript file
+of certification letter from STDOUT. The string given with -g option is also
+used to generate 2 positive integers by hashpjw.c. Using that two integers
+as seeds, uni64.c generate pseudo random numbers (See Reference [4,5]):
+ $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' > takeshi.ps
 
 You will get a help message with a "--help" option
  $ xtalgrowth --help
