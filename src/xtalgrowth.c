@@ -1,5 +1,5 @@
 /* xtalgrowth.c
-   Time-stamp: <2010-12-03 10:24:30 takeshi>
+   Time-stamp: <2010-12-03 18:01:47 takeshi>
    Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,13 +50,13 @@ int main(int argc, char **argv)
   fprintf(stderr, "velocity=%.6f, diameter=%.6f, height=%.3f, criterion=%1d, guest=%s\n",
           params->velocity, params->diameter, params->height, params->criterion, params->guest);
 
-  /* Make seed1 adn seed2 from params->guest */
+  /* Make seed1 and seed2 from params->guest */
   strcat(buffer,params->guest);
   strcat(buffer," More additional string for seed2");
   seed1=hashpjw(params->guest);
   seed2=hashpjw(buffer);
+  fprintf(stderr, "seed1=%d, seed2=%d\n", seed1, seed2);
   fillU(seed1,seed2);
-  /* fprintf(stderr, "%s %d %d\n", buffer, seed1, seed2); */
 
   /* Simulation */
   n_fixed = Xsim(params, &x, &y);
@@ -64,7 +64,7 @@ int main(int argc, char **argv)
   /* Generate a PostScript file */
   fp = fopen("certification.eps", "r");
   if (fp==NULL) {
-    fprintf(stderr, "%s:%d: cannot open file \"certification.eps\"\n", __FILE__, __LINE__);
+    fprintf(stderr, "%s:%d: cannot open file \"certification.eps\". Certification letter will not be output from STDOUT.\n", __FILE__, __LINE__);
     exit(1);
   } else {
     PostScript_header();
