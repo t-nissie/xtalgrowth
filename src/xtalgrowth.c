@@ -1,5 +1,5 @@
 /* xtalgrowth.c
-   Time-stamp: <2010-12-03 18:01:47 takeshi>
+   Time-stamp: <2010-12-03 18:20:22 takeshi>
    Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,7 +65,6 @@ int main(int argc, char **argv)
   fp = fopen("certification.eps", "r");
   if (fp==NULL) {
     fprintf(stderr, "%s:%d: cannot open file \"certification.eps\". Certification letter will not be output from STDOUT.\n", __FILE__, __LINE__);
-    exit(1);
   } else {
     PostScript_header();
     PostScript_eps(fp);
