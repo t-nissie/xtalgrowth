@@ -1,32 +1,14 @@
-/* PostScript_eps */
+/* PostScript_eps.c */
 #include <sys/time.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "xtalgrowth.h"
 #include "PostScript_eps.h"
-
-void read_and_write_eps()
+void PostScript_eps(FILE *fp)
 {
-  FILE *fp;
-  char *fname = "certification.eps";
   char s[500] ="";
 
-  fp = fopen( fname, "r" );
-  if( fp == NULL ){
-    fprintf(stderr, "%s:%d: cannot open file \"%s\"\n", __FILE__, __LINE__, fname );
-    exit(1);
-  }
-
-  while( fgets( s, 500, fp ) != NULL ){
-    printf( "%s", s );
-  }
-
-  fclose( fp );
-}
-
-void PostScript_eps()
-{
   puts(
 "%---For EPS File-----------------\n"
 "%% BeginEPSF and EndEPSF are cited from [Red book].\n"
@@ -57,7 +39,8 @@ void PostScript_eps()
   puts("BeginEPSF\n"
   "12 mm 190 mm translate\n"
   "0.89 0.89 scale");
-  read_and_write_eps();
-  puts("EndEPSF\n");
 
+  while( fgets( s, 500, fp ) != NULL ) printf( "%s", s );
+
+  puts("EndEPSF\n");
 }

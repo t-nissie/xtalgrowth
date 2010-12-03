@@ -1,5 +1,5 @@
 /* xtalgrowth.c
-   Time-stamp: <2010-11-19 11:49:49 takeshi>
+   Time-stamp: <2010-12-03 10:24:30 takeshi>
    Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,6 +36,7 @@ int main(int argc, char **argv)
   int n_fixed;
   int seed1, seed2;
   char buffer[1024]="Additional string for seed2 ";
+  FILE *fp;
 
   params = malloc(sizeof(struct GrowthParameters));
   /* Default values */
@@ -61,10 +62,17 @@ int main(int argc, char **argv)
   n_fixed = Xsim(params, &x, &y);
 
   /* Generate a PostScript file */
-  PostScript_header();
-  PostScript_eps();
-  PostScript_memo(params);
-  PostScript_show_xtal(params, n_fixed, x, y);
+  fp = fopen("certification.eps", "r");
+  if (fp==NULL) {
+    fprintf(stderr, "%s:%d: cannot open file \"certification.eps\"\n", __FILE__, __LINE__);
+    exit(1);
+  } else {
+    PostScript_header();
+    PostScript_eps(fp);
+    PostScript_memo(params);
+    PostScript_show_xtal(params, n_fixed, x, y);
+    fclose(fp);
+  }
 
   free(x);
   free(y);
