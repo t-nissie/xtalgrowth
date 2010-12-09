@@ -1,6 +1,6 @@
 /* -*-CSS-*-
  * Style.css for xtalgrowth
- * Time-stamp: <2010-12-09 17:47:49 takeshi>
+ * Time-stamp: <2010-12-09 20:48:56 takeshi>
  * Author: Takeshi NISHIMATSU
  */
 body {
@@ -61,14 +61,13 @@ pre {
 }
 
 div.figure img {
-    width:40%;
     margin-left:auto;
     margin-right:auto;
     display: block;
 }
 
 div.figure div.figcaption {
-    width:50%;
+    width:40%;
     margin-left:auto;
     margin-right:auto;
 }
