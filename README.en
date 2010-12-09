@@ -89,7 +89,8 @@ You will get a help message with a "--help" option
 if you compiled with the popt library.
 
 Fig. 2 figures/xtals.jpg
-  Fig. 2. xtalgrowth is executed with 3 kinds of set of options.  (a) -c 3 -d 0.033 -v 0.0004, (b) -c 2 -d 0.033 -v 0.0001, and (c) -c 1 -d 0.020 -v 0.0004.
+  Fig. 2. xtalgrowth is executed with 3 kinds of set of command-line options.
+  (a) -c 3 -d 0.033 -v 0.0004, (b) -c 2 -d 0.033 -v 0.0001, and (c) -c 1 -d 0.020 -v 0.0004.
 /Fig.
 
 == Display
