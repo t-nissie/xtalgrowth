@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" dir="ltr">
+<head>
+  <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
+  <title>xtalgrowth -- ２次元結晶成長シミュレーション</title>
+  <meta name="author" content="Takeshi Nishimatsu" />
+  <meta name="copyright" content="Copyright &#169; 2010 Takeshi Nishimatsu" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<body>
+<div class="slide cover">
+<h1 id="LABEL-1">xtalgrowth -- ２次元結晶成長シミュレーション</h1>
+<div class="navi">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://loto.sourceforge.net/xtalgrowth/index.ja.html" data-text="xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです→" data-count="none" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+  <script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>
+  <a href="http://loto.sourceforge.net/xtalgrowth/index.ja.html" onclick="Evernote.doClip({url:'http://loto.sourceforge.net/xtalgrowth/index.ja.html',suggestTags:'physics, simulation, MaterialsScience'}); return false;"><img src="http://static.evernote.com/article-clipper-jp.png" alt="Clip to Evernote" border="0" /></a>
+  <a href="javascript:void window.open('http://bookmarks.yahoo.co.jp/bookmarklet/showpopup?t='+encodeURIComponent(document.title)+'&amp;u='+encodeURIComponent(location.href)+'&amp;ei=UTF-8','_blank','width=550,height=480,left=100,top=50,scrollbars=1,resizable=1',0);"><img src="http://i.yimg.jp/images/ybm/blogparts/addmy_btn.gif" width="125" height="17" alt="Yahoo!ブックマークに登録" border="0" /></a>
+<a href="http://b.hatena.ne.jp/entry/http://loto.sourceforge.net/xtalgrowth/" class="hatena-bookmark-button" data-hatena-bookmark-title="xtalgrowth -- ２次元結晶成長シミュレーション" data-hatena-bookmark-layout="simple" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20"  border="0" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+  [<a href="index.en.html">English</a>/<a href="index.ja.html">Japanese</a>]
+</div>
+<p>
+xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです。
+xtalgrowthを起動すると、画面の上からランダムに剛体球が落ちてきて画面
+の底に降り積もり、２次元の結晶が成長します。コマンドラインオプションで
+計算条件を変更することができます。賞状の形をした計算結果がPostScript
+ファイルとして標準出力 (stdout) から出力されます（図１）。オープン
+キャンパスや研究所の一般公開の来場者参加型の展示物に適しています。
+Linux や Mac OS X などのUNIX系のコンピュータで動きます。
+</p>
+<p>
+使用方法:
+</p>
+<pre>$ xtalgrowth --help
+$ xtalgrowth -d 0.033 -c 3
+$ xtalgrowth -d 0.033 -c 2
+$ xtalgrowth -d 0.010 -c 1
+$ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
+</pre>
+<p>
+賞状が必要な場合はカレントディレクトリにパッケージに同梱されているような
+certification.eps を置いてください。賞状のタイトルとして使われ、-g
+オプションで指定した名前と今日の日付が賞状に入ります。
+（-gオプションで指定した文字列は疑似乱数の生成のための種としても使われます。）
+</p>
+<p>
+印刷がうまくいかないときは次のようにgsを間に入れて下さい：
+</p>
+<pre>$ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
+</pre>
+<div class="figure">
+  <img src="figures/example.jpg" alt="figures/example.jpg" width="30%" />
+  <div class="figcaption">
+  図１　xtalgrowthによって出力される賞状の例。
+  名前と今日の日付が入ります。
+  </div>
+</div>
+<br />
+<div class="contents">
+Contents:
+<ul>
+  <li><a href="#LABEL-2">ホームページとダウンロード</a></li>
+  <li><a href="#LABEL-3">コンパイルおよびインストールの方法</a></li>
+  <li><a href="#LABEL-4">シミュレーションの計算条件と結果</a></li>
+  <li><a href="#LABEL-5">展示方法</a></li>
+  <li><a href="#LABEL-6">参考文献</a></li>
+  <li><a href="#LABEL-7">作者とソフトウエアの再配布について</a></li>
+  <li><a href="#LABEL-8">Acknowledgements</a></li>
+</ul>
+</div>
+
+</div>
+
+
+<div class="slide">
+<h2 id="LABEL-2">ホームページとダウンロード</h2>
+<p>
+xtalgrowthのホームページは <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> です。
+最新のtar.gzパッケージ (xtalgrowth-X.Y.Z.tar.gz) を
+<a href="http://sourceforge.net/projects/loto/files/xtalgrowth/">http://sourceforge.net/projects/loto/files/xtalgrowth/</a>
+からダウンロードすることができます。
+</p>
+</div>
+
+
+<div class="slide">
+<h2 id="LABEL-3">コンパイルおよびインストールの方法</h2>
+<p>
+コンパイルには
+</p>
+
+<ul>
+  <li>gccなどのＣコンパイラ</li>
+  <li>X11ライブラリとそのインクルード・ファイル</li>
+  <li>poptライブラリとそのインクルード・ファイル（apt-get install libpopt-dev または <a href="http://rpm5.org/files/popt/">http://rpm5.org/files/popt/</a> から入手して下さい）</li>
+</ul>
+<p>
+が必要です。必要なものがそろっていれば
+</p>
+<pre>$ tar zxf xtalgrowth-X.Y.Z.tar.gz
+$ cd xtalgrowth-X.Y.Z
+$ ./configure
+$ make
+</pre>
+<p>
+とすることで src/xtalgrowth ができるはずです。
+</p>
+<pre>$ cd src
+$ ./xtalgrowth --help
+$ ./xtalgrowth
+</pre>
+<p>
+と試しに実行してみましょう。
+さらに /usr/local/bin/xtalgrowth をインストールしたい場合は
+</p>
+<pre>$ sudo make install
+</pre>
+<p>
+としてください。
+</p>
+<p>
+一部の64ビットのシステムでは、
+</p>
+<pre>/usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
+</pre>
+<p>
+というようなメッセージが出てリンクに失敗することがあります。その場合はconfigureのときに
+</p>
+<pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
+</pre>
+<p>
+などとLDFLAGSを調節してください。
+</p>
+</div>
+
+
+<div class="slide">
+<h2 id="LABEL-4">シミュレーションの計算条件と結果</h2>
+<p>
+ｘ方向（箱の幅方向）は周期的境界条件です。
+球と球とが接したかどうかの計算とその後の軌道計算が大雑把です。
+この大雑把な計算精度が「乱雑さ」として表れます。
+</p>
+<p>
+基板は球を等間隔に並べています。そのため、球の大きさがキツキツだと
+きれいに並ばないことが多くなります：
+</p>
+<pre>$ xtalgrowth -d 0.033333
+</pre>
+<p>
+球の直径 (diameter) は箱の幅に対する比で与えます。
+球の大きさにゆとりを与え、「落下速度」を遅くすると、きれいに並ぶことが多くなります：
+</p>
+<pre>$ xtalgrowth -d 0.033 -v 0.0001
+</pre>
+<p>
+-cオプションで球が動かなくなる条件を変えることができます。
+３つ以上の球と接したら動かなくなるようにすると、きれいに並ぶことが多くなります：
+</p>
+<pre>$ xtalgrowth -d 0.033 -c 3
+</pre>
+<p>
+２つ以上の球と接したら動かなくなるようにすると、空孔ができやすくなります：
+</p>
+<pre>$ xtalgrowth -d 0.033 -c 2
+</pre>
+<p>
+１つでも球と接したら動かなくなるようにすると、フラクタル的になります（参考文献[1]）：
+</p>
+<pre>$ xtalgrowth -d 0.010 -c 1
+</pre>
+<p>
+-gオプションで指定した名前が入った賞状が標準出力からPostScriptファイルとして出力されます。
+また、-gオプションで指定した文字列をhashpjw.cで２つの整数に変換して、
+その２つの整数を種としてuni64.cで疑似乱数を生成しています（参考文献[4,5]）。
+</p>
+<pre>$ xtalgrowth -g 'Mr. Takeshi Nishimatsu' &gt; takeshi.ps
+</pre>
+<p>
+なお、コンパイル時にpoptライブラリを使っていれば
+</p>
+<pre>$ xtalgrowth --help
+</pre>
+<div class="pagebreak">
+<p>
+でコマンドラインオプションを調べることができます。
+</p>
+</div>
+<div class="figure">
+  <img src="figures/xtals.jpg" alt="figures/xtals.jpg" width="80%" />
+  <div class="figcaption">
+  図２　３通りのコマンドラインオプションとともにxtalgrowthを実行して得られる結晶。
+  </div>
+</div>
+</div>
+
+
+<div class="slide">
+<h2 id="LABEL-5">展示方法</h2>
+<p>
+500MHzくらいのCPUのパソコンで実行すると球が落ちてくる様子が観察しやすいです。
+</p>
+<p>
+来場者参加型の展示としては図３と図４のような模型とともに展示するとよいかもしれません。
+</p>
+<div class="pagebreak">
+<div class="figure">
+  <img src="figures/large.jpg" alt="figures/large.jpg" width="30%" />
+  <div class="figcaption">
+  図３　２枚のアクリル板の間に直径６mmのＢＢ弾（おもちゃのピストルの弾丸）をはさんだもの。
+  格子欠陥の伝播などが観察できます。
+  </div>
+</div>
+</div>
+<div class="figure">
+  <img src="figures/cd.jpg" alt="figures/cd.jpg" width="30%" />
+  <div class="figcaption">
+  図４　音楽ＣＤのケースにＢＢ弾をはさんだもの。
+  手軽に工作できます。大きさの比較のため十円玉を脇に置いてあります。
+  </div>
+</div>
+</div>
+
+
+<div class="pagebreak">
+<div class="slide">
+<h2 id="LABEL-6">参考文献</h2>
+<p>
+[1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
+in the book of "Fractals and disordered systems" edited by Armin Bunde and Shlomo Havlin,
+pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
+</p>
+<p>
+[2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
+You can get a free PDF of this article from <a href="http://dx.doi.org/10.1098/rspa.1947.0089">doi:10.1098/rspa.1947.0089</a>.
+</p>
+<p>
+[3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
+Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
+Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
+You can get a free PDF of this article from <a href="http://dx.doi.org/10.1098/rspa.1949.0022">doi:10.1098/rspa.1949.0022</a>.
+</p>
+<p>
+[4] Alfred V. Aho, Ravi Sethi, and Jeffrey D. Ullman:
+"Compilers: Principles, Techniques, and Tools" (1986),
+ISBN:0-201-10088-6, Addison Wesley.
+</p>
+<p>
+[5] George Marsaglia and Wai Wan Tsang: "The 64-bit universal RNG",
+Statistics &amp; Probability Letters, Vol. 66, pp. 183-187 (15 January 2004),
+<a href="http://dx.doi.org/10.1016/j.spl.2003.11.001">doi:10.1016/j.spl.2003.11.001</a>.  Note that a part of code in the bottom
+of p.186, "y=(8888*x)%65579;" should be replaced by "y=(8888*y)%65579;".
+Consequently, 5 values of "The correct output" in p.187 are incorrect.
+See <a href="http://sci4um.com/about16220-asc.html">http://sci4um.com/about16220-asc.html</a> .
+</p>
+</div>
+</div>
+
+
+<div class="slide">
+<h2 id="LABEL-7">作者とソフトウエアの再配布について</h2>
+<p>
+作者：西松毅 (t-nissie{at}imr.tohoku.ac.jp)
+</p>
+<p>
+Copyright © 2009-2010 by Takeshi Nishimatsu
+</p>
+<p>
+xtalgrowth is distributed in the hope that
+it will be useful, but WITHOUT ANY WARRANTY.
+You can copy, modify and redistribute xtalgrowth,
+but only under the conditions described in
+the GNU General Public License (the "GPL").
+For more detail, see <a href="COPYING">COPYING</a>.
+</p>
+</div>
+
+
+<div class="slide">
+<h2 id="LABEL-8">Acknowledgements</h2>
+<p>
+<a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> is hosted by <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
+</p>
+</div>
+</body>
+</html>
