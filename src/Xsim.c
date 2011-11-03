@@ -1,5 +1,5 @@
 /* Xsim.c
-   Time-stamp: <2010-11-17 19:00:00 takeshi>
+   Time-stamp: <2011-10-07 17:04:18 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <unistd.h>
@@ -9,7 +9,7 @@
 #include "xtalgrowth.h"
 #include "Xsim.h"
 #include "uni64.h"
-#define WIDTH 600
+#define WIDTH 320
 #define MAX_N_TOUCH 3
 #define MAX_N_BALL 10000
 const double ratio=0.2;
