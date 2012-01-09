@@ -1,11 +1,11 @@
 dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2010-12-09 20:58:44 takeshi>
+dnl Time-stamp: <2012-01-10 02:20:19 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
 AC_PREREQ(2.61)
-AC_INIT([xtalgrowth by Takeshi NISHIMATSU],[0.6.0],[t-nissie{at}imr.tohoku.ac.jp],[xtalgrowth])
+AC_INIT([xtalgrowth by Takeshi NISHIMATSU],[0.7.0],[t-nissie{at}imr.tohoku.ac.jp],[xtalgrowth])
 AC_CONFIG_SRCDIR(src/xtalgrowth.c)
 AM_INIT_AUTOMAKE
 AC_CONFIG_HEADERS([config.h])
