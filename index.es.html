@@ -12,7 +12,6 @@
   <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <body>
-<div class="slide cover">
 <h1 id="LABEL-1">xtalgrowth</h1>
 <div class="navi">
   [<a href="index.en.html">English</a>/<strong>español</strong>/<a href="index.ja.html">日本語</a>]
@@ -33,7 +32,7 @@ simulación de la ciencia de materiales en museos o en campus abiertos.
 <strong>xtalgrowth</strong> es un <a href="http://www.gnu.org/philosophy/free-sw.es.html">software libre</a>.
 </p>
 <p>
-Uso de xtalgrowth:
+Uso de <strong>xtalgrowth</strong>:
 </p>
 <pre>$ xtalgrowth --help
 $ xtalgrowth -d 0.033 -c 3
@@ -41,29 +40,27 @@ $ xtalgrowth -d 0.033 -c 2
 $ xtalgrowth -d 0.015 -c 1
 $ xtalgrowth -g 'Mr. Takeshi Nishimatsu' | lpr
 </pre>
-<p>---- ^ español / inglés v ---</p>
 <p>
-Put certification.eps in the current directory to get a certification letter.
-certification.eps will be used as a title of the certification letter.
-Name of the guest given with -g option and today's date will also be on the certification letter.
-The string given with -g option will be also used as a seed for a pseudo random number generator.
+Ponga certification.eps en el directorio actual para obtener una carta de certificación.
+certification.eps será utilizado como título de la carta de certificación.
+El nombre dado con la opción -g y la fecha de hoy también estará en la carta de certificación.
 </p>
 <p>
-If your printer cannot print xtalgrowth's output correctly,
-pipe it through gs command:
+Si su impresora no puede imprimir correctamente la carta de certificación,
+canalizarla a través de gs comando:
 </p>
 <pre>$ xtalgrowth [OPTIONS...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 </pre>
 <div class="figure">
   <img src="figures/example.jpg" alt="figures/example.jpg" width="30%" />
   <div class="figcaption">
-  Fig. 1 Cirtification-like calculated result from xtalgrowth.
-  Guest's name and the date will be in the form.
+  Fig. 1 Carta de certificación del resultado de la simulación de <strong>xtalgrowth</strong>.
+  El nombre y la fecha de hoy también estará en la carta.
   </div>
 </div>
 <br />
 <div class="contents">
-Contents:
+Contenidos:
 <ul>
   <li><a href="#LABEL-2">Homepage and DOWNLOAD</a></li>
   <li><a href="#LABEL-3">Compilation and installation</a></li>
@@ -75,20 +72,17 @@ Contents:
 </ul>
 </div>
 
-</div>
 
+<p>---- ^ español / inglés v ---</p>
 
-<div class="slide">
 <h2 id="LABEL-2">Homepage and DOWNLOAD</h2>
 <p>
 Home page of xtalgrowth is <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> .
 Latest tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
 <a href="http://sourceforge.net/projects/loto/files/xtalgrowth/">http://sourceforge.net/projects/loto/files/xtalgrowth/</a> .
 </p>
-</div>
 
 
-<div class="slide">
 <h2 id="LABEL-3">Compilation and installation</h2>
 <p>
 Requirements are
@@ -129,10 +123,8 @@ In this case, give some LDFLAGS in the configure step
 </p>
 <pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 </pre>
-</div>
 
 
-<div class="slide">
 <h2 id="LABEL-4">Calculation conditions and results</h2>
 <p>
 Periodic boundary condition is employed
@@ -191,10 +183,8 @@ if you compiled with the popt library.
   Fig. 2. xtalgrowth is executed with 3 kinds of set of options.  (a) -c 3 -d 0.033 -v 0.0004, (b) -c 2 -d 0.033 -v 0.0001, and (c) -c 1 -d 0.020 -v 0.0004.
   </div>
 </div>
-</div>
 
 
-<div class="slide">
 <h2 id="LABEL-5">Display</h2>
 <p>
 Display this program with real models like Fig.2 and Fig.3.
@@ -213,10 +203,8 @@ Display this program with real models like Fig.2 and Fig.3.
    A Japanese 10 yen coin besides.
   </div>
 </div>
-</div>
 
 
-<div class="slide">
 <h2 id="LABEL-6"> References</h2>
 <p>
 [1] Jean-Francois Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
@@ -248,10 +236,8 @@ of p.186, "y=(8888*x)%65579;" should be replaced by "y=(8888*y)%65579;".
 Consequently, 5 values of "The correct output" in p.187 are incorrect.
 See <a href="http://sci4um.com/about16220-asc.html">http://sci4um.com/about16220-asc.html</a> .
 </p>
-</div>
 
 
-<div class="slide">
 <h2 id="LABEL-7">Author and COPYING</h2>
 <p>
 Author: Takeshi Nishimatsu (t-nissie{at}imr.tohoku.ac.jp)
@@ -267,14 +253,11 @@ but only under the conditions described in
 the GNU General Public License (the "GPL").
 For more detail, see <a href="COPYING">COPYING</a>.
 </p>
-</div>
 
 
-<div class="slide">
 <h2 id="LABEL-8">Acknowledgements</h2>
 <p>
 <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> is hosted by <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
 </p>
-</div>
 </body>
 </html>
