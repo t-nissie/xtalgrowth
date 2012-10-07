@@ -78,48 +78,47 @@ Contenidos:
 <h2 id="LABEL-2">Sitio web y descargar xtalgrowth</h2>
 <p>
 Sitio web de xtalgrowth es <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> .
-Último paquete (xtalgrowth-X.Y.Z.tar.gz) puede ser descargado desde
+El paquete (xtalgrowth-X.Y.Z.tar.gz) puede ser descargado desde
 <a href="http://sourceforge.net/projects/loto/files/xtalgrowth/">http://sourceforge.net/projects/loto/files/xtalgrowth/</a> .
 </p>
 
 
 <h2 id="LABEL-3">Compilación y instalación</h2>
 <p>
-Requirements are
+Los requisitos son
 </p>
-
 <ul>
-  <li>C compiler (gcc)</li>
-  <li>X11  libraries and their include files</li>
-  <li>popt libraries and their include files (apt-get install libpopt-dev or see <a href="http://rpm5.org/files/popt/">http://rpm5.org/files/popt/</a> )</li>
+  <li>Compilador C (gcc)</li>
+  <li>Las librerías X11  and sus archivos header incluidos (apt-get install libx11-dev)</li>
+  <li>Las librerías popt and sus archivos header incluidos (apt-get install libpopt-dev o véase <a href="http://rpm5.org/files/popt/">http://rpm5.org/files/popt/</a> )</li>
 </ul>
 <p>
-If you have all of them, You can generate src/xtalgrowth with
+Si tiene todos ellos, puede generar src/xtalgrowth con
 </p>
-<pre>$ tar zxf xtalgrowth-X.Y.Z.tar.gz
+<pre>$ tar xf xtalgrowth-X.Y.Z.tar.gz
 $ cd xtalgrowth-X.Y.Z
 $ ./configure
 $ make
 </pre>
 <p>
-Test the executable
+Pruebe el ejecutable
 </p>
 <pre>$ cd src
 $ ./xtalgrowth --help
 $ ./xtalgrowth
 </pre>
 <p>
-If you want to install /usr/local/bin/xtalgrowth,
+Si desea instalar xtalgrowth en /usr/local/bin/xtalgrowth,
 </p>
 <pre>$ sudo make install
 </pre>
 <p>
-In some 64 bit systems, you may get link errors like
+En algunos sistemas de 64 bit, puede recibir un mensaje de error como
 </p>
 <pre>/usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
 </pre>
 <p>
-In this case, give some LDFLAGS in the configure step
+En este caso, dar algunos LDFLAGS en el paso de configuración
 </p>
 <pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 </pre>
@@ -127,83 +126,85 @@ In this case, give some LDFLAGS in the configure step
 
 <h2 id="LABEL-4">Condiciones de cálculo y resultados</h2>
 <p>
-Periodic boundary condition is employed
-for x-direction (width of the box).
-Collision detection of hard spheres is rough.
-This computational roughness results in defects of crystals.
+La condición de frontera periódica se utiliza
+para la dirección horizontal (la x-dirección).
+La detección de colisiones de esferas duras es rugosa.
+Esta rugosidad numerigal resulta de defectos de los cristales.
 </p>
 <p>
-It starts from periodic substrates.
-If diameter is tight, you will not get perfect stacking:
+Se parte de un sustrato de periódico.
+Si el diámetro es apretado, no obtendrá un apilado perfecto:
 </p>
 <pre>$ xtalgrowth -d 0.033333
 </pre>
 <p>
-You can give the diameter of hard spheres with ration to the box width.
-Loose diameter and slow falling velocity may result in perfect stacking:
+Puede dar el diámetro de las esferas duras con ración para el ancho del cuadro.
+Diámetro suelto y velocidad lenta en la caída resultado perfecto apilamiento:
 </p>
 <pre>$ xtalgrowth -d 0.033 -v 0.0001
 </pre>
 <p>
-You can change criterion of stacking with -c option from 3 to 1.
-If -c 3, hard spheres stops falling when it touches 3 other spheres:
+Puede cambiar criterio de apilamiento con opción -c 3 a 1.
+Si -c 3, esferas duras deja de caer cuando toca 3 otros duras.
 </p>
 <pre>$ xtalgrowth -d 0.033 -c 3
 </pre>
 <p>
-If -c 2, hard spheres stops falling when it touches 2 other spheres.
-Defects will be included in the crystal:
+Si -c 2, esferas duras deja de caer cuando toca 2 otros duras.
+Los defectos se incluirán en el cristal.
 </p>
 <pre>$ xtalgrowth -d 0.033 -c 2
 </pre>
 <p>
-If -c 1, you will get fractal structures (See Reference [1]):
+Si -c 1, obtendrá estructuras fractales (Véase la referencia [1]):
 </p>
 <pre>$ xtalgrowth -d 0.01 -c 1
 </pre>
 <p>
-Name of the guest given with -g option will be used in the PostScript file
-of certification letter from STDOUT. The string given with -g option is also
-used to generate 2 positive integers by hashpjw.c. Using that two integers
-as seeds, uni64.c generate pseudo random numbers (See Reference [4,5]):
+Nombre del huésped dado con la opción -g se utiliza en el archivo PostScript
+de certificación carta de STDOUT. La cadena dada con la opción -g es también
+utiliza para generar dos números enteros positivos por hashpjw.c.
+Usando los dos enteros como las semillas, uni64.c generate
+números pseudoaleatorios (Véase la referencia [4,5]):
 </p>
 <pre>$ xtalgrowth -g 'Mr. Takeshi Nishimatsu' &gt; takeshi.ps
 </pre>
 <p>
-You will get a help message with a "--help" option
+Obtendrá un mensaje de ayuda con un "--help" opción
 </p>
 <pre>$ xtalgrowth --help
 </pre>
 <p>
-if you compiled with the popt library.
+si ha compilado xtalgrowth con las librerías popt.
 </p>
 <div class="figure">
   <img src="figures/xtals.jpg" alt="figures/xtals.jpg" width="80%" />
   <div class="figcaption">
-  Fig. 2. xtalgrowth is executed with 3 kinds of set of options.  (a) -c 3 -d 0.033 -v 0.0004, (b) -c 2 -d 0.033 -v 0.0001, and (c) -c 1 -d 0.020 -v 0.0004.
+  Fig. 2. xtalgrowth se ejecuta con 3 tipos de conjunto de opciones. (a) -c 3 -d 0.033 -v 0.0004, (b) -c 2 -d 0.033 -v 0.0001, and (c) -c 1 -d 0.020 -v 0.0004.
   </div>
 </div>
 
 
 <h2 id="LABEL-5">Exhibición</h2>
 <p>
-Display this program with real models like Fig.2 and Fig.3.
+Muestra este programa con los modelos reales como Fig.3 y Fig.4.
 </p>
+
 <div class="figure">
   <img src="figures/large.jpg" alt="figures/large.jpg" width="30%" />
   <div class="figcaption">
-  Fig. 3. Model of 2-dimensional ballistic crystal.
-  BB projectiles (diameter: 6 mm) in a pair of acrylic glasses.
-  </div>
-</div>
-<div class="figure">
-  <img src="figures/cd.jpg" alt="figures/cd.jpg" width="30%" />
-  <div class="figcaption">
-   Fig. 4. BB projectiles in a music CD case.
-   A Japanese 10 yen coin besides.
+  Fig. 3. Modelo de 2-dimensiones de cristal balístico.
+  BB proyectiles (diámetro: 6 mm) en un par de gafas de acrílicas.
   </div>
 </div>
 
+<div class="figure">
+  <img src="figures/cd.jpg" alt="figures/cd.jpg" width="30%" />
+  <div class="figcaption">
+   Fig. 4. BB proyectiles en un funda de CD música
+   con una moneda de 10 yenes japonesa.
+  </div>
+</div>
 
 <h2 id="LABEL-6">Referencias</h2>
 <p>
@@ -240,24 +241,24 @@ See <a href="http://sci4um.com/about16220-asc.html">http://sci4um.com/about16220
 
 <h2 id="LABEL-7">Autor y COPIA</h2>
 <p>
-Author: Takeshi Nishimatsu (t-nissie{at}imr.tohoku.ac.jp)
+Autor: Takeshi Nishimatsu (t-nissie{at}imr.tohoku.ac.jp)
 </p>
 <p>
 Copyright © 2009-2012 by Takeshi Nishimatsu
 </p>
 <p>
-xtalgrowth is distributed in the hope that
-it will be useful, but WITHOUT ANY WARRANTY.
-You can copy, modify and redistribute xtalgrowth,
-but only under the conditions described in
-the GNU General Public License (the "GPL").
-For more detail, see <a href="COPYING">COPYING</a>.
+xtalgrowth se distribuye con la esperanza de que sea útil,
+pero SIN NINGUNA GARANTÍA. Este programa es software libre.
+Puede redistribuirlo y/o modificarlo bajo los términos de la
+Licencia Pública General de GNU (the GNU General Public
+License, "GPL") según es publicada por la Free Software Foundation.
+Véase <a href="COPYING">COPYING</a>.
 </p>
 
 
 <h2 id="LABEL-8">Agradecimientos</h2>
 <p>
-<a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> is hosted by <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
+<a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> es presentado por <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
 </p>
 </body>
 </html>
