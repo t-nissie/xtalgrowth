@@ -119,6 +119,14 @@ En este caso, dar algunos LDFLAGS en el paso de configuración
 </p>
 <pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 </pre>
+<p>
+Para Mac OS X en el que se instala XQuartz, utilizar
+</p>
+<pre>$ ./configure CPPFLAGS=-I/opt/X11/include LDFLAGS=-L/opt/X11/lib
+</pre>
+<p>
+para configurar CPPFLAGS y LDFLAGS.
+</p>
 
 
 <h2 id="LABEL-4">Condiciones de cálculo y resultados</h2>
