@@ -1,14 +1,17 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2014-03-04 10:57:19 takeshi>
+# Time-stamp: <2014-03-04 12:26:00 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
-bin_PROGRAMS = xtalgrowth xtalgrowth_cocoa
+bin_PROGRAMS = xtalgrowth
+EXTRA_PROGRAMS = xtalgrowth_cocoa marsaglia marsaglia2d
 xtalgrowth_SOURCES = PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c parse_opt.c xtalgrowth.c
 EXTRA_DIST         = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h uni64.h hashpjw.h parse_opt.h GrowthParameters.h\
-                     marsaglia.c\
-                     marsaglia2d.c\
                      marsaglia2d.gp pjw.c certification.eps againagain.sh
 xtalgrowth_cocoa_SOURCES = xtalgrowth_cocoa.m
+marsaglia_SOURCES = marsaglia.c uni64.c
+marsaglia2d_SOURCES = marsaglia2d.c uni64.c
+TESTS = marsaglia marsaglia2d marsaglia2d.gp
+CLEANFILES = marsaglia2d.dat marsaglia2d.eps $(EXTRA_PROGRAMS)
 
 xtalgrowth_cocoa$(EXEEXT): xtalgrowth_cocoa.o
 	$(OBJCLD) $(AM_OBJCFLAGS) $(OBJCFLAGS) $^ -o $@ $(OBJCFRAMEWORKS)
