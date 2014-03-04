@@ -1,5 +1,5 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2014-03-04 12:26:00 takeshi>
+# Time-stamp: <2014-03-04 13:36:04 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
@@ -10,7 +10,7 @@ EXTRA_DIST         = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h uni6
 xtalgrowth_cocoa_SOURCES = xtalgrowth_cocoa.m
 marsaglia_SOURCES = marsaglia.c uni64.c
 marsaglia2d_SOURCES = marsaglia2d.c uni64.c
-TESTS = marsaglia marsaglia2d marsaglia2d.gp
+TESTS = marsaglia marsaglia2d marsaglia2d.gp xtalgrowth
 CLEANFILES = marsaglia2d.dat marsaglia2d.eps $(EXTRA_PROGRAMS)
 
 xtalgrowth_cocoa$(EXEEXT): xtalgrowth_cocoa.o

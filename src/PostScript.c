@@ -2,6 +2,24 @@
 #include <stdio.h>
 #include "GrowthParameters.h"
 #include "PostScript.h"
+#include "PostScript_eps.h"
+#include "PostScript_memo.h"
+
+void PostScript_generate(struct GrowthParameters *params, int n_fixed, double *x, double *y)
+{
+  FILE *fp;
+  fp = fopen("certification.eps", "r");
+  if (fp==NULL) {
+    fprintf(stderr, "%s:%d: cannot open file \"certification.eps\". Certification letter will not be output from STDOUT.\n", __FILE__, __LINE__);
+  } else {
+    PostScript_header();
+    PostScript_eps(fp);
+    PostScript_memo(params);
+    PostScript_show_xtal(params, n_fixed, x, y);
+    fclose(fp);
+  }
+}
+
 void PostScript_header()
 {
   puts("%!PS-Adobe-3.0\n"
