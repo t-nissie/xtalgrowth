@@ -1,12 +1,12 @@
 /* PostScript_memo.c
-   Time-stamp: <2010-11-19 10:54:49 takeshi>
+   Time-stamp: <2014-03-04 10:58:17 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <sys/time.h>
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "xtalgrowth.h"
+#include "GrowthParameters.h"
 #include "PostScript_memo.h"
 void PostScript_memo(struct GrowthParameters *params)
 {

@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "xtalgrowth.h"
+#include "GrowthParameters.h"
 #include "PostScript_eps.h"
 void PostScript_eps(FILE *fp)
 {

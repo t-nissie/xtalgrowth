@@ -1,6 +1,6 @@
 /* PostScript.c */
 #include <stdio.h>
-#include "xtalgrowth.h"
+#include "GrowthParameters.h"
 #include "PostScript.h"
 void PostScript_header()
 {

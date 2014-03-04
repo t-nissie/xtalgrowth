@@ -1,12 +1,12 @@
 /* Xsim.c
-   Time-stamp: <2011-11-03 22:47:45 takeshi>
+   Time-stamp: <2014-03-04 10:58:17 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <unistd.h>
 #include <stdlib.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
-#include "xtalgrowth.h"
+#include "GrowthParameters.h"
 #include "Xsim.h"
 #include "uni64.h"
 #define WIDTH 600
