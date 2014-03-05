@@ -1,8 +1,12 @@
 /* parse_opt.c
-   Time-stamp: <2014-03-04 11:02:28 takeshi>
+   Time-stamp: <2014-03-05 13:32:01 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
+
+#if defined HAVE_CONFIG_H
+#  include "config.h"
+#endif
 
 #ifdef HAVE_POPT_H
 #  include <popt.h>
