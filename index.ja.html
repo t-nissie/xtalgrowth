@@ -54,9 +54,14 @@ certification.eps を置いてください。賞状のタイトルとして使�
 （-gオプションで指定した文字列は疑似乱数の生成のための種としても使われます。）
 </p>
 <p>
-印刷がうまくいかないときは次のようにgsを間に入れて下さい：
+Linuxで印刷がうまくいかないときは、次のようにgs(1)コマンドを間に入れると正常に印刷できるることがあります：
 </p>
 <pre>$ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
+</pre>
+<p>
+Mac OS Xで印刷がうまくいかない場合は、lprに-lオプションを付けると正常に印刷できるることがあります：
+</p>
+<pre>$ xtalgrowth [オプション...] | lpr -l
 </pre>
 <div class="figure">
   <img src="figures/example.jpg" alt="figures/example.jpg" width="30%" />

@@ -51,6 +51,12 @@ canalizarla a través de gs comando:
 </p>
 <pre>$ xtalgrowth [OPTIONS...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 </pre>
+<p>
+Si su Max OS X no puede imprimir correctamente la carta de certificación,
+Utilice lpr con la opción -l:
+</p>
+<pre>$ xtalgrowth [OPTIONS...] | lpr -l
+</pre>
 <div class="figure">
   <img src="figures/example.jpg" alt="figures/example.jpg" width="30%" />
   <div class="figcaption">

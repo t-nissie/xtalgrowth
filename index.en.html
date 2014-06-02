@@ -45,9 +45,15 @@ The string given with -g option will be also used as a seed for a pseudo random 
 </p>
 <p>
 If your printer cannot print xtalgrowth's output correctly,
-pipe it through gs command:
+pipe it through gs(1) command:
 </p>
 <pre>$ xtalgrowth [OPTIONS...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
+</pre>
+<p>
+If you cannot print xtalgrowth's output correctly with Mac OS X,
+use lpr with a -l option:
+</p>
+<pre>$ xtalgrowth [OPTIONS...] | lpr -l
 </pre>
 <div class="figure">
   <img src="figures/example.jpg" alt="figures/example.jpg" width="30%" />
