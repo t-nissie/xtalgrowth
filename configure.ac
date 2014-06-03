@@ -1,6 +1,6 @@
 dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2014-01-23 18:55:01 takeshi>
+dnl Time-stamp: <2014-06-04 06:31:09 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
@@ -22,8 +22,10 @@ test -n "$LDFLAGS" || LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib"
 
 
 ## Check for Objective-C compiler
-# Here, add "if OS==Darwin" etc.
-# For GNUstep, see http://blog.lyxite.com/2008/01/compile-objective-c-programs-using-gcc.html .
+dnl Here, add "if OS==Darwin" etc.
+dnl For GNUstep, see http://blog.lyxite.com/2008/01/compile-objective-c-programs-using-gcc.html ,
+dnl http://stackoverflow.com/questions/11358000/how-to-compile-objective-c-code-in-ubuntu and
+dnl `gnustep-config --help`.
 OBJCFLAGS_PRESERVE=$OBJCFLAGS
 AC_PROG_OBJC([gcc objcc objc])
 OBJCFLAGS=$OBJCFLAGS_PRESERVE
