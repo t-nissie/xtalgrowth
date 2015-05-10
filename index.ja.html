@@ -142,9 +142,14 @@ $ ./xtalgrowth
 などとLDFLAGSを調節してください。
 </p>
 <p>
-XQuartzをインストールしているMac OS Xでは
+Mac OS Xに<a href="http://xquartz.macosforge.org/landing/">XQuartz</a>でX Serverをインストールしている場合は
 </p>
 <pre>$ ./configure CPPFLAGS=-I/opt/X11/include LDFLAGS=-L/opt/X11/lib
+</pre>
+<p>
+と、さらにpoptライブラリを<a href="https://www.macports.org">MacPorsts</a>でインストールしている場合は
+</p>
+<pre>$ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt/X11/lib -L/opt/local/lib'
 </pre>
 <p>
 などとCPPFLAGSとLDFLAGSを調節してください。

@@ -126,9 +126,11 @@ En este caso, dar algunos LDFLAGS en el paso de configuración
 <pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 </pre>
 <p>
-Para Mac OS X en el que se instala XQuartz, utilizar
+Para Mac OS X en el que se instala <a href="http://xquartz.macosforge.org/landing/">XQuartz</a> y/o popt via <a href="https://www.macports.org">MacPorsts</a>, utilizar
 </p>
-<pre>$ ./configure CPPFLAGS=-I/opt/X11/include LDFLAGS=-L/opt/X11/lib
+<pre>
+$ ./configure CPPFLAGS=-I/opt/X11/include LDFLAGS=-L/opt/X11/lib
+$ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt/X11/lib -L/opt/local/lib'
 </pre>
 <p>
 para configurar CPPFLAGS y LDFLAGS.
