@@ -1,6 +1,6 @@
 dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2014-06-04 06:31:09 takeshi>
+dnl Time-stamp: <2015-11-17 23:16:15 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
@@ -38,6 +38,7 @@ AC_CHECK_LIB(popt, poptGetContext)
 
 ## Checks for some headers
 AC_CHECK_HEADERS([popt.h])
+AC_CHECK_HEADERS([X11/Xlib.h],,[AC_MSG_ERROR([You need header files for X11 libraries. See config.log.])])
 
 ## Finalize.
 AC_SUBST(CPPFLAGS)
