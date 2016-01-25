@@ -1,6 +1,6 @@
 dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2015-11-17 23:16:15 takeshi>
+dnl Time-stamp: <2016-01-25 17:30:32 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
@@ -17,7 +17,7 @@ AC_PROG_INSTALL
 CFLAGS_PRESERVE=$CFLAGS
 AC_PROG_CC([gcc cl cc])
 CFLAGS=$CFLAGS_PRESERVE
-test -n  "$CFLAGS" || CFLAGS="-g -Wall -O3"
+test -n  "$CFLAGS" || CFLAGS="-g -Wall -Wno-parentheses -O3"
 test -n "$LDFLAGS" || LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib"
 
 
