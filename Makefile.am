@@ -1,9 +1,8 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2012-01-10 02:14:22 takeshi>
+# Time-stamp: <2017-02-10 20:04:17 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
-AUTOMAKE_OPTIONS = foreign
 SUBDIRS = src
 EXTRA_DIST = index.en.html index.es.html index.ja.html README COPYING figures style.css favicon.ico
 SNAPSHOT_NAME=$(PACKAGE)-$(VERSION)_`date +"%Y-%m-%d_%H"`
