@@ -1,5 +1,5 @@
 /* parse_opt.c
-   Time-stamp: <2014-03-05 13:32:01 takeshi>
+   Time-stamp: <2017-05-20 05:54:51 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
@@ -31,14 +31,14 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
     {"criterion",'c', POPT_ARG_INT,    &(params->criterion),0 , "Criterion, 1=<n=<3",            "n"      },
     {"velocity", 'v', POPT_ARG_STRING, &cVelocity,          0 , "Falling Velocity par step",     "0.000n" },
     {"guest",    'g', POPT_ARG_STRING, &(params->guest),    0 , "Name of the guest",            "'String'"},
-    {"help",     'H', POPT_ARG_NONE,   NULL,               'H', "Print Usage",                    NULL    },
-    {"usage",    'u', POPT_ARG_NONE,   NULL,               'u', "Print Usage",                    NULL    },
-    { NULL,       0 , 0,               NULL,                0 , NULL,                             NULL    }
+    POPT_AUTOHELP
+    POPT_TABLEEND
   };
   optCon = poptGetContext("xtalgrowth", argc, (const char **)argv, optionsTable, 0);
 
   ierr=poptGetNextOpt(optCon);
-  if (ierr < -1 || ierr >= 0) {
+  if (ierr < -1) {
+    fprintf(stderr, "%s: %s\n", poptBadOption(optCon, POPT_BADOPTION_NOALIAS), poptStrerror(ierr));
     poptPrintHelp(optCon, stderr, 0);
     exit(0);
   }
