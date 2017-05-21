@@ -1,5 +1,5 @@
 /* parse_opt.c
-   Time-stamp: <2017-05-20 05:54:51 takeshi>
+   Time-stamp: <2017-05-22 06:04:13 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
@@ -20,16 +20,13 @@
 void parse_opt(int argc, char **argv, struct GrowthParameters *params)
 {
 #ifdef HAVE_POPT_H
-  char *cDiameter = NULL;
-  char *cHeight = NULL;
-  char *cVelocity = NULL;
   int ierr;
   poptContext optCon;
   struct poptOption optionsTable[] = {
-    {"diameter", 'd', POPT_ARG_STRING, &cDiameter,          0 , "Diameter of a ball, d/width",   "0.nnn"  },
-    {"height",   'h', POPT_ARG_STRING, &cHeight,            0 , "Height of the system, h/width", "1.nnn"  },
+    {"diameter", 'd', POPT_ARG_DOUBLE, &(params->diameter), 0 , "Diameter of a ball, d/width",   "0.4999" },
+    {"height",   'h', POPT_ARG_DOUBLE, &(params->height),   0 , "Height of the system, h/width", "1.2"    },
     {"criterion",'c', POPT_ARG_INT,    &(params->criterion),0 , "Criterion, 1=<n=<3",            "n"      },
-    {"velocity", 'v', POPT_ARG_STRING, &cVelocity,          0 , "Falling Velocity par step",     "0.000n" },
+    {"velocity", 'v', POPT_ARG_DOUBLE, &(params->velocity), 0 , "Falling Velocity par step",     "0.0008" },
     {"guest",    'g', POPT_ARG_STRING, &(params->guest),    0 , "Name of the guest",            "'String'"},
     POPT_AUTOHELP
     POPT_TABLEEND
@@ -43,23 +40,8 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
     exit(0);
   }
 
-  if (cDiameter!=NULL) {
-    params->diameter = atof(cDiameter);
-    if (params->diameter<=0.0) params->diameter = DEFAULT_DIAMETER;
-  }
-
-  if (cHeight!=NULL) {
-    params->height = atof(cHeight);
-    if (params->height<=0.0) params->diameter = DEFAULT_HEIGHT;
-  }
-
   if (params->criterion < 1 || 3 < params->criterion) {
     params->criterion = 3;
-  }
-
-  if (cVelocity!=NULL) {
-    params->velocity = atof(cVelocity);
-    if (params->velocity<=0.0) params->velocity = DEFAULT_VELOCITY;
   }
 #else /* HAVE_POPT_H */
   int c;
