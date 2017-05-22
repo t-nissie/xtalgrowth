@@ -1,5 +1,5 @@
 /* parse_opt.c
-   Time-stamp: <2017-05-23 06:26:43 takeshi>
+   Time-stamp: <2017-05-23 06:33:10 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
@@ -27,7 +27,7 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
     {"height",   'h', POPT_ARG_DOUBLE, &(params->height),   0 , "Height of the system, h/width", "1.2"    },
     {"criterion",'c', POPT_ARG_INT,    &(params->criterion),0 , "Criterion, 1=<n=<3",            "n"      },
     {"velocity", 'v', POPT_ARG_DOUBLE, &(params->velocity), 0 , "Falling Velocity par step",     "0.0008" },
-    {"guest",    'g', POPT_ARG_STRING, &(params->guest),    0 , "Name of the guest",            "'String'"},
+    {"guest",    'g', POPT_ARG_STRING, &(params->guest),    0 , "Name of the guest",    "'Crystal Growth'"},
     POPT_AUTOHELP
     POPT_TABLEEND
   };
