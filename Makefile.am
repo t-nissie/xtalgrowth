@@ -1,12 +1,13 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2017-02-10 20:04:17 takeshi>
+# Time-stamp: <2017-05-28 21:26:54 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 SUBDIRS = src
 EXTRA_DIST = index.en.html index.es.html index.ja.html README COPYING figures style.css favicon.ico
 SNAPSHOT_NAME=$(PACKAGE)-$(VERSION)_`date +"%Y-%m-%d_%H"`
 SOURCEFORGE_XTALGROWTH=web.sourceforge.net:/home/groups/l/lo/loto/htdocs/xtalgrowth
+man1_MANS = xtalgrowth.1
 
 sf: sourceforge
 sourceforge: index.en.html index.es.html index.ja.html README index.var style.css COPYING favicon.ico dot.htaccess
