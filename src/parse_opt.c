@@ -1,5 +1,5 @@
 /* parse_opt.c
-   Time-stamp: <2017-06-10 19:56:20 takeshi>
+   Time-stamp: <2017-06-15 19:09:50 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
@@ -23,7 +23,7 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
   int ierr;
   poptContext optCon;
   struct poptOption optionsTable[] = {
-    {"diameter", 'd', POPT_ARG_DOUBLE, &(params->diameter), 0 , "Diameter of a ball, d/width",   "0.4999" },
+    {"diameter", 'd', POPT_ARG_DOUBLE, &(params->diameter), 0 , "Diameter of a ball, d/width",   "0.04999"},
     {"height",   'h', POPT_ARG_DOUBLE, &(params->height),   0 , "Height of the system, h/width", "1.2"    },
     {"criterion",'c', POPT_ARG_INT,    &(params->criterion),0 , "Criterion, 1=<n=<3",            "n"      },
     {"velocity", 'v', POPT_ARG_DOUBLE, &(params->velocity), 0 , "Falling velocity par step",     "0.0008" },
