@@ -1,5 +1,5 @@
 /* parse_opt.c
-   Time-stamp: <2017-06-15 19:09:50 takeshi>
+   Time-stamp: <2017-06-18 17:24:39 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
@@ -27,6 +27,7 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
     {"height",   'h', POPT_ARG_DOUBLE, &(params->height),   0 , "Height of the system, h/width", "1.2"    },
     {"criterion",'c', POPT_ARG_INT,    &(params->criterion),0 , "Criterion, 1=<n=<3",            "n"      },
     {"velocity", 'v', POPT_ARG_DOUBLE, &(params->velocity), 0 , "Falling velocity par step",     "0.0008" },
+    {"version",  'V', POPT_ARG_NONE,   NULL,               'V', "Print version",                 NULL     },
     {"guest",    'g', POPT_ARG_STRING, &(params->guest),    0 , "Name of the guest",    "'Crystal Growth'"},
     POPT_AUTOHELP
     POPT_TABLEEND
@@ -35,7 +36,10 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
   poptSetOtherOptionHelp(optCon, "[OPTIONS...] > result.ps");
 
   ierr=poptGetNextOpt(optCon);
-  if (ierr < -1) {
+  if (ierr == 'V') {
+    printf("%s\n", PACKAGE_STRING);
+    exit(0);
+  } else if (ierr < -1) {
     fprintf(stderr, "%s: %s\n", poptBadOption(optCon, POPT_BADOPTION_NOALIAS), poptStrerror(ierr));
     poptPrintHelp(optCon, stderr, 0);
     exit(0);
