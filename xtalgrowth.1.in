@@ -33,6 +33,10 @@ stdout (standard output) in a certification-like form.
 is suitable for demonstrations of computer
 simulations of materials science, for example, in
 museums or at open campus events.
+.PP
+This is the manpage of
+.B xtalgrowth
+version @PACKAGE_VERSION@.
 .
 .SH OPTIONS
 .

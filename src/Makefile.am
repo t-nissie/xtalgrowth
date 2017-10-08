@@ -1,5 +1,5 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2017-05-23 06:43:16 takeshi>
+# Time-stamp: <2017-10-08 12:37:08 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
@@ -12,6 +12,8 @@ marsaglia_SOURCES = marsaglia.c uni64.c
 marsaglia2d_SOURCES = marsaglia2d.c uni64.c
 TESTS = marsaglia marsaglia2d marsaglia2d.gp xtalgrowth
 CLEANFILES = marsaglia2d.dat marsaglia2d.eps marsaglia2d.pdf $(EXTRA_PROGRAMS)
+clean-local:
+	-rm -rf *.dSYM
 
 xtalgrowth_cocoa$(EXEEXT): xtalgrowth_cocoa.o
 	$(OBJCLD) $(AM_OBJCFLAGS) $(OBJCFLAGS) $^ -o $@ $(OBJCFRAMEWORKS)

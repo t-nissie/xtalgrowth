@@ -1,11 +1,11 @@
 dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2017-06-18 17:27:10 takeshi>
+dnl Time-stamp: <2017-10-08 12:07:33 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
 AC_PREREQ(2.61)
-AC_INIT([xtalgrowth by Takeshi NISHIMATSU],[1.0.0],[t_nissie{at}yahoo.co.jp],[xtalgrowth])
+AC_INIT([xtalgrowth by Takeshi NISHIMATSU],[1.0.1],[t_nissie{at}yahoo.co.jp],[xtalgrowth])
 AC_CONFIG_SRCDIR(src/xtalgrowth.c)
 AM_INIT_AUTOMAKE([foreign std-options])
 AC_CONFIG_HEADERS([config.h])
@@ -45,5 +45,6 @@ AC_SUBST(CPPFLAGS)
 AC_SUBST(OBJCFLAGS)
 AC_SUBST(OBJCFRAMEWORKS)
 AC_CONFIG_FILES([Makefile
+             xtalgrowth.1
              src/Makefile])
 AC_OUTPUT
