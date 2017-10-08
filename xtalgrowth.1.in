@@ -34,9 +34,9 @@ is suitable for demonstrations of computer
 simulations of materials science, for example, in
 museums or at open campus events.
 .PP
-This is the manpage of
+(This is a manpage of
 .B xtalgrowth
-version @PACKAGE_VERSION@.
+version @PACKAGE_VERSION@.)
 .
 .SH OPTIONS
 .
