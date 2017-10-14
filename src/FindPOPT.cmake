@@ -13,7 +13,7 @@ find_path(
   ${PC_POPT_INCLUDE_DIRS}
   DOC "Path containing popt.h")
 
-# Find the library directory
+# Find the library
 find_library(
   POPT_LIBRARY
   NAMES popt
