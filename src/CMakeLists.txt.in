@@ -1,5 +1,5 @@
-#-*-Cmake-*-
-# Do NOT edit src/CmakeLists.txt, edit src/CmakeLists.txt.in.
+#-*-CMake-*- for src/ of xtalgrowth
+# Do NOT edit src/CMakeLists.txt, edit src/CMakeLists.txt.in.
 ##
 cmake_minimum_required(VERSION 3.9)
 

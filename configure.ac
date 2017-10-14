@@ -1,6 +1,6 @@
 dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2017-10-14 22:22:41 takeshi>
+dnl Time-stamp: <2017-10-15 07:47:54 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
@@ -46,6 +46,6 @@ AC_SUBST(OBJCFLAGS)
 AC_SUBST(OBJCFRAMEWORKS)
 AC_CONFIG_FILES([Makefile
              xtalgrowth.1
-             src/CmakeLists.txt
+             src/CMakeLists.txt
              src/Makefile])
 AC_OUTPUT

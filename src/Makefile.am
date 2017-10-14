@@ -1,5 +1,5 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2017-10-14 18:11:05 takeshi>
+# Time-stamp: <2017-10-15 07:49:38 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
@@ -7,8 +7,8 @@ EXTRA_PROGRAMS = xtalgrowth_cocoa marsaglia marsaglia2d
 xtalgrowth_SOURCES = PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c parse_opt.c xtalgrowth.c
 EXTRA_DIST         = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h uni64.h hashpjw.h parse_opt.h GrowthParameters.h\
                      marsaglia2d.gp pjw.c certification.eps againagain.sh\
-                     CmakeLists.txt.in\
-                     CmakeLists.txt FindPOPT.cmake
+                     CMakeLists.txt.in\
+                     CMakeLists.txt FindPOPT.cmake
 xtalgrowth_cocoa_SOURCES = xtalgrowth_cocoa.m
 marsaglia_SOURCES = marsaglia.c uni64.c
 marsaglia2d_SOURCES = marsaglia2d.c uni64.c
