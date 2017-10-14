@@ -20,7 +20,7 @@ find_library(
   HINTS
   ${PC_POPT_LIBRARYDIR}
   ${PC_POPT_LIBRARY_DIRS}
-  DOC "Path containing libpopt.so, libpopt.dylib or so on")
+  DOC "Path to libpopt.so, libpopt.dylib or so on")
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
