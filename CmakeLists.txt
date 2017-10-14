@@ -3,3 +3,5 @@
 cmake_minimum_required (VERSION 3.9)
 project (xtalgrowth)
 add_subdirectory(src)
+
+install(FILES xtalgrowth.1 DESTINATION share/man/man1)

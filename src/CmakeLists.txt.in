@@ -1,6 +1,8 @@
 #-*-Cmake-*-
 # Do NOT edit src/CmakeLists.txt, edit src/CmakeLists.txt.in.
 ##
+cmake_minimum_required (VERSION 3.9)
+
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})   # FindPOPT.cmake is in src/.
 
 add_executable(
@@ -18,3 +20,5 @@ set_property(
 
 include_directories(${X11_X11_INCLUDE_PATH} ${POPT_INCLUDE_PATH})
 target_link_libraries(xtalgrowth ${X11_LIBRARIES} ${POPT_LIBRARY})
+
+install(TARGETS xtalgrowth DESTINATION bin)
