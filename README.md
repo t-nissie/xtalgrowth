@@ -41,7 +41,7 @@ In this case, give some LDFLAGS in the configure step
 
     $ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 
-For Mac OS X into which XQuartz is installed and popt is installed via MacPorsts, use
+For Mac OS X into which XQuartz was installed and popt was installed via MacPorsts, use
 
     $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt/X11/lib -L/opt/local/lib'
 
