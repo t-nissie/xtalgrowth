@@ -1,0 +1,5 @@
+#-*-Cmake-*-
+##
+cmake_minimum_required (VERSION 3.9)
+project (xtalgrowth)
+add_subdirectory(src)
