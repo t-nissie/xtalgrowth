@@ -1,7 +1,7 @@
 #-*-Cmake-*-
 # Do NOT edit src/CmakeLists.txt, edit src/CmakeLists.txt.in.
 ##
-cmake_minimum_required (VERSION 3.9)
+cmake_minimum_required(VERSION 3.9)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})   # FindPOPT.cmake is in src/.
 
@@ -17,6 +17,12 @@ set_property(
   APPEND
   PROPERTY COMPILE_DEFINITIONS
   HAVE_POPT_H=1 PACKAGE_STRING="@PACKAGE_STRING@")
+
+set_property(
+  SOURCE hashpjw.c
+  APPEND
+  PROPERTY COMPILE_FLAGS
+  -Wno-parentheses)
 
 include_directories(${X11_X11_INCLUDE_PATH} ${POPT_INCLUDE_PATH})
 target_link_libraries(xtalgrowth ${X11_LIBRARIES} ${POPT_LIBRARY})
