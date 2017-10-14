@@ -32,6 +32,7 @@ Test the executable
 If you want to install /usr/local/bin/xtalgrowth,
 
     $ sudo make install
+    $ make installcheck
 
 In some 64 bit systems, you may get link errors like
 
