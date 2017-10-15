@@ -1,14 +1,9 @@
 /* xtalgrowth.c
-   Time-stamp: <2014-03-04 13:33:47 takeshi>
+   Time-stamp: <2017-10-15 18:57:58 takeshi>
    Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#if defined HAVE_CONFIG_H
-#  include "config.h"
-#endif
-
 #include "GrowthParameters.h"
 #include "parse_opt.h"
 #include "Xsim.h"
