@@ -54,6 +54,6 @@ You can compile xtalgrowth with cmake, too.
     $ tar zxf xtalgrowth-X.Y.Z.tar.gz
     $ mkdir xtalgrowth-X.Y.Z/build
     $ cd $_
-    $ cmake ..
-    $ make
-    $ sudo make install
+    $ cmake -G Ninja ..
+    $ ninja
+    $ sudo ninja install
