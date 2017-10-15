@@ -1,4 +1,4 @@
-#-*-Cmake-*- for xtalgrowth
+#-*-CMake-*- for xtalgrowth
 ##
 cmake_minimum_required(VERSION 3.9)
 project(xtalgrowth C)
