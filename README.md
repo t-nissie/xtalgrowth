@@ -20,19 +20,24 @@ If you have all of them, You can generate src/xtalgrowth with
 
     $ tar zxf xtalgrowth-X.Y.Z.tar.gz
     $ cd xtalgrowth-X.Y.Z
+    $ ./configure --help
     $ ./configure
-    $ make
+    $ make -j3
+    $ make check
 
 Test the executable
 
     $ cd src
     $ ./xtalgrowth --help
-    $ ./xtalgrowth
+    $ ./xtalgrowth > aaa.ps
+    $ evince aaa.ps   # Or use other previewers.
+    $ cd ..
 
 If you want to install /usr/local/bin/xtalgrowth,
 
     $ sudo make install
     $ make installcheck
+    $ man xtalgrowth
 
 In some 64 bit systems, you may get link errors like
 
@@ -42,7 +47,7 @@ In this case, give some LDFLAGS in the configure step
 
     $ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 
-For Mac OS X into which XQuartz was installed and popt was installed via MacPorsts, use
+For macOS into which XQuartz was installed and popt was installed via MacPorsts, use
 
     $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt/X11/lib -L/opt/local/lib'
 
