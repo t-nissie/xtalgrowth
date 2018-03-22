@@ -9,6 +9,8 @@ growth of 2-dimensional hard spheres.
 * http://loto.sourceforge.net/xtalgrowth/index.es.html (Spanish)
 * http://loto.sourceforge.net/xtalgrowth/index.ja.html (Japanese)
 
+index.en.html, index.es.html and index.ja.html are also included in the source package.
+
 ## Compilation and installation
 Requirements are
 
