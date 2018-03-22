@@ -1,0 +1,14 @@
+.deps/
+CMakeLists.txt
+Makefile.in
+Makefile
+PostScript.o
+PostScript_eps.o
+PostScript_memo.o
+Xsim.o
+hashpjw.o
+parse_opt.o
+uni64.o
+xtalgrowth
+xtalgrowth.dSYM/
+xtalgrowth.o
