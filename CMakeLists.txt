@@ -1,6 +1,6 @@
 #-*-CMake-*- for xtalgrowth
 ##
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 project(xtalgrowth C)
 add_subdirectory(src)
 install(FILES xtalgrowth.1 DESTINATION share/man/man1)

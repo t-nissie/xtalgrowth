@@ -1,7 +1,7 @@
 #-*-CMake-*- for src/ of xtalgrowth
 # Do NOT edit src/CMakeLists.txt, edit src/CMakeLists.txt.in.
 ##
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})   # FindPOPT.cmake is in src/.
 
