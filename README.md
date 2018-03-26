@@ -3,6 +3,9 @@ xtalgrowth
 xtalgrowth is an X application which simulate crystal
 growth of 2-dimensional hard spheres.
 
+The latest .tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
+http://sourceforge.net/projects/loto/files/xtalgrowth/ .
+
 ## Please read webpages:
 
 * http://loto.sourceforge.net/xtalgrowth/index.en.html (English)
@@ -64,3 +67,9 @@ You can compile xtalgrowth with cmake, too.
     $ cmake -G Ninja ..
     $ ninja
     $ sudo ninja install
+
+## Git repository
+The latest source code of xtalgrowth is in https://github.com/t-nissie/xtalgrowth .
+You can clone it with
+
+    $ git clone https://github.com/t-nissie/xtalgrowth.git
