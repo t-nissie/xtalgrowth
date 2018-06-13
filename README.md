@@ -1,6 +1,6 @@
 xtalgrowth
 ==========
-xtalgrowth is an X application which simulate crystal
+xtalgrowth is an X application which can simulate crystal
 growth of 2-dimensional hard spheres.
 
 The latest .tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
