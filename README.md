@@ -6,6 +6,9 @@ growth of 2-dimensional hard spheres.
 The latest .tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
 http://sourceforge.net/projects/loto/files/xtalgrowth/ .
 
+xtalgrowth is under continuous integration at Travis CI:
+[![Build Status](https://travis-ci.org/t-nissie/xtalgrowth.svg?branch=master)](https://travis-ci.org/t-nissie/xtalgrowth)
+
 ## Please read webpages:
 
 * http://loto.sourceforge.net/xtalgrowth/index.en.html (English)
