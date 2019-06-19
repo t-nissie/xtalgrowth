@@ -7,4 +7,4 @@ addons:
       - gnuplot
 
 script:
-  - autoreconf -v; automake --add-missing && autoreconf -v && ./configure && xvfb-run make distcheck
+  - autoreconf -v || automake --add-missing && autoreconf -v && ./configure && xvfb-run make distcheck
