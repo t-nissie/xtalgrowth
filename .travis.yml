@@ -3,6 +3,7 @@ language: C
 addons:
   apt:
     packages:
+      - libpopt-dev
       - gnuplot
 
 script:
