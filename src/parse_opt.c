@@ -1,5 +1,5 @@
 /* parse_opt.c
-   Time-stamp: <2017-06-18 17:24:39 takeshi>
+   Time-stamp: <2020-01-23 05:57:49 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
@@ -48,6 +48,8 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
   if (params->criterion < 1 || 3 < params->criterion) {
     params->criterion = 3;
   }
+
+  poptFreeContext(optCon);
 #else /* HAVE_POPT_H */
   int c;
   extern char *optarg;
