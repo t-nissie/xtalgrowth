@@ -69,6 +69,7 @@ You can compile xtalgrowth with cmake, too.
     $ cd $_
     $ cmake -G Ninja ..
     $ ninja
+    $ ninja test
     $ sudo ninja install
 
 ## Git repository
