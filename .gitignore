@@ -1,7 +1,7 @@
 Makefile
 Makefile.in
 aclocal.m4
-autom4te.cache/
+/autom4te.cache
 compile
 config.h
 config.h.in
@@ -14,3 +14,11 @@ missing
 stamp-h1
 test-driver
 xtalgrowth.1
+/src/*.log
+/src/*.o
+/src/*.trs
+/src/*.dat
+/src/marsaglia
+/src/marsaglia2d
+/src/marsaglia2d.eps
+/src/marsaglia2d.o
