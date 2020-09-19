@@ -8,6 +8,10 @@ http://sourceforge.net/projects/loto/files/xtalgrowth/ .
 
 xtalgrowth is under continuous integration at Travis CI:
 [![Build Status](https://travis-ci.com/t-nissie/xtalgrowth.svg?branch=master)](https://travis-ci.com/github/t-nissie/xtalgrowth)
+
+Also at GitHub Actions:
+![CI](https://github.com/t-nissie/xtalgrowth/workflows/CI/badge.svg)
+
 ## Please read webpages:
 
 * http://loto.sourceforge.net/xtalgrowth/index.en.html (English)
