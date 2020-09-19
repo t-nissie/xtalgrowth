@@ -24,8 +24,8 @@ jobs:
       - uses: actions/checkout@v2
       - uses: seanmiddleditch/gha-setup-ninja@master
 
-      - name: Install popt
-        run: sudo apt-get install libpopt-dev
+      - name: Install popt and xvfb
+        run: sudo apt-get --yes install libpopt-dev xvfb
 
       - name: Prepare Autotools
         run: autoreconf -v || automake --add-missing
@@ -39,4 +39,4 @@ jobs:
           cd build
           cmake -G Ninja ..
           ninja
-          ninja test
+          xvfb-run ninja test
