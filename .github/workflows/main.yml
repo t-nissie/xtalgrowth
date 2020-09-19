@@ -24,10 +24,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install popt
-      run: sudo apt-get install libpopt-dev
+        run: sudo apt-get install libpopt-dev
 
       - name: Install ninja
-      run: sudo apt-get install ninja
+        run: sudo apt-get install ninja
 
       - name: Prepare Autotools
         run: autoreconf -v || automake --add-missing
