@@ -10,7 +10,7 @@ xtalgrowth is under continuous integration at Travis CI:
 [![Build Status](https://travis-ci.com/t-nissie/xtalgrowth.svg?branch=master)](https://travis-ci.com/github/t-nissie/xtalgrowth)
 
 Also at GitHub Actions:
-![CI](https://github.com/t-nissie/xtalgrowth/workflows/CI/badge.svg)
+[![CI](https://github.com/t-nissie/xtalgrowth/workflows/CI/badge.svg)](https://github.com/t-nissie/xtalgrowth/actions)
 
 ## Please read webpages:
 
