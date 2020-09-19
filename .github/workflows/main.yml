@@ -22,6 +22,7 @@ jobs:
 
       # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
       - uses: actions/checkout@v2
+      - uses: seanmiddleditch/gha-setup-ninja@master
 
       - name: Install popt
         run: sudo apt-get install libpopt-dev
@@ -32,14 +33,10 @@ jobs:
       - name: Prepare src/CMakeLists.txt
         run: ./configure
 
-      - name: CMake
+      - name: CMake, Ninja, then test
         run: |
           mkdir build
           cd build
-          cmake ..
-
-      - name: Build
-        run: make
-
-      - name: Test
-        run: make test
+          cmake -G Ninja ..
+          ninja
+          ninja test
