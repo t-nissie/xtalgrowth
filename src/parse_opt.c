@@ -1,5 +1,5 @@
 /* parse_opt.c
-   Time-stamp: <2020-01-23 05:57:49 takeshi>
+   Time-stamp: <2020-10-01 05:38:51 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <stdlib.h>
@@ -32,7 +32,7 @@ void parse_opt(int argc, char **argv, struct GrowthParameters *params)
     POPT_AUTOHELP
     POPT_TABLEEND
   };
-  optCon = poptGetContext("xtalgrowth", argc, (const char **)argv, optionsTable, 0);
+  optCon = poptGetContext(NULL, argc, (const char **)argv, optionsTable, 0);
   poptSetOtherOptionHelp(optCon, "[OPTIONS...] > result.ps");
 
   ierr=poptGetNextOpt(optCon);
