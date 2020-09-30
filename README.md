@@ -25,7 +25,7 @@ Requirements are
 
 * C compiler (gcc)
 * X11 libraries and their include files (apt-get install libx11-dev or yum install libX11-devel)
-* popt libraries and their include files (apt-get install libpopt-dev or yum install popt-devel or see http://rpm5.org/files/popt/ )
+* popt libraries and their include files (apt-get install libpopt-dev or yum install popt-devel or see http://ftp.rpm.org/popt/ )
 
 If you have all of them, You can generate src/xtalgrowth with
 
