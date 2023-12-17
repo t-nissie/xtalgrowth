@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v2
       #- uses: seanmiddleditch/gha-setup-ninja@master
 
-      - name: Install popt and xvfb
+      - name: Install popt and ninja
         run: sudo apt-get install libpopt-dev ninja-build
 
       - name: Prepare Autotools
