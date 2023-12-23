@@ -21,7 +21,7 @@ jobs:
     steps:
 
       # Checks-out the repository under $GITHUB_WORKSPACE, so the job can access it
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       #- uses: seanmiddleditch/gha-setup-ninja@master
 
       - name: Install popt and ninja
