@@ -6,10 +6,9 @@ growth of 2-dimensional hard spheres.
 The latest .tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
 http://sourceforge.net/projects/loto/files/xtalgrowth/ .
 
-xtalgrowth is under continuous integration at Travis CI:
-[![Build Status](https://travis-ci.com/t-nissie/xtalgrowth.svg?branch=master)](https://travis-ci.com/github/t-nissie/xtalgrowth)
+<!-- xtalgrowth is under continuous integration at Travis CI: [![Build Status](https://travis-ci.com/t-nissie/xtalgrowth.svg?branch=master)](https://travis-ci.com/github/t-nissie/xtalgrowth) -->
 
-Also at GitHub Actions:
+xtalgrowth is under continuous integration at GitHub Actions:
 [![CI](https://github.com/t-nissie/xtalgrowth/workflows/CI/badge.svg)](https://github.com/t-nissie/xtalgrowth/actions)
 
 ## Please read webpages:
@@ -74,6 +73,36 @@ You can compile xtalgrowth with cmake, too.
     $ ninja
     $ ninja test
     $ sudo ninja install
+
+## For developers
+Developers need Autotools.
+
+* autoconf (version 2.61 or higher)
+* automake (version 1.16.5 or higher)
+
+Developers can:
+
+    $ autoreconf -v
+    $ automake --add-missing
+    $ autoreconf -v            ###*###
+    $ ./configure
+    $ make -j9                 # Do development.
+    $ make check               # Do some tests.
+    $ make distclean           # Clean up Makefile, etc.
+    $ ./configure
+    $ make distcheck           # Check for distribution. Give options in DISTCHECK_CONFIGURE_FLAGS.
+    $ make dist                # Make a distribution package.
+    
+    $ make clean
+    $ cmake -G Ninja .         # You can also use CMake.
+    $ cmake -LA .
+    $ ninja
+    $ ninja test
+
+Go back to `###*###`, when you edit configure.ac, Makefile.am, src/Makefile.am, etc.
+`make Makefile` may be enough sometimes.
+Note that `src/CMakeLists.txt` is made from `src/CMakeLists.txt.in` by `configure`.
+
 
 ## Git repository
 The latest source code of xtalgrowth is in https://github.com/t-nissie/xtalgrowth .
