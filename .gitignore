@@ -23,3 +23,8 @@ xtalgrowth.1
 /src/marsaglia2d.eps
 /src/marsaglia2d.o
 /build
+CMakeCache.txt
+CMakeFiles
+CTestTestfile.cmake
+build.ninja
+cmake_install.cmake
