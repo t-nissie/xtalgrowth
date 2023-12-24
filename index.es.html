@@ -74,7 +74,8 @@ Contenidos:
   <li><a href="#LABEL-5">Exhibición</a></li>
   <li><a href="#LABEL-6">Referencias</a></li>
   <li><a href="#LABEL-7">Autor y COPIA</a></li>
-  <li><a href="#LABEL-8">Agradecimientos</a></li>
+  <li><a href="#LABEL-8">Desarrollo de software</a></li>
+  <li><a href="#LABEL-9">Agradecimientos</a></li>
 </ul>
 </div>
 
@@ -265,7 +266,7 @@ Por ejemplo, puede editar este documento y crear una "pull request" vía
 Autor: Takeshi Nishimatsu (t_nissie{at}yahoo.co.jp)
 </p>
 <p>
-Copyright © 2009-2020 by Takeshi Nishimatsu
+Copyright © 2009-2023 by Takeshi Nishimatsu
 </p>
 <p>
 <strong>xtalgrowth</strong> se distribuye con la esperanza de que sea útil,
@@ -277,7 +278,39 @@ Véase <a href="COPYING">COPYING</a>.
 </p>
 
 
-<h2 id="LABEL-8">Agradecimientos</h2>
+<h2 id="LABEL-8">Desarrollo de software</h2>
+<p>
+Las desarrolladoras necesitan Autotools.
+</p>
+<ul>
+  <li>autoconf (version 2.61 or higher)</li>
+  <li>automake (version 1.16.5 or higher)</li>
+</ul>
+<p>
+Las desarrolladoras pueden:
+</p>
+<pre>$ git clone https://github.com/t-nissie/xtalgrowth.git
+$ cd xtalgrowth
+$ autoreconf -v
+$ automake --add-missing
+$ autoreconf -v            ###*###
+$ ./configure
+$ make -j9                 # Do development.
+$ make check               # Do some tests.
+$ make distclean           # Clean up Makefile, etc.
+$ ./configure
+$ make distcheck           # Check for distribution. Give options in DISTCHECK_CONFIGURE_FLAGS.
+$ make dist                # Make a distribution package.
+
+$ make clean
+$ cmake -G Ninja .         # You can also use CMake.
+$ cmake -LA .
+$ ninja
+$ ninja test
+</pre>
+
+
+<h2 id="LABEL-9">Agradecimientos</h2>
 <p>
 <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> es presentado por <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
 </p>

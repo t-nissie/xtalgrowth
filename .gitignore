@@ -28,3 +28,5 @@ CMakeFiles
 CTestTestfile.cmake
 build.ninja
 cmake_install.cmake
+*~
+*.tar.gz

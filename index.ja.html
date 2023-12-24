@@ -79,8 +79,9 @@ Contents:
   <li><a href="#LABEL-4">シミュレーションの計算条件と結果</a></li>
   <li><a href="#LABEL-5">展示方法</a></li>
   <li><a href="#LABEL-6">参考文献</a></li>
-  <li><a href="#LABEL-7">作者とソフトウエアの再配布について</a></li>
-  <li><a href="#LABEL-8">Acknowledgements</a></li>
+  <li><a href="#LABEL-7">ソースコードリポジトリ、作者とソフトウエアの再配布について</a></li>
+  <li><a href="#LABEL-8">本ソフトウエアの開発方法</a></li>
+  <li><a href="#LABEL-9">Acknowledgements</a></li>
 </ul>
 </div>
 
@@ -288,7 +289,7 @@ See <a href="http://sci4um.com/about16220-asc.html">http://sci4um.com/about16220
 作者：西松毅 (t_nissie{at}yahoo.co.jp)
 </p>
 <p>
-Copyright © 2009-2020 by Takeshi Nishimatsu
+Copyright © 2009-2023 by Takeshi Nishimatsu
 </p>
 <p>
 <strong>xtalgrowth</strong> is distributed in the hope that
@@ -300,7 +301,50 @@ For more detail, see <a href="COPYING">COPYING</a>.
 </p>
 
 
-<h2 id="LABEL-8">Acknowledgements</h2>
+
+<h2 id="LABEL-8">本ソフトウエアの開発方法</h2>
+<p>
+開発には<a href="https://loto.sourceforge.net/feram/Autotools-memo.ja.html">GNU Autotools</a>が必要です。
+</p>
+<ul>
+  <li>autoconf (version 2.61 or higher)</li>
+  <li>automake (version 1.16.5 or higher)</li>
+</ul>
+<p>
+開発の手順は次の通りです：
+</p>
+
+<pre>$ git clone https://github.com/t-nissie/xtalgrowth.git
+$ cd xtalgrowth
+$ autoreconf -v
+$ automake --add-missing
+$ autoreconf -v            # ☆
+$ ./configure
+$ make -j9                 # Do development.
+$ make check               # Do some tests.
+$ make distclean           # Clean up Makefile, etc.
+$ ./configure
+$ make distcheck           # Check for distribution. Give options in DISTCHECK_CONFIGURE_FLAGS.
+$ make dist                # Make a distribution package.
+
+$ make clean
+$ cmake -G Ninja .         # You can also use CMake.
+$ cmake -LA .
+$ ninja
+$ ninja test
+</pre>
+<p>
+  新たにconfigure.ac, Makefile.am, src/Makefile.amを書き変えたら☆からやり直す。
+  実際は☆からやり直さずとも、Makefile に依存関係が書き込まれているので、
+  make だけで Makefile そのものがうまい具合に更新される。
+</p>
+<p>
+  <strong>xtalgrowth</strong>ではCMake用の src/CMakeLists.txt は
+  src/CMakeLists.txt.in から configure が生成する。
+  より正確には config.status が生成する。
+</p>
+
+<h2 id="LABEL-9">Acknowledgements</h2>
 <p>
 <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> is hosted by <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
 </p>

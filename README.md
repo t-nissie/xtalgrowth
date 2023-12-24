@@ -74,7 +74,13 @@ You can compile xtalgrowth with cmake, too.
     $ ninja test
     $ sudo ninja install
 
-## For developers
+## Git repository
+The latest source code of xtalgrowth is in https://github.com/t-nissie/xtalgrowth .
+You can clone it with
+
+    $ git clone https://github.com/t-nissie/xtalgrowth.git
+
+## Development of xtalgrowth
 Developers need Autotools.
 
 * autoconf (version 2.61 or higher)
@@ -82,6 +88,7 @@ Developers need Autotools.
 
 Developers can:
 
+    $ git clone https://github.com/t-nissie/xtalgrowth.git
     $ autoreconf -v
     $ automake --add-missing
     $ autoreconf -v            ###*###
@@ -90,8 +97,8 @@ Developers can:
     $ make check               # Do some tests.
     $ make distclean           # Clean up Makefile, etc.
     $ ./configure
-    $ make distcheck           # Check for distribution. Give options in DISTCHECK_CONFIGURE_FLAGS.
-    $ make dist                # Make a distribution package.
+    $ make distcheck           # Check and make a distribution package, xtalgrowth-X.Y.Z.tar.gz.
+                               # Give options in DISTCHECK_CONFIGURE_FLAGS.
     
     $ make clean
     $ cmake -G Ninja .         # You can also use CMake.
@@ -102,10 +109,3 @@ Developers can:
 Go back to `###*###`, when you edit configure.ac, Makefile.am, src/Makefile.am, etc.
 `make Makefile` may be enough sometimes.
 Note that `src/CMakeLists.txt` is made from `src/CMakeLists.txt.in` by `configure`.
-
-
-## Git repository
-The latest source code of xtalgrowth is in https://github.com/t-nissie/xtalgrowth .
-You can clone it with
-
-    $ git clone https://github.com/t-nissie/xtalgrowth.git
