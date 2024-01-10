@@ -99,7 +99,7 @@ Requirements are
 <p>
 If you have all of them, You can generate src/xtalgrowth with
 </p>
-<pre>$ tar zxf xtalgrowth-X.Y.Z.tar.gz
+<pre>$ tar xf xtalgrowth-X.Y.Z.tar.gz
 $ cd xtalgrowth-X.Y.Z
 $ ./configure
 $ make
@@ -264,7 +264,7 @@ For example, you can edit this document and create a pull request through
 Author: Takeshi Nishimatsu (t_nissie{at}yahoo.co.jp)
 </p>
 <p>
-Copyright © 2009-2023 by Takeshi Nishimatsu
+Copyright © 2009-2024 by Takeshi Nishimatsu
 </p>
 <p>
 <strong>xtalgrowth</strong> is distributed in the hope that
@@ -298,8 +298,8 @@ $ make -j9                 # Do development.
 $ make check               # Do some tests.
 $ make distclean           # Clean up Makefile, etc.
 $ ./configure
-$ make distcheck           # Check for distribution. Give options in DISTCHECK_CONFIGURE_FLAGS.
-$ make dist                # Make a distribution package.
+$ make distcheck           # Check and make a distribution package, xtalgrowth-X.Y.Z.tar.gz.
+                           # Give options in DISTCHECK_CONFIGURE_FLAGS.
 
 $ make clean
 $ cmake -G Ninja .         # You can also use CMake.

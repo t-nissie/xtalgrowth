@@ -28,7 +28,7 @@ Requirements are
 
 If you have all of them, You can generate src/xtalgrowth with
 
-    $ tar zxf xtalgrowth-X.Y.Z.tar.gz
+    $ tar xf xtalgrowth-X.Y.Z.tar.gz
     $ cd xtalgrowth-X.Y.Z
     $ ./configure --help
     $ ./configure
@@ -66,7 +66,7 @@ to set CPPFLAGS and LDFLAGS.
 ## Compilation with cmake
 You can compile xtalgrowth with cmake, too.
 
-    $ tar zxf xtalgrowth-X.Y.Z.tar.gz
+    $ tar xf xtalgrowth-X.Y.Z.tar.gz
     $ mkdir xtalgrowth-X.Y.Z/build
     $ cd $_
     $ cmake -G Ninja ..
@@ -89,6 +89,7 @@ Developers need Autotools.
 Developers can:
 
     $ git clone https://github.com/t-nissie/xtalgrowth.git
+    $ cd xtalgrowth
     $ autoreconf -v
     $ automake --add-missing
     $ autoreconf -v            ###*###
