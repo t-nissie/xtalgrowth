@@ -50,7 +50,7 @@ pipe it through gs(1) command:
 <pre>$ xtalgrowth [OPTIONS...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 </pre>
 <p>
-If you cannot print xtalgrowth's output correctly with Mac OS X,
+If you cannot print xtalgrowth's output correctly with macOS,
 use lpr with a -l option:
 </p>
 <pre>$ xtalgrowth [OPTIONS...] | lpr -l
@@ -93,8 +93,8 @@ Requirements are
 
 <ul>
   <li>C compiler (gcc)</li>
-  <li>X11  libraries and their include files (apt-get install libx11-dev or yum install libX11-devel)</li>
-  <li>popt library and its include file (apt-get install libpopt-dev or yum install popt-devel or see <a href="http://ftp.rpm.org/popt/">http://ftp.rpm.org/popt/</a> )</li>
+  <li>X11  libraries and their include files (apt install libx11-dev or yum install libX11-devel)</li>
+  <li>popt library and its include file (apt install libpopt-dev or yum install popt-devel or see <a href="http://ftp.rpm.org/popt/">http://ftp.rpm.org/popt/</a> )</li>
 </ul>
 <p>
 If you have all of them, You can generate src/xtalgrowth with
@@ -128,7 +128,7 @@ In this case, give some LDFLAGS in the configure step
 <pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
 </pre>
 <p>
-For Mac OS X into which <a href="http://xquartz.macosforge.org/landing/">XQuartz</a> was installed
+For macOS into which <a href="https://www.xquartz.org/">XQuartz</a> was installed
 and popt was installed via <a href="https://www.macports.org">MacPorsts</a>, use
 </p>
 <pre>

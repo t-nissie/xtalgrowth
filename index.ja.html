@@ -5,7 +5,7 @@
   <title>xtalgrowth -- ２次元結晶成長シミュレーション</title>
   <meta name="author" content="Takeshi Nishimatsu" />
   <meta name="copyright" content="Copyright &#169; 2009-2017 Takeshi Nishimatsu" />
-  <meta name="description" content="xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです。xtalgrowthを起動すると、画面の上からランダムに剛体球が落ちてきて画面の底に降り積もり、２次元の結晶が成長します。コマンドラインオプションで計算条件を変更することができます。xtalgrowthはLinuxやMac OS XなどのUNIX系のコンピュータで動くフリーソフトウエアです。" />
+  <meta name="description" content="xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです。xtalgrowthを起動すると、画面の上からランダムに剛体球が落ちてきて画面の底に降り積もり、２次元の結晶が成長します。コマンドラインオプションで計算条件を変更することができます。xtalgrowthはLinuxやmacOSなどのUNIX系のコンピュータで動くフリーソフトウエアです。" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />
   <link rel="stylesheet" href="style.css" type="text/css" />
   <link rel="ICON" href="favicon.ico" />
@@ -35,7 +35,7 @@
 計算条件を変更することができます。図１のような賞状の形をした計算結果が
 PostScriptファイルとして標準出力 (stdout) から出力されます。
 オープンキャンパスや研究所の一般公開の来場者参加型の展示物に適しています。
-<strong>xtalgrowth</strong>はLinuxやMac OS XなどのUNIX系のコンピュータで動く
+<strong>xtalgrowth</strong>はLinuxやmacOSなどのUNIX系のコンピュータで動く
 フリーソフトウエアです。
 </p>
 <p>
@@ -59,7 +59,7 @@ Linuxで印刷がうまくいかないときは、次のようにgs(1)コマン�
 <pre>$ xtalgrowth [オプション...] | gs -q -sDEVICE=pswrite -sOutputFile=- -dNOPAUSE -dBATCH - | lpr
 </pre>
 <p>
-Mac OS Xで印刷がうまくいかない場合は、lprに-lオプションを付けると正常に印刷できるることがあります：
+macOSで印刷がうまくいかない場合は、lprに-lオプションを付けると正常に印刷できるることがあります：
 </p>
 <pre>$ xtalgrowth [オプション...] | lpr -l
 </pre>
@@ -102,8 +102,8 @@ Contents:
 
 <ul>
   <li>gccなどのＣコンパイラ</li>
-  <li>X11ライブラリとそのインクルード・ファイル（apt-get install libx11-dev または yum install libX11-devel）</li>
-  <li>poptライブラリとそのインクルード・ファイル（apt-get install libpopt-dev または yum install popt-devel または <a href="http://ftp.rpm.org/popt/">http://ftp.rpm.org/popt/</a> から入手して下さい）</li>
+  <li>X11ライブラリとそのインクルード・ファイル（apt install libx11-dev または yum install libX11-devel）</li>
+  <li>poptライブラリとそのインクルード・ファイル（apt install libpopt-dev または yum install popt-devel または <a href="http://ftp.rpm.org/popt/">http://ftp.rpm.org/popt/</a> から入手して下さい）</li>
 </ul>
 <p>
 が必要です。必要なものがそろっていれば
@@ -144,7 +144,7 @@ $ make installcheck
 などとLDFLAGSを調節してください。
 </p>
 <p>
-Mac OS Xに<a href="http://xquartz.macosforge.org/landing/">XQuartz</a>でX Serverをインストールしている場合は
+macOSに<a href="https://www.xquartz.org/">XQuartz</a>でX Serverをインストールしている場合は
 </p>
 <pre>$ ./configure CPPFLAGS=-I/opt/X11/include LDFLAGS=-L/opt/X11/lib
 </pre>
