@@ -118,16 +118,6 @@ Si desea instalar xtalgrowth en /usr/local/bin/xtalgrowth,
 $ make installcheck
 </pre>
 <p>
-En algunos sistemas de 64 bit, puede recibir un mensaje de error como
-</p>
-<pre>/usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
-</pre>
-<p>
-En este caso, dar algunos LDFLAGS en el paso de configuración
-</p>
-<pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
-</pre>
-<p>
 Para macOS en el que se instala <a href="https://www.xquartz.org/">XQuartz</a> y/o popt via <a href="https://www.macports.org">MacPorsts</a>, utilizar
 </p>
 <pre>

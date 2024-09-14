@@ -131,19 +131,6 @@ $ make installcheck
 としてください。
 </p>
 <p>
-一部の64ビットのシステムでは、
-</p>
-<pre>/usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
-</pre>
-<p>
-というようなメッセージが出てリンクに失敗することがあります。その場合はconfigureのときに
-</p>
-<pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
-</pre>
-<p>
-などとLDFLAGSを調節してください。
-</p>
-<p>
 macOSに<a href="https://www.xquartz.org/">XQuartz</a>でX Serverをインストールしている場合は
 </p>
 <pre>$ ./configure CPPFLAGS=-I/opt/X11/include LDFLAGS=-L/opt/X11/lib

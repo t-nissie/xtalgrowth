@@ -118,16 +118,6 @@ If you want to install /usr/local/bin/xtalgrowth,
 $ make installcheck
 </pre>
 <p>
-In some 64 bit systems, you may get link errors like
-</p>
-<pre>/usr/bin/ld: skipping incompatible /usr/X11R6/lib/libX11.so when searching for -lX11
-</pre>
-<p>
-In this case, give some LDFLAGS in the configure step
-</p>
-<pre>$ ./configure LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib64"
-</pre>
-<p>
 For macOS into which <a href="https://www.xquartz.org/">XQuartz</a> was installed
 and popt was installed via <a href="https://www.macports.org">MacPorsts</a>, use
 </p>
