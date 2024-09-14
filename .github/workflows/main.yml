@@ -30,8 +30,10 @@ jobs:
       - name: Prepare Autotools
         run: autoreconf -v || automake --add-missing
 
-      - name: Prepare src/CMakeLists.txt
-        run: ./configure
+      - name: Configure, make distcheck, also prepare src/CMakeLists.txt
+        run: |
+          ./configure
+          make distcheck
 
       - name: CMake, Ninja, then test under X
         run: |
