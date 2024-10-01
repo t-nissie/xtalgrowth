@@ -66,6 +66,10 @@ You can compile xtalgrowth with cmake, too.
     $ ninja test
     $ sudo ninja install
 
+If you want to install xtalgrowth into other than /usr/local,
+
+    $ cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/somewhere/you/want ..
+
 ## Git repository
 The latest source code of xtalgrowth is in https://github.com/t-nissie/xtalgrowth .
 You can clone it with

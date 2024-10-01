@@ -30,3 +30,5 @@ build.ninja
 cmake_install.cmake
 *~
 *.tar.gz
+.ninja_deps
+.ninja_log
