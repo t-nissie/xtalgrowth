@@ -40,9 +40,9 @@ jobs:
           ninja
           xvfb-run ninja test
 
-       - name: Meson Build, then test under X
+      - name: Meson Build, then test under X
         run: |
-          meson meson/
+          meson meson
           cd meson
           ninja
           xvfb-run ninja test
