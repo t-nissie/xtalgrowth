@@ -1,0 +1,16 @@
+# meson.build
+project('xtalgrowth', 'c',
+        version: '@PACKAGE_VERSION@')
+
+# 依存ライブラリの検出
+popt_dep = dependency('popt', required: true)  # libpopt 依存
+x11_dep = dependency('x11', required: true)    # X11 依存
+
+# コンパイラの取得
+cc = meson.get_compiler('c')
+
+# サブディレクトリの指定
+subdir('src')
+
+# インストールターゲット（オプション）
+install_man('xtalgrowth.1', install_dir: get_option('mandir') / 'man1')

@@ -1,0 +1,2 @@
+$ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib' && rm -rf build/ && meson build/ && cd build/ && ninja && ninja test && cd .. && build/src/xtalgrowth --help
+$ make distcheck DISTCHECK_CONFIGURE_FLAGS="CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'"

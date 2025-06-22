@@ -56,7 +56,7 @@ For macOS into which XQuartz was installed and popt was installed via MacPorsts,
 to set CPPFLAGS and LDFLAGS.
 
 ## Compilation with cmake
-You can compile xtalgrowth with cmake, too.
+You can compile xtalgrowth with cmake.
 
     $ tar xf xtalgrowth-X.Y.Z.tar.gz
     $ mkdir xtalgrowth-X.Y.Z/build
@@ -69,6 +69,18 @@ You can compile xtalgrowth with cmake, too.
 If you want to install xtalgrowth into other than /usr/local,
 
     $ cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/somewhere/you/want ..
+
+## Compilation with meson
+From version 1.1.3, you can compile xtalgrowth with meson.
+
+    $ tar xf xtalgrowth-X.Y.Z.tar.gz
+    $ cd xtalgrowth-X.Y.Z
+    $ meson build/
+    $ cd build/
+    $ ninja
+    $ ninja test
+    $ sudo ninja install
+
 
 ## Git repository
 The latest source code of xtalgrowth is in https://github.com/t-nissie/xtalgrowth .
