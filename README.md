@@ -115,12 +115,11 @@ Developers can:
     $ ninja
     $ ninja test
 
-Development with macOS, Homebrew and Meson Build
-
-    $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
-    $ rm -rf build/ && meson build/ && cd build/ && ninja && ninja test && src/xtalgrowth --help && cd ..
-
-
 Go back to `###*###`, when you edit configure.ac, Makefile.am, src/Makefile.am, etc.
 `make Makefile` may be enough sometimes.
 Note that `src/CMakeLists.txt` is made from `src/CMakeLists.txt.in` by `configure`.
+
+### Development with macOS, Homebrew and Meson Build
+
+    $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
+    $ rm -rf build/ && meson build/ && cd build/ && ninja && ninja test && src/xtalgrowth --help && cd ..
