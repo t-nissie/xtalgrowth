@@ -1,7 +1,9 @@
-# src/meson.build
+# -*-Meson-*-
+# src/meson.build will be generated from src/meson.build.in by configure and config.status.
+# Do NOT edit src/meson.build! Edit src/meson.build.in!
+##
 add_project_arguments('-DHAVE_POPT_H=1',                     language: 'c')
 add_project_arguments('-DPACKAGE_STRING="@PACKAGE_STRING@"', language: 'c')
-add_project_arguments('-Wno-parentheses',                    language: 'c')
 
 xtalgrowth = executable('xtalgrowth',
            sources: [

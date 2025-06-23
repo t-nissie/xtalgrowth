@@ -1,16 +1,19 @@
-# meson.build
+# -*-Meson-*-
+# meson.build will be generated from meson.build.in by configure and config.status.
+# Do NOT edit meson.build! Edit meson.build.in!
+##
 project('xtalgrowth', 'c',
         version: '@PACKAGE_VERSION@')
 
-# 依存ライブラリの検出
-popt_dep = dependency('popt', required: true)  # libpopt 依存
-x11_dep = dependency('x11', required: true)    # X11 依存
+# Find libraries
+popt_dep = dependency('popt', required: true)  # libpopt
+x11_dep  = dependency('x11',  required: true)  # X11
 
-# コンパイラの取得
+# Find C compiler
 cc = meson.get_compiler('c')
 
-# サブディレクトリの指定
+# Subdirectory
 subdir('src')
 
-# インストールターゲット（オプション）
+# Man page
 install_man('xtalgrowth.1', install_dir: get_option('mandir') / 'man1')

@@ -122,4 +122,4 @@ Note that `src/CMakeLists.txt` is made from `src/CMakeLists.txt.in` by `configur
 ### Development with macOS, Homebrew and Meson Build
 
     $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
-    $ rm -rf build/ && meson build/ && cd build/ && ninja && ninja test && src/xtalgrowth --help && cd ..
+    $ rm -rf build/ && meson setup build/ && cd build/ && ninja && ninja test && src/xtalgrowth --help && cd ..

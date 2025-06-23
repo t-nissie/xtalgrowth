@@ -5,7 +5,6 @@
    "Compilers: Principles, Techniques, and Tools" (1986),
    ISBN:0-201-10088-6, Addison Wesley).
 
-   Time-stamp: <2012-01-10 21:18:21 takeshi>
 */
 #include "hashpjw.h"
 #define PRIME 268435399
@@ -17,6 +16,7 @@ int hashpjw(char *s)
   unsigned g;
   for (p=s; *p; p++) {
     h = (h<<4) + (*p);
+#pragma GCC diagnostic ignored "-Wparentheses"
     if (g = h&0xf0000000) {
       h = h^(g>>24);
       h = h^g;
