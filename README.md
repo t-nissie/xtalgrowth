@@ -70,16 +70,17 @@ If you want to install xtalgrowth into other than /usr/local,
 
     $ cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/somewhere/you/want ..
 
-## Compilation with meson
-From version 1.1.3, you can compile xtalgrowth with meson.
+## Install/uninstall xtalgrowth with Meson Build and Ninja
+From version 1.1.3, you can compile xtalgrowth with Meson Build and Ninja.
 
     $ tar xf xtalgrowth-X.Y.Z.tar.gz
     $ cd xtalgrowth-X.Y.Z
-    $ meson build/
+    $ meson setup build/ --prefix=/somewhere/you/want
     $ cd build/
     $ ninja
     $ ninja test
     $ sudo ninja install
+    $ sudo ninja uninstall
 
 
 ## Git repository
