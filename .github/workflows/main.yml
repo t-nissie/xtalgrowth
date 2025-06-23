@@ -42,7 +42,7 @@ jobs:
 
       - name: Meson Build, then test under X
         run: |
-          meson meson
-          cd meson
+          meson setup mesonbuilddir
+          cd mesonbuilddir
           ninja
           xvfb-run ninja test
