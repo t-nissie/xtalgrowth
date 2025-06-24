@@ -75,8 +75,8 @@ From version 1.1.3, you can compile xtalgrowth with Meson Build and Ninja.
 
     $ tar xf xtalgrowth-X.Y.Z.tar.gz
     $ cd xtalgrowth-X.Y.Z
-    $ meson setup build/ --prefix=/somewhere/you/want
-    $ cd build/
+    $ meson setup mesonbuilddir/ --prefix=/somewhere/you/want
+    $ cd mesonbuilddir/
     $ ninja
     $ ninja test
     $ sudo ninja install
@@ -121,6 +121,8 @@ Go back to `###*###`, when you edit configure.ac, Makefile.am, src/Makefile.am, 
 Note that `src/CMakeLists.txt` is made from `src/CMakeLists.txt.in` by `configure`.
 
 ### Development with macOS, Homebrew and Meson Build
+Run the setup command as `meson setup mesonbuilddir [options]`.
+Just `meson mesonbuilddir [options]` without `setup` is ambiguous and deprecated.
 
     $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
     $ rm -rf build/ && meson setup build/ && cd build/ && ninja && ninja test && src/xtalgrowth --help && cd ..

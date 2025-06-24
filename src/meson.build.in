@@ -26,7 +26,7 @@ marsaglia   = executable('marsaglia',
                          include_directories: include_directories('.'),
                          install: false)
 test('random number generator',  marsaglia)
-	   
+
 marsaglia2d = executable('marsaglia2d',
                          sources: ['marsaglia2d.c', 'uni64.c'],
                          include_directories: include_directories('.'),
