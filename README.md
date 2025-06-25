@@ -75,9 +75,11 @@ From version 1.1.3, you can compile xtalgrowth with Meson Build and Ninja.
 
     $ tar xf xtalgrowth-X.Y.Z.tar.gz
     $ cd xtalgrowth-X.Y.Z
-    $ meson setup mesonbuilddir/ --prefix=/somewhere/you/want
+    $ meson setup --help
+    $ meson setup mesonbuilddir/ --prefix=/somewhere/you/want --buildtype=debugoptimized
     $ cd mesonbuilddir/
-    $ ninja
+    $ ninja --help
+    $ ninja --verbose
     $ ninja test
     $ sudo ninja install
     $ sudo ninja uninstall
