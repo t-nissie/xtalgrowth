@@ -1,0 +1,10 @@
+<script>
+const lang = navigator.language || navigator.userLanguage;
+if (lang.startsWith("ja")) {
+  location.href = "index.ja.html";
+} else if (lang.startsWith("es")) {
+  location.href = "index.es.html";
+} else {
+  location.href = "index.en.html";
+}
+</script>
