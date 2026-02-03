@@ -13,6 +13,10 @@ xtalgrowth is under continuous integration at GitHub Actions:
 
 ## Please read webpages:
 
+* https://t-nissie.github.io/xtalgrowth/
+
+or
+
 * http://loto.sourceforge.net/xtalgrowth/index.en.html (English)
 * http://loto.sourceforge.net/xtalgrowth/index.es.html (Spanish)
 * http://loto.sourceforge.net/xtalgrowth/index.ja.html (Japanese)
