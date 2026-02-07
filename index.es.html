@@ -29,7 +29,7 @@ Podemos ajustar las condiciones de crecimiento
 con las opciones de línea de comandos.
 <strong>xtalgrowth</strong> es adecuado para una demostración de
 simulación de la ciencia de materiales en museos o en campus abiertos.
-<strong>xtalgrowth</strong> es un <a href="http://www.gnu.org/philosophy/free-sw.es.html">software libre</a>.
+<strong>xtalgrowth</strong> es un <a href="https://www.gnu.org/philosophy/free-sw.es.html">software libre</a>.
 </p>
 <p>
 Uso de <strong>xtalgrowth</strong>:
@@ -81,9 +81,9 @@ Contenidos:
 
 <h2 id="LABEL-2">Sitio web y descargar xtalgrowth</h2>
 <p>
-Sitio web de <strong>xtalgrowth</strong> es <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> .
+Sitio web de <strong>xtalgrowth</strong> es <a href="https://t-nissie.github.io/xtalgrowth/">https://t-nissie.github.io/xtalgrowth/</a> .
 El paquete (xtalgrowth-X.Y.Z.tar.gz) puede ser descargado desde
-<a href="http://sourceforge.net/projects/loto/files/xtalgrowth/">http://sourceforge.net/projects/loto/files/xtalgrowth/</a> .
+<a href="https://sourceforge.net/projects/loto/files/xtalgrowth/">https://sourceforge.net/projects/loto/files/xtalgrowth/</a> .
 </p>
 
 
@@ -94,7 +94,7 @@ Los requisitos son
 <ul>
   <li>Compilador C (gcc)</li>
   <li>Las librerías X11 y sus archivos de header (apt install libx11-dev o yum install libX11-devel)</li>
-  <li>La librería popt y su archivo de header (apt install libpopt-dev o yum install popt-devel o véase <a href="http://ftp.rpm.org/popt/">http://ftp.rpm.org/popt/</a> )</li>
+  <li>La librería popt y su archivo de header (apt install libpopt-dev o yum install popt-devel o véase <a href="https://ftp.rpm.org/popt/">https://ftp.rpm.org/popt/</a> )</li>
 </ul>
 <p>
 Si tiene todos ellos, puede generar src/xtalgrowth con
@@ -118,7 +118,8 @@ Si desea instalar xtalgrowth en /usr/local/bin/xtalgrowth,
 $ make installcheck
 </pre>
 <p>
-Para macOS en el que se instala <a href="https://www.xquartz.org/">XQuartz</a> y/o popt via <a href="https://www.macports.org">MacPorsts</a>, utilizar
+Para macOS en el que se instala <a href="https://www.xquartz.org/">XQuartz</a> y/o
+se instaló popt via <a href="https://www.macports.org">MacPorsts</a>, utilizar
 </p>
 <pre>
 $ ./configure CPPFLAGS=-I/opt/X11/include LDFLAGS=-L/opt/X11/lib
@@ -127,6 +128,50 @@ $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt
 <p>
 para configurar CPPFLAGS y LDFLAGS.
 </p>
+<p>
+Para macOS en el que se instaló XQuartz y se instaló popt via HomeBrew, pruebe
+</p>
+<pre>$ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
+</pre>
+
+<h3 id="CMake">Compilación y instalación con cmake</h3>
+<p>
+Puedes compilar <strong>xtalgrowth</strong> con cmake.
+</p>
+<pre>
+$ tar xf xtalgrowth-X.Y.Z.tar.gz
+$ mkdir xtalgrowth-X.Y.Z/build
+$ cd $_
+$ cmake -G Ninja ..
+$ ninja
+$ ninja test
+$ sudo ninja install
+</pre>
+<p>
+  Si desea instalar <strong>xtalgrowth</strong> en un lugar distinto a /usr/local,
+</p>
+<pre>
+$ cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/somewhere/you/want ..
+</pre>
+
+
+<h3 id="Meson">Compilación y instalación con meson</h3>
+<p>
+  Desde la versión 1.1.3, puedes compilar <strong>xtalgrowth</strong> con
+  <a href="https://mesonbuild.com/">meson</a>and ninja.
+</p>
+<pre>
+$ tar xf xtalgrowth-X.Y.Z.tar.gz
+$ cd xtalgrowth-X.Y.Z
+$ meson setup --help
+$ meson setup mesonbuilddir/ --prefix=/somewhere/you/want --buildtype=debugoptimized
+$ cd mesonbuilddir/
+$ ninja --help
+$ ninja --verbose
+$ ninja test
+$ sudo ninja install
+$ sudo ninja uninstall
+</pre>
 
 
 <h2 id="LABEL-4">Condiciones de cálculo y resultados</h2>
@@ -221,27 +266,27 @@ pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
 [2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
-You can get a free PDF of this article from <a href="http://dx.doi.org/10.1098/rspa.1947.0089">doi:10.1098/rspa.1947.0089</a>.
+You can get a free PDF of this article from <a href="https://dx.doi.org/10.1098/rspa.1947.0089">doi:10.1098/rspa.1947.0089</a>.
 </p>
 <p>
 [3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
-You can get a free PDF of this article from <a href="http://dx.doi.org/10.1098/rspa.1949.0022">doi:10.1098/rspa.1949.0022</a>.
+You can get a free PDF of this article from <a href="https://dx.doi.org/10.1098/rspa.1949.0022">doi:10.1098/rspa.1949.0022</a>.
 </p>
 <p>
 [4] Alfred V. Aho, Ravi Sethi, and Jeffrey D. Ullman:
 "Compilers: Principles, Techniques, and Tools" (1986),
 ISBN:0-201-10088-6, Addison Wesley,
-a.k.a. the <a href="http://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon Book</a>.
+a.k.a. the <a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon Book</a>.
 </p>
 <p>
 [5] George Marsaglia and Wai Wan Tsang: "The 64-bit universal RNG",
 Statistics &amp; Probability Letters, Vol. 66, pp. 183-187 (15 January 2004),
-<a href="http://dx.doi.org/10.1016/j.spl.2003.11.001">doi:10.1016/j.spl.2003.11.001</a>. Note that a part of code in the bottom
+<a href="https://dx.doi.org/10.1016/j.spl.2003.11.001">doi:10.1016/j.spl.2003.11.001</a>. Note that a part of code in the bottom
 of p.186, "y=(8888*x)%65579;" should be replaced by "y=(8888*y)%65579;".
 Consequently, 5 values of "The correct output" in p.187 are incorrect.
-See <a href="http://sci4um.com/about16220-asc.html">http://sci4um.com/about16220-asc.html</a> .
+See <a href="https://sci4um.com/about16220-asc.html">https://sci4um.com/about16220-asc.html</a> .
 </p>
 
 
@@ -302,7 +347,7 @@ $ ninja test
 
 <h2 id="LABEL-9">Agradecimientos</h2>
 <p>
-<a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> es presentado por <a href="http://sourceforge.net"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
+<a href="https://loto.sourceforge.net/xtalgrowth/">https://loto.sourceforge.net/xtalgrowth/</a> es presentado por <a href="https://sourceforge.net"><img src="https://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a> .
 </p>
 </body>
 </html>

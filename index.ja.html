@@ -21,11 +21,11 @@
 }(document, 'script', 'facebook-jssdk'));</script>
 <h1 id="LABEL-1">xtalgrowth -- ２次元結晶成長シミュレーション</h1>
 <div class="navi">
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://loto.sourceforge.net/xtalgrowth/index.ja.html" data-text="xtalgrowthは２次元結晶成長をシミュレートするＸアプリケーションです→" data-count="none" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+  <a href="https://twitter.com/intent/tweet?button_hashtag=xtalgrowth&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #xtalgrowth</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>
-  <a href="http://loto.sourceforge.net/xtalgrowth/index.ja.html" onclick="Evernote.doClip({url:'http://loto.sourceforge.net/xtalgrowth/index.ja.html',suggestTags:'physics, simulation, MaterialsScience'}); return false;"><img src="http://static.evernote.com/article-clipper-jp.png" alt="Clip to Evernote" border="0" /></a>
-<a href="http://b.hatena.ne.jp/entry/http://loto.sourceforge.net/xtalgrowth/" class="hatena-bookmark-button" data-hatena-bookmark-title="xtalgrowth -- ２次元結晶成長シミュレーション" data-hatena-bookmark-layout="simple" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20"  border="0" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
-<div class="fb-like" data-href="http://loto.sourceforge.net/xtalgrowth/index.ja.html" data-send="false" data-width="180" data-show-faces="false" data-font="arial"></div>
+  <a href="" onclick="Evernote.doClip({url:'https://t-nissie.github.io/xtalgrowth/index.ja.html',suggestTags:'physics, simulation, MaterialsScience'}); return false;"><img src="http://static.evernote.com/article-clipper-jp.png" alt="Clip to Evernote" border="0" /></a>
+  <a href="http://b.hatena.ne.jp/entry/https://t-nissie.github.io/xtalgrowth/index.ja.html" class="hatena-bookmark-button" data-hatena-bookmark-title="xtalgrowth -- ２次元結晶成長シミュレーション" data-hatena-bookmark-layout="simple" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20"  border="0" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+<div class="fb-like" data-href="https://t-nissie.github.io/xtalgrowth/index.ja.html" data-send="false" data-width="180" data-show-faces="false" data-font="arial"></div>
   [<a href="index.en.html">English</a>/<a href="index.es.html">español</a>/<strong>日本語</strong>]
 </div>
 <p>
@@ -88,7 +88,7 @@ Contents:
 
 <h2 id="LABEL-2">ホームページとダウンロード</h2>
 <p>
-<strong>xtalgrowth</strong>のホームページは <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> です。
+<strong>xtalgrowth</strong>のホームページは <a href="https://t-nissie.github.io/xtalgrowth/">https://t-nissie.github.io/xtalgrowth/</a> です。
 最新のtar.gzパッケージ (xtalgrowth-X.Y.Z.tar.gz) を
 <a href="http://sourceforge.net/projects/loto/files/xtalgrowth/">http://sourceforge.net/projects/loto/files/xtalgrowth/</a>
 からダウンロードすることができます。
@@ -97,7 +97,7 @@ Contents:
 
 <h2 id="LABEL-3">コンパイルおよびインストールの方法</h2>
 <p>
-コンパイルには
+<strong>xtalgrowth</strong>のコンパイルには
 </p>
 
 <ul>
@@ -141,8 +141,55 @@ macOSに<a href="https://www.xquartz.org/">XQuartz</a>でX Serverをインスト
 <pre>$ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt/X11/lib -L/opt/local/lib'
 </pre>
 <p>
-などとCPPFLAGSとLDFLAGSを調節してください。
+などとCPPFLAGSとLDFLAGSを調節してください。poptを<a href="https://brew.sh">HomeBrew</a>でインストールしている場合には
 </p>
+<pre>$ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
+</pre>
+<p>
+としてください。
+</p>
+
+
+<h3 id="CMake">cmakeによるコンパイルおよびインストールの方法</h3>
+<p>
+  <strong>xtalgrowth</strong>はcmakeでもコンパイルおよびインストールが可能です。
+  macOSの場合cmakeを使うほうが簡単かもしれません。
+</p>
+<pre>
+$ tar xf xtalgrowth-X.Y.Z.tar.gz
+$ mkdir xtalgrowth-X.Y.Z/build
+$ cd $_
+$ cmake -G Ninja ..
+$ ninja
+$ ninja test
+$ sudo ninja install
+</pre>
+<p>
+<strong>xtalgrowth</strong>を/somewhere/you/want以下にインストールしたい場合には
+</p>
+<pre>
+$ cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/somewhere/you/want ..
+</pre>
+<p>
+としてください。
+</p>
+
+<h3 id="Meson">mesonによるコンパイルおよびインストールの方法</h3>
+<p>
+<strong>xtalgrowth</strong>は<a href="https://mesonbuild.com/">meson</a>でもコンパイルおよびインストールが可能です。
+</p>
+<pre>
+$ tar xf xtalgrowth-X.Y.Z.tar.gz
+$ cd xtalgrowth-X.Y.Z
+$ meson setup --help
+$ meson setup mesonbuilddir/ --prefix=/somewhere/you/want --buildtype=debugoptimized
+$ cd mesonbuilddir/
+$ ninja --help
+$ ninja --verbose
+$ ninja test
+$ sudo ninja install
+$ sudo ninja uninstall
+</pre>
 
 
 <h2 id="LABEL-4">シミュレーションの計算条件と結果</h2>

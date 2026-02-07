@@ -80,9 +80,9 @@ Contents:
 
 <h2 id="LABEL-2">Homepage and DOWNLOAD</h2>
 <p>
-Home page of <strong>xtalgrowth</strong> is <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a> .
+Home page of <strong>xtalgrowth</strong> is <a href="https://t-nissie.github.io/xtalgrowth/">https://t-nissie.github.io/xtalgrowth/</a> .
 The latest .tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
-<a href="http://sourceforge.net/projects/loto/files/xtalgrowth/">http://sourceforge.net/projects/loto/files/xtalgrowth/</a> .
+<a href="https://sourceforge.net/projects/loto/files/xtalgrowth/">https://sourceforge.net/projects/loto/files/xtalgrowth/</a> .
 </p>
 
 
@@ -94,7 +94,7 @@ Requirements are
 <ul>
   <li>C compiler (gcc)</li>
   <li>X11  libraries and their include files (apt install libx11-dev or yum install libX11-devel)</li>
-  <li>popt library and its include file (apt install libpopt-dev or yum install popt-devel or see <a href="http://ftp.rpm.org/popt/">http://ftp.rpm.org/popt/</a> )</li>
+  <li>popt library and its include file (apt install libpopt-dev or yum install popt-devel or see <a href="https://ftp.rpm.org/popt/">https://ftp.rpm.org/popt/</a> )</li>
 </ul>
 <p>
 If you have all of them, You can generate src/xtalgrowth with
@@ -127,6 +127,53 @@ $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt
 <p>
 to set CPPFLAGS and LDFLAGS.
 </p>
+<p>
+For macOS into which XQuartz was installed and popt was installed via HomeBrew, try
+</p>
+<pre>$ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
+</pre>
+
+
+
+<h3 id="CMake">Compilation and installation with cmake</h3>
+<p>
+  You can compile <strong>xtalgrowth</strong> with cmake.
+</p>
+<pre>
+$ tar xf xtalgrowth-X.Y.Z.tar.gz
+$ mkdir xtalgrowth-X.Y.Z/build
+$ cd $_
+$ cmake -G Ninja ..
+$ ninja
+$ ninja test
+$ sudo ninja install
+</pre>
+<p>
+  If you want to install <strong>xtalgrowth</strong> into other than /usr/local,
+</p>
+<pre>
+$ cmake -G Ninja -DCMAKE_INSTALL_PREFIX=/somewhere/you/want ..
+</pre>
+
+
+<h3 id="Meson">Compilation and installation with meson</h3>
+<p>
+  Since version 1.1.3, you can compile <strong>xtalgrowth</strong> with
+  <a href="https://mesonbuild.com/">meson</a>and ninja.
+</p>
+<pre>
+$ tar xf xtalgrowth-X.Y.Z.tar.gz
+$ cd xtalgrowth-X.Y.Z
+$ meson setup --help
+$ meson setup mesonbuilddir/ --prefix=/somewhere/you/want --buildtype=debugoptimized
+$ cd mesonbuilddir/
+$ ninja --help
+$ ninja --verbose
+$ ninja test
+$ sudo ninja install
+$ sudo ninja uninstall
+</pre>
+
 
 
 <h2 id="LABEL-4">Calculation conditions and results</h2>
@@ -219,27 +266,27 @@ pp. 229-261 (1991), ISBN:0-387-54070-9, Springer-Verlag New York.
 [2] Lawrence Bragg and J. F. Nye: "A Dynamical Model of a Crystal Structure",
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 190, No. 1023, pp. 474-481 (Sep. 9, 1947).
-You can get a free PDF of this article from <a href="http://dx.doi.org/10.1098/rspa.1947.0089">doi:10.1098/rspa.1947.0089</a>.
+You can get a free PDF of this article from <a href="https://dx.doi.org/10.1098/rspa.1947.0089">doi:10.1098/rspa.1947.0089</a>.
 </p>
 <p>
 [3] Lawrence Bragg and W. M. Lomer: "A Dynamical Model of a Crystal Structure. II", 
 Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences,
 Vol. 196, No. 1045, pp. 171-181 (Mar. 22, 1949).
-You can get a free PDF of this article from <a href="http://dx.doi.org/10.1098/rspa.1949.0022">doi:10.1098/rspa.1949.0022</a>.
+You can get a free PDF of this article from <a href="https://dx.doi.org/10.1098/rspa.1949.0022">doi:10.1098/rspa.1949.0022</a>.
 </p>
 <p>
 [4] Alfred V. Aho, Ravi Sethi, and Jeffrey D. Ullman:
 "Compilers: Principles, Techniques, and Tools" (1986),
 ISBN:0-201-10088-6, Addison Wesley,
-a.k.a. the <a href="http://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon Book</a>.
+a.k.a. the <a href="https://en.wikipedia.org/wiki/Compilers:_Principles,_Techniques,_and_Tools">Dragon Book</a>.
 </p>
 <p>
 [5] George Marsaglia and Wai Wan Tsang: "The 64-bit universal RNG",
 Statistics &amp; Probability Letters, Vol. 66, pp. 183-187 (15 January 2004),
-<a href="http://dx.doi.org/10.1016/j.spl.2003.11.001">doi:10.1016/j.spl.2003.11.001</a>. Note that a part of code in the bottom
+<a href="https://dx.doi.org/10.1016/j.spl.2003.11.001">doi:10.1016/j.spl.2003.11.001</a>. Note that a part of code in the bottom
 of p.186, "y=(8888*x)%65579;" should be replaced by "y=(8888*y)%65579;".
 Consequently, 5 values of "The correct output" in p.187 are incorrect.
-See <a href="http://sci4um.com/about16220-asc.html">http://sci4um.com/about16220-asc.html</a> .
+See <a href="https://sci4um.com/about16220-asc.html">https://sci4um.com/about16220-asc.html</a> .
 </p>
 
 
@@ -306,10 +353,10 @@ Note that src/CMakeLists.txt is made from src/CMakeLists.txt.in by configure.
 
 <h2 id="LABEL-9">Acknowledgements</h2>
 <p>
-  <a href="http://loto.sourceforge.net/xtalgrowth/">http://loto.sourceforge.net/xtalgrowth/</a>
+  <a href="https://loto.sourceforge.net/xtalgrowth/">https://loto.sourceforge.net/xtalgrowth/</a>
   is hosted by
-  <a href="http://sourceforge.net">
-    <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" />
+  <a href="https://sourceforge.net">
+    <img src="https://sflogo.sourceforge.net/sflogo.php?group_id=204591&amp;type=4" width="125" height="37" border="0" alt="SourceForge.net Logo" />
   </a>
   .
 </p>

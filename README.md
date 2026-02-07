@@ -12,14 +12,8 @@ xtalgrowth is under continuous integration at GitHub Actions:
 [![CI](https://github.com/t-nissie/xtalgrowth/workflows/CI/badge.svg)](https://github.com/t-nissie/xtalgrowth/actions)
 
 ## Please read webpages:
-
-* https://t-nissie.github.io/xtalgrowth/
-
-or
-
-* http://loto.sourceforge.net/xtalgrowth/index.en.html (English)
-* http://loto.sourceforge.net/xtalgrowth/index.es.html (Spanish)
-* http://loto.sourceforge.net/xtalgrowth/index.ja.html (Japanese)
+https://t-nissie.github.io/xtalgrowth/ or
+https://loto.sourceforge.net/xtalgrowth/
 
 index.en.html, index.es.html and index.ja.html are also included in the source package.
 
@@ -58,6 +52,10 @@ For macOS into which XQuartz was installed and popt was installed via MacPorsts,
     $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/local/include' LDFLAGS='-L/opt/X11/lib -L/opt/local/lib'
 
 to set CPPFLAGS and LDFLAGS.
+
+For macOS into which XQuartz was installed and popt was installed via HomeBrew, try
+
+    $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
 
 ## Compilation with cmake
 You can compile xtalgrowth with cmake.

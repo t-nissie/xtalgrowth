@@ -1,6 +1,6 @@
 # Makefile.am for xtalgrowth
 # Process this file with automake to create Makefile.in
-# Time-stamp: <2025-06-23 00:19:53 takeshi>
+# Time-stamp: <2026-02-07 20:59:40 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 SUBDIRS = src
@@ -21,11 +21,11 @@ dist-hook:
 	rm -rf `find $(distdir) -type d -name .svn`
 
 cmakecheck: CMakeLists.txt   # It checks CMakeLists.txt and src/CMakeLists.txt.in. It works only in-source.
-	mkdir -p CMakeCheckBuild
-	cd       CMakeCheckBuild ; \
+	rm -rf CMakeCheckBuild CMakeCache.txt
+	mkdir  CMakeCheckBuild
+	cd     CMakeCheckBuild ; \
 	cmake -G Ninja .. ; \
-	ninja clean ; \
 	ninja ; \
 	src/xtalgrowth --version ; \
 	ninja clean
-	rm -r    CMakeCheckBuild
+	rm -rf CMakeCheckBuild

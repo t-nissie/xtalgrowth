@@ -1,6 +1,6 @@
 #-*-CMake-*- for xtalgrowth
 ##
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5...4.2)
 enable_testing()   # Put it BEFORE add_subdirectory(s).
 project(xtalgrowth C)
 add_subdirectory(src)

@@ -2,7 +2,7 @@
 # configure (or config.status) generates src/CMakeLists.txt from edit src/CMakeLists.txt.in.
 # So, do NOT edit src/CMakeLists.txt, edit src/CMakeLists.txt.in.
 ##
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5...4.2)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})   # FindPOPT.cmake is in src/.
 
