@@ -1,5 +1,5 @@
 /* PostScript_memo.c
-   Time-stamp: <2014-03-04 10:58:17 takeshi>
+   Time-stamp: <2026-02-10 04:45:41 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <sys/time.h>
@@ -86,6 +86,6 @@ void PostScript_memo(struct GrowthParameters *params)
 	 "(%4d-%2.2d-%2.2d    ) rightshow\n"
 	 "/Courier findfont 12 scalefont setfont\n"
 	 "185 mm 18 mm moveto\n"
-	 "(http://loto.sourceforge.net/xtalgrowth/) rightshow\n"
+	 "(https://t-nissie.github.io/xtalgrowth/) rightshow\n"
 	 "\n", params->guest, today->tm_year + 1900, today->tm_mon+1, today->tm_mday);
 }

@@ -4,7 +4,7 @@ xtalgrowth is an X application which can simulate crystal
 growth of 2-dimensional hard spheres.
 
 The latest .tar.gz package (xtalgrowth-X.Y.Z.tar.gz) can be downloaded from
-http://sourceforge.net/projects/loto/files/xtalgrowth/ .
+https://sourceforge.net/projects/loto/files/xtalgrowth/ .
 
 <!-- xtalgrowth is under continuous integration at Travis CI: [![Build Status](https://travis-ci.com/t-nissie/xtalgrowth.svg?branch=master)](https://travis-ci.com/github/t-nissie/xtalgrowth) -->
 
@@ -15,14 +15,15 @@ xtalgrowth is under continuous integration at GitHub Actions:
 https://t-nissie.github.io/xtalgrowth/ or
 https://loto.sourceforge.net/xtalgrowth/
 
-index.en.html, index.es.html and index.ja.html are also included in the source package.
+index.en.html, index.es.html and index.ja.html are also included in the source package
+and will be installed into PREFIX/share/doc/xtalgrowth/.
 
 ## Compilation and installation
 Requirements are
 
 * C compiler (gcc)
 * X11 libraries and their include files (`apt install libx11-dev` or `yum install libX11-devel`)
-* popt libraries and their include files (`apt install libpopt-dev` or `yum install popt-devel` or see http://ftp.rpm.org/popt/ )
+* popt libraries and their include files (`apt install libpopt-dev` or `yum install popt-devel` or see https://ftp.rpm.org/popt/ )
 
 If you have all of them, You can generate src/xtalgrowth with
 
@@ -30,7 +31,7 @@ If you have all of them, You can generate src/xtalgrowth with
     $ cd xtalgrowth-X.Y.Z
     $ ./configure --help
     $ ./configure
-    $ make -j3
+    $ make -j9
     $ make check
 
 Test the executable
