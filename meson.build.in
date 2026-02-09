@@ -17,3 +17,22 @@ subdir('src')
 
 # Man page
 install_man('xtalgrowth.1', install_dir: get_option('mandir') / 'man1')
+
+# Install index.??.html and figures
+install_data(['index.en.html',
+              'index.es.html',
+              'index.ja.html',
+              'index.html',
+              'style.css',
+              'COPYING',
+              'favicon.ico',
+              'README.md'], install_dir: join_paths(get_option('prefix'),
+                                                    get_option('datadir'), 'doc',
+                                                    meson.project_name())          )
+install_data(['figures/cd.jpg',
+              'figures/example.jpg',
+              'figures/large.jpg',
+              'figures/xtals.jpg'
+             ], install_dir: join_paths(get_option('prefix'),
+                                        get_option('datadir'), 'doc',
+                                        meson.project_name(),  'figures')          )
