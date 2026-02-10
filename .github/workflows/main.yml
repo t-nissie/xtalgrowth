@@ -27,10 +27,14 @@ jobs:
       - name: Prepare Autotools
         run: autoreconf -v || automake --add-missing
 
-      - name: Configure, make distcheck, also prepare src/CMakeLists.txt
+      - name: Configure, make distcheck, also process src/CMakeLists.txt.in and src/meson.build.in
         run: |
-          ./configure
+          ./configure --prefix=$PWD/autotools_prefix
           xvfb-run make distcheck
+          make
+          make install
+          make installcheck
+          make uninstall
 
       - name: CMake, Ninja, then test under X
         run: |
@@ -42,7 +46,9 @@ jobs:
 
       - name: Meson Build, then test under X
         run: |
-          meson setup mesonbuilddir
+          meson setup mesonbuilddir --prefix $PWD/meson_prefix
           cd mesonbuilddir
           ninja
           xvfb-run ninja test
+          ninja   install
+          ninja uninstall
