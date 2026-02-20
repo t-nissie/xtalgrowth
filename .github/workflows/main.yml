@@ -36,12 +36,8 @@ jobs:
 
       - name: Configure, make distcheck, also process src/CMakeLists.txt.in and src/meson.build.in
         run: |
-          ./configure --prefix=$PWD/autotools_prefix
+          ./configure
           xvfb-run make distcheck
-          make
-          make install
-          make installcheck
-          make uninstall
 
       - name: CMake, Ninja, then test under X
         run: |
