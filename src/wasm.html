@@ -1,0 +1,36 @@
+<canvas id="screen" width="640" height="480"></canvas>
+<script src="xtalgrowth.js"></script>
+<script>
+Module['onRuntimeInitialized'] = () => {
+  const W = 320, H = 240;
+  const canvas = document.getElementById('screen');
+  const ctx = canvas.getContext('2d');
+  const img = ctx.createImageData(W, H);
+
+  const sim_init = Module.cwrap('sim_init', null, ['number','number','number']);
+  const sim_step = Module.cwrap('sim_step', null, []);
+  const sim_get_cell = Module.cwrap('sim_get_cell', 'number', ['number','number']);
+
+  sim_init(W, H, Date.now() & 0xffffffff);
+
+  function render() {
+    sim_step();
+
+    for (let y = 0; y < H; y++) {
+      for (let x = 0; x < W; x++) {
+        const v = sim_get_cell(x, y); // 0 or 1 など
+        const idx = (y * W + x) * 4;
+        const c = v ? 0 : 255; // 背景白・粒子黒など
+        img.data[idx + 0] = c;
+        img.data[idx + 1] = c;
+        img.data[idx + 2] = c;
+        img.data[idx + 3] = 255;
+      }
+    }
+    ctx.putImageData(img, 0, 0);
+    requestAnimationFrame(render);
+  }
+
+  render();
+};
+</script>
