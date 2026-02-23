@@ -15,6 +15,7 @@ missing
 stamp-h1
 test-driver
 xtalgrowth.1
+/src/*.ps
 /src/*.log
 /src/*.o
 /src/*.trs
