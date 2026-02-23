@@ -18,6 +18,8 @@ https://loto.sourceforge.net/xtalgrowth/
 index.en.html, index.es.html and index.ja.html are also included in the source package
 and will be installed into PREFIX/share/doc/xtalgrowth/.
 
+You can also ask DeepWiki: [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/t-nissie/xtalgrowth)
+
 ## Compilation and installation
 Requirements are
 
