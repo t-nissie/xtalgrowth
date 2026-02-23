@@ -1,12 +1,13 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2026-02-20 22:20:24 takeshi>
+# Time-stamp: <2026-02-23 07:06:04 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
 EXTRA_PROGRAMS = xtalgrowth_cocoa marsaglia marsaglia2d
-xtalgrowth_SOURCES = PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c parse_opt.c xtalgrowth.c
-EXTRA_DIST         = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h uni64.h hashpjw.h parse_opt.h GrowthParameters.h\
-                     marsaglia2d.gp pjw.c certification.eps againagain.sh\
+xtalgrowth_SOURCES = PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c parse_opt.c xtalgrowth.c sim_core.c
+noinst_HEADERS = PostScript.h PostScript_eps.h PostScript_memo.h Xsim.h uni64.h hashpjw.h parse_opt.h\
+                 GrowthParameters.h sim_core.h
+EXTRA_DIST = marsaglia2d.gp pjw.c certification.eps againagain.sh\
                      meson.build.in\
                      meson.build\
                      CMakeLists.txt.in\
