@@ -43,11 +43,11 @@ void add_to_result(double x, double y, double diameter3, int *n_fixed,
 {
   x_result[(*n_fixed)  ] = x;
   y_result[(*n_fixed)++] = y;
-  if (x<=diameter3) {
+  if (x<=diameter3) {      /* periodic boundary condition +x */
     x_result[(*n_fixed)  ] = x+1;
     y_result[(*n_fixed)++] = y;
   }
-  if (x>=1.0-diameter3) {
+  if (x>=1.0-diameter3) {  /* periodic boundary condition -x */
     x_result[(*n_fixed)  ] = x-1;
     y_result[(*n_fixed)++] = y;
   }
