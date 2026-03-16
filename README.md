@@ -94,6 +94,7 @@ You can clone it with
 
     $ git clone https://github.com/t-nissie/xtalgrowth.git
 
+
 ## Development of xtalgrowth
 Developers need Autotools.
 
@@ -131,3 +132,18 @@ Just `meson mesonbuilddir [options]` without `setup` is ambiguous and deprecated
 
     $ ./configure CPPFLAGS='-I/opt/X11/include -I/opt/homebrew/include' LDFLAGS='-L/opt/X11/lib -L/opt/homebrew/lib'
     $ rm -rf build/ && meson setup build/ && cd build/ && ninja && ninja test && src/xtalgrowth --help && cd ..
+
+
+## Development of WebAssembly（WASM) version of xtalgrowth
+WebAssembly（WASM) version of xtalgrowth is under development now!
+
+Requirements for development of WebAssembly（WASM) version of xtalgrowth are:
+
+* emcc, i.e. Emscripten SDK https://github.com/emscripten-core/emsdk
+* wasm-canvas https://github.com/alextyner/wasm-canvas
+
+### Receipt
+Step by step:
+
+* follow the installation instructions of Emscripten SDK and activate it.
+
