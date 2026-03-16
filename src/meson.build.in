@@ -12,6 +12,7 @@ xtalgrowth = executable('xtalgrowth',
              'PostScript_eps.c',
              'PostScript_memo.c',
              'Xsim.c',
+             'sim_core.c',
              'uni64.c',
              'parse_opt.c',
              'hashpjw.c'

@@ -8,7 +8,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR})   # Find
 
 add_executable(
   xtalgrowth
-  xtalgrowth.c PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c parse_opt.c)
+  xtalgrowth.c PostScript.c PostScript_eps.c PostScript_memo.c Xsim.c uni64.c hashpjw.c parse_opt.c sim_core.c)
 add_executable(
   marsaglia
   marsaglia.c uni64.c)

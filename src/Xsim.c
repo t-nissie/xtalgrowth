@@ -1,5 +1,5 @@
 /* Xsim.c
-   Time-stamp: <2014-03-04 10:58:17 takeshi>
+   Time-stamp: <2026-02-23 08:20:29 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <unistd.h>
@@ -7,20 +7,17 @@
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 #include "GrowthParameters.h"
+#include "sim_core.h"
 #include "Xsim.h"
 #include "uni64.h"
 #define WIDTH 600
 #define MAX_N_TOUCH 3
 #define MAX_N_BALL 10000
-const double ratio=0.2;
-double diameter, diameter3, dxd, radius;
-int diameter_dot;
 double height;
 Display *d;
 Window  w;
 GC      gc;
-
-void arc(double x, double y)
+void arc(double x, double y, double radius, int diameter_dot)
 {
   XFillArc(d, w, gc,
 	   (int)(WIDTH*(x-radius)),
@@ -29,64 +26,16 @@ void arc(double x, double y)
   return;
 }
 
-int n_touch(double x, double y, int n_ary,
-	    double x_ary[], double y_ary[], /* input */
-	    double x_touch[], double y_touch[]) /* output */
-{
-  int i;
-  double xd, yd;
-  int n=0;
-  for (i=0; i<n_ary; i++) {
-    xd = x - x_ary[i];
-    yd = y - y_ary[i];
-    if (xd*xd+yd*yd <= dxd) {
-      x_touch[n] = x_ary[i];
-      y_touch[n] = y_ary[i];
-      n+=1;
-      if (n==MAX_N_TOUCH) return n;
-    }
-  }
-  return n;
-}
-
-/* go around to avoid a under ball ((-dx, -dy) direction) */
-void go_around(double *x, double *y, double velocity, double dx, double dy)
-{
-  if (dx>0) {
-    *x += velocity*dy/diameter*ratio;
-    if (*x>=1.0) *x -= 1.0;
-  } else {
-    *x -= velocity*dy/diameter*ratio;
-    if (*x<0.00) *x += 1.0;
-  }
-  *y -= velocity*(dx>0 ? dx : -dx)/diameter*ratio;
-}
-
-void add_to_result(double x, double y, int *n_fixed,
-		  double x_result[], double y_result[])
-{
-  x_result[(*n_fixed)  ] = x;
-  y_result[(*n_fixed)++] = y;
-  if (x<=diameter3) {
-    x_result[(*n_fixed)  ] = x+1;
-    y_result[(*n_fixed)++] = y;
-  }
-  if (x>=1.0-diameter3) {
-    x_result[(*n_fixed)  ] = x-1;
-    y_result[(*n_fixed)++] = y;
-  }
-}
-
 /* Redraw the window if it has been exposed. */
 void exposure(const int n_fixed,
 	      const double x_result[],
-	      const double y_result[])
+	      const double y_result[], const double radius, const int diameter_dot)
 {
   XEvent event;
   int j;
   if (XCheckTypedEvent(d, Expose, &event)) {
     XClearWindow(d, w);
-    for (j=0; j<n_fixed; j++) arc(x_result[j], y_result[j]);
+    for (j=0; j<n_fixed; j++) arc(x_result[j], y_result[j], radius, diameter_dot);
   }
 }
 
@@ -95,6 +44,8 @@ int Xsim(struct GrowthParameters *params, /* input */
 {
   int i, n_substrate, n_fixed, n_touching;
   double x, y, dx, dy, dx1, tmp;
+  double diameter, diameter3, dxd, radius;
+  int diameter_dot;
   double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
 
   *x_result = malloc(2*MAX_N_BALL*sizeof(double));
@@ -131,7 +82,7 @@ int Xsim(struct GrowthParameters *params, /* input */
   n_fixed=0;
   for (i=-2; i<n_substrate+2; i++) {
     x = radius+dx*i;
-    (*x_result)[n_fixed]= x; (*y_result)[n_fixed++]=y; arc(x,y);
+    (*x_result)[n_fixed]= x; (*y_result)[n_fixed++]=y; arc(x,y, radius, diameter_dot);
   }
 
   /* Show the initial state on display. The argument of usleep()
@@ -143,25 +94,25 @@ int Xsim(struct GrowthParameters *params, /* input */
   for (i=0; i<MAX_N_BALL && y<(0.97*height-diameter); i++) {
     x = uni64();
     y = height;
-    arc(x, y);
+    arc(x, y, radius, diameter_dot);
     n_touching = 0;
     while (1) {
-      arc(x, y); /* remove the last ball */
-      exposure(n_fixed, *x_result, *y_result); /* Redraw the window if it has been exposed. */
+          arc(x, y, radius, diameter_dot); /* remove the last ball */
+      exposure(n_fixed, *x_result, *y_result, radius, diameter_dot); /* Redraw the window if it has been exposed. */
       if (n_touching==2) { /* Here, n_touching may be 0, 1, or the spetial case of 2. */
 	dy = y - y_touch[0]; /* dx has already been calculated. */
-	go_around(&x, &y, params->velocity, dx, dy);
+	go_around(&x, &y, params->velocity, dx, dy, diameter);
       } else if (n_touching==1 && (dy = y - y_touch[0])>=0.0) {
 	dx = x - x_touch[0];
-	go_around(&x, &y, params->velocity, dx, dy);
+	go_around(&x, &y, params->velocity, dx, dy, diameter);
       } else {
 	y -= params->velocity;
       }
-      arc(x, y); /* draw a new ball */
+      arc(x, y, radius, diameter_dot); /* draw a new ball */
       XFlush(d);
-      n_touching = n_touch(x, y, n_fixed, *x_result, *y_result, x_touch, y_touch);
+      n_touching = n_touch(dxd, x, y, n_fixed, *x_result, *y_result, x_touch, y_touch);
       if (y<=radius || n_touching>=params->criterion) {
-	add_to_result(x, y, &n_fixed, *x_result, *y_result);
+	add_to_result(x, y, diameter3, &n_fixed, *x_result, *y_result);
 	break;
       } else if (n_touching==2) {
 	if (y_touch[0] > y_touch[1]) {
@@ -172,7 +123,7 @@ int Xsim(struct GrowthParameters *params, /* input */
 	dx  = x          - x_touch[0];
 	dx1 = x_touch[1] - x_touch[0];
 	if (dx*dx1>0) {
-	  add_to_result(x, y, &n_fixed, *x_result, *y_result);
+	  add_to_result(x, y, diameter3, &n_fixed, *x_result, *y_result);
 	  break;
 	}
       }
