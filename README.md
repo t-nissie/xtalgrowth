@@ -138,14 +138,43 @@ Just `meson mesonbuilddir [options]` without `setup` is ambiguous and deprecated
 
 ## Development of WebAssembly（WASM) version of xtalgrowth
 WebAssembly（WASM) version of xtalgrowth is under development now!
+Here, I explain step-by-step procedure.
 
-Requirements for development of WebAssembly（WASM) version of xtalgrowth are:
+### Setup Emscripten SDK
+Homepage: https://github.com/emscripten-core/emsdk
 
-* emcc, i.e. Emscripten SDK https://github.com/emscripten-core/emsdk
-* wasm-canvas https://github.com/alextyner/wasm-canvas
+```shell
+clone https://github.com/emscripten-core/emsdk.git
+cd emsdk/
+./emsdk install latest
+./emsdk activate latest
+```
 
-### Receipt
-Step by step:
+Add `source /Users/takeshi/wasm/emsdk/emsdk_env.sh` to `$HOME/.profile`
 
-* follow the installation instructions of Emscripten SDK and activate it.
+### Test the "Hello World" example in wasm-canvas
+wasm-canvas: https://github.com/alextyner/wasm-canvas
 
+Prepare Makefile, hello.c and template.html in hello/ directory.
+Make symlinks in the hello/ directory.
+After `make`, do `emrun`.
+
+```Makefile
+#-*-Makefile-*- for the "Hello World" example in https://github.com/alextyner/wasm-canvas
+##
+CC=emcc
+all: template.html hello.o canvas.o
+	emcc --shell-file $^ -o index.html
+clean:
+	rm -f canvas.o hello.o index.html index.js index.wasm
+```
+
+```shell
+git clone https://github.com/alextyner/wasm-canvas.git
+mkdir hello
+cd hello
+ln -s ../wasm-canvas/src/canvas.c .
+ln -s ../wasm-canvas/src/canvas.h .
+make
+emrum index.html
+```
