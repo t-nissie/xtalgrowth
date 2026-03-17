@@ -1,5 +1,5 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2026-02-23 07:06:04 takeshi>
+# Time-stamp: <2026-03-18 06:26:32 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
@@ -27,7 +27,3 @@ xtalgrowth_cocoa$(EXEEXT): xtalgrowth_cocoa.o
 	a2ps --header=`date +%Y-%m-%d` --left-title='xtalgrowth' --right-title='Takeshi Nishimatsu'\
 	 --left-footer='' --prologue=color --portrait --columns=1 --margin=3 --borders=off -f 11.5 \
 	 --pretty-print=c -o $@ $<
-
-xtalgrowth.js: sim_core.c
-	emcc $< -O2 -s EXPORTED_FUNCTIONS='["_sim_init","_sim_step","_sim_get_cell"]'\
-                    -s EXPORTED_RUNTIME_METHODS='["cwrap"]' -o $@
