@@ -1,0 +1,21 @@
+#-*-Makefile-*- for WebAssembly（WASM) version of xtalgrowth
+##
+CC=emcc
+CFLAGS=-I..
+wasm_canvas_dir = /Users/takeshi/wasm/wasm-canvas
+all: template.html WASMsim.o sim_core.o canvas.o uni64.o
+	emcc --shell-file $^ -o index.html
+
+canvas.%: $(wasm_canvas_dir)/src/canvas.%
+	ln -s $< .
+
+canvas.o: canvas.c canvas.h
+sim_core.o: ../sim_core.c
+	$(CC) $(CFLAGS) -c $< -o $@
+uni64.o: ../uni64.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+WASMsim.o: canvas.h ../sim_core.h
+
+clean:
+	rm -f canvas.o hello.o index.html index.js index.wasm
