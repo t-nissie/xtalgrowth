@@ -141,7 +141,7 @@ WebAssembly（WASM) version of xtalgrowth is under development now!
 Here, I explain step-by-step procedure.
 
 ### Setup Emscripten SDK
-Homepage: https://github.com/emscripten-core/emsdk
+Emscripten SDK: https://github.com/emscripten-core/emsdk
 
 ```shell
 clone https://github.com/emscripten-core/emsdk.git
@@ -150,7 +150,7 @@ cd emsdk/
 ./emsdk activate latest
 ```
 
-Add `source /Users/takeshi/wasm/emsdk/emsdk_env.sh` to `$HOME/.profile`
+Add `source SOMEWHERE/wasm/emsdk/emsdk_env.sh` to `$HOME/.profile`.
 
 ### Test the "Hello World" example in wasm-canvas
 wasm-canvas: https://github.com/alextyner/wasm-canvas
@@ -178,3 +178,5 @@ ln -s ../wasm-canvas/src/canvas.h .
 make
 emrum index.html
 ```
+
+I also made an example to draw an arc: https://gist.github.com/t-nissie/8fb6c7b521227634cbcfed8f72f6c7d7
