@@ -9,7 +9,14 @@ static CanvasRenderingContext2D *ctx;
 #define MAX_N_TOUCH 3
 #define MAX_N_BALL 10000
 
+// Simulation parameter
+static double diameter  = 0.04999;
+static double height    = 1.2;
+static int criterion = 3;
+static double velocity = 0.0008;
+static double diameter3, dxd, radius, diameter_dot;
 static double height;
+static int n_fixed;
 static double *x_result = NULL;
 static double *y_result = NULL;
 
@@ -38,37 +45,13 @@ static void redraw(const int n_fixed,
 
 int WASMsim()
 {
-  int i, n_substrate, n_fixed, n_touching;
+  int n_touching;
   double x, y, dx, dy, dx1, tmp;
   double diameter, diameter3, dxd, radius;
   int diameter_dot;
   double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
 
-  // 固定パラメータ
-  diameter  = 0.04999;
-  height    = 1.2;
-  int criterion = 3;
-  double velocity = 0.0008;
 
-  diameter3   = 3 * diameter;
-  dxd         = diameter * diameter;
-  radius      = diameter / 2.0;
-  diameter_dot = (int)(WIDTH * diameter) + 1;
-
-  x_result = malloc(2 * MAX_N_BALL * sizeof(double));
-  y_result = malloc(2 * MAX_N_BALL * sizeof(double));
-
-  // 初期状態
-  n_substrate = 1.0 / diameter;
-  dx = 1.0 / n_substrate;
-  y = radius;
-  n_fixed = 0;
-  for (i = -2; i < n_substrate + 2; i++) {
-    x = radius + dx * i;
-    x_result[n_fixed] = x;
-    y_result[n_fixed++] = y;
-  }
-  redraw(n_fixed, x_result, y_result, radius, diameter_dot);
 
   // メインループ
   y = 0.0;
@@ -135,11 +118,27 @@ int main(void)
 
   ctx = canvas->getContext(canvas, "2d");
 
-  // --- green rectangle ---
-  ctx->setFillStyle(ctx, "green");
-  ctx->fillRect(ctx, 20, 10, 150, 100);
+  diameter3   = 3 * diameter;
+  dxd         = diameter * diameter;
+  radius      = diameter / 2.0;
+  diameter_dot = (int)(WIDTH * diameter) + 1;
 
-  WASMsim();
+  x_result = malloc(2 * MAX_N_BALL * sizeof(double));
+  y_result = malloc(2 * MAX_N_BALL * sizeof(double));
+
+  // Prepare substrate
+  int n_substrate = 1.0 / diameter;
+  double dx = 1.0 / n_substrate;
+  double y = radius;
+  n_fixed = 0;
+  for (int i = -2; i < n_substrate + 2; i++) {
+    double x = radius + dx * i;
+    x_result[n_fixed] = x;
+    y_result[n_fixed++] = y;
+  }
+  redraw(n_fixed, x_result, y_result, radius, diameter_dot);
+
+  // WASMsim();
 
   free(x_result);
   free(y_result);
