@@ -2,8 +2,10 @@
 ##
 CC=emcc
 wasm_canvas_dir = /Users/takeshi/wasm/wasm-canvas
-all: template.html WASMsim.o sim_core.o canvas.o uni64.o
-	emcc --shell-file $^ -o index.html
+xtalgrowth.html: template.html WASMsim.o sim_core.o canvas.o uni64.o
+	emcc --shell-file $^ -o $@
+	emrun $@
+#	emrun --browser=/Applications/Safari.app/Contents/MacOS/Safari --kill_exit $@
 
 canvas.%: $(wasm_canvas_dir)/src/canvas.%
 	ln -s $< .

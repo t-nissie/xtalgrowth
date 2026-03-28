@@ -179,4 +179,18 @@ make
 emrum index.html
 ```
 
-I also made an example to draw an arc: https://gist.github.com/t-nissie/8fb6c7b521227634cbcfed8f72f6c7d7
+### My wasm-canvas examples
+* Draw an arc: https://gist.github.com/t-nissie/8fb6c7b521227634cbcfed8f72f6c7d7
+* Animation: https://gist.github.com/t-nissie/0ff20f2de652b16acc72ef4b01893998
+
+### Emacs setting for wasm-canvas development
+See the output of `source SOMEWHERE/wasm/emsdk/emsdk_env.sh`.
+
+```elisp
+(setenv "PATH"
+	(concat "SOMEWHERE/wasm/emsdk:SOMEWHERE/wasm/emsdk/upstream/emscripten:SOMEWHERE/wasm/emsdk/node/22.16.0_64bit/bin" (getenv "PATH")))
+(setenv "EMSDK" "SOMEWHERE/wasm/emsdk")
+(setenv "EMSDK_NODE" "SOMEWHERE/wasm/emsdk/node/22.16.0_64bit/bin/node")
+(setenv "EMSDK_PYTHON" "SOMEWHERE/wasm/emsdk/python/3.13.3_64bit/bin/python3")
+(setenv "SSL_CERT_FILE" "SOMEWHERE/wasm/emsdk/python/3.13.3_64bit/lib/python3.13/site-packages/certifi/cacert.pem")
+```

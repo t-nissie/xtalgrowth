@@ -25,6 +25,9 @@ xtalgrowth.1
 /src/marsaglia2d.eps
 /src/marsaglia2d.o
 /src/canvas.*
+/src/xtalgrowth.html
+/src/xtalgrowth.js
+/src/xtalgrowth.wasm
 /build
 CMakeCache.txt
 CMakeFiles

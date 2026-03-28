@@ -1,5 +1,5 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2026-03-18 06:26:32 takeshi>
+# Time-stamp: <2026-03-29 07:45:16 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
@@ -16,7 +16,9 @@ xtalgrowth_cocoa_SOURCES = xtalgrowth_cocoa.m
 marsaglia_SOURCES = marsaglia.c uni64.c
 marsaglia2d_SOURCES = marsaglia2d.c uni64.c
 TESTS = marsaglia marsaglia2d marsaglia2d.gp xtalgrowth
-CLEANFILES = marsaglia2d.dat marsaglia2d.eps marsaglia2d.pdf $(EXTRA_PROGRAMS)
+CLEANFILES = marsaglia2d.dat marsaglia2d.eps marsaglia2d.pdf $(EXTRA_PROGRAMS)\
+             xtalgrowth.html xtalgrowth.js xtalgrowth.wasm
+
 clean-local:
 	-rm -rf *.dSYM
 
