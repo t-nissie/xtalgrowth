@@ -45,10 +45,6 @@ static void redraw(const int n_fixed,
 
 int WASMsim()
 {
-  int n_touching;
-  double x, y, dx, dy, dx1, tmp;
-  double diameter, diameter3, dxd, radius;
-  int diameter_dot;
   double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
 
 
@@ -57,9 +53,9 @@ int WASMsim()
   y = 0.0;
   /* for (i = 0; i < MAX_N_BALL && y < (0.97 * height - diameter); i++) { */
 
-  x = uni64();
-  y = height;
-  n_touching = 0;
+  static double x = uni64();
+  static double y = height;
+  int n_touching = 0;
 
   /*   while (1) { */
   for (int j=0; j<20; ++j) {
@@ -67,7 +63,7 @@ int WASMsim()
     arc(x, y, radius, diameter_dot);
 
     if (n_touching == 2) {
-      dy = y - y_touch[0];
+      double dy = y - y_touch[0];
       go_around(&x, &y, velocity, dx, dy, diameter);
     } else if (n_touching == 1 && (dy = y - y_touch[0]) >= 0.0) {
       dx = x - x_touch[0];
@@ -89,11 +85,11 @@ int WASMsim()
   /*       break; */
   /*     } else if (n_touching == 2) { */
   /*       if (y_touch[0] > y_touch[1]) { */
-  /*         tmp = x_touch[0]; x_touch[0] = x_touch[1]; x_touch[1] = tmp; */
+  /*         double tmp = x_touch[0]; x_touch[0] = x_touch[1]; x_touch[1] = tmp; */
   /*         tmp = y_touch[0]; y_touch[0] = y_touch[1]; y_touch[1] = tmp; */
   /*       } */
-  /*       dx  = x - x_touch[0]; */
-  /*       dx1 = x_touch[1] - x_touch[0]; */
+  /*       double dx  = x - x_touch[0]; */
+  /*       double dx1 = x_touch[1] - x_touch[0]; */
   /*       if (dx * dx1 > 0) { */
   /*         add_to_result(x, y, diameter3, &n_fixed, */
   /*                       *x_result, *y_result); */
