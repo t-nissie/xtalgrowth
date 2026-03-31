@@ -2,6 +2,7 @@
 #include "sim_core.h"
 #include "uni64.h"
 #include <emscripten.h>
+#include <stdio.h>
 static HTMLCanvasElement *canvas;
 static CanvasRenderingContext2D *ctx;
 
@@ -11,16 +12,16 @@ static CanvasRenderingContext2D *ctx;
 
 // Simulation parameter
 static double diameter  = 0.04999;
-static double height    = 1.2;
+static const double height    = 1.2;
 static int criterion = 3;
 static double velocity = 0.0008;
 static double diameter3, dxd, radius, diameter_dot;
-static double height;
 static int n_fixed;
 static double *x_result = NULL;
 static double *y_result = NULL;
 
-static void arc(double x, double y, double radius, int diameter_dot) {
+static void arc(const double x, const double y)
+{
   double px = WIDTH * (x - radius);
   double py = WIDTH * (height - y - radius);
 
@@ -31,50 +32,38 @@ static void arc(double x, double y, double radius, int diameter_dot) {
   ctx->fill(ctx);
 }
 
-static void redraw(const int n_fixed,
-                   const double x_result[],
-                   const double y_result[],
-                   const double radius,
-                   const int diameter_dot)
-{
-  ctx->clearRect(ctx, 0, 0, WIDTH, (int)(WIDTH * height));
-  for (int j = 0; j < n_fixed; j++) {
-    arc(x_result[j], y_result[j], radius, diameter_dot);
-  }
+static void redraw() {
+  for (int j = 0; j < n_fixed; j++) arc(x_result[j], y_result[j]);
 }
 
-int WASMsim()
+
+void WASMsim()
 {
-  double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
-
-
-
-  // メインループ
-  y = 0.0;
-  /* for (i = 0; i < MAX_N_BALL && y < (0.97 * height - diameter); i++) { */
-
-  static double x = uni64();
+  static double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
+  static double x = 0.5;
   static double y = height;
-  int n_touching = 0;
+  static int n_touching = 0;
+  static double dx=0.0;
+  static double dy=0.0;
 
-  /*   while (1) { */
-  for (int j=0; j<20; ++j) {
-    redraw(n_fixed, x_result, y_result, radius, diameter_dot);
-    arc(x, y, radius, diameter_dot);
-
-    if (n_touching == 2) {
-      double dy = y - y_touch[0];
-      go_around(&x, &y, velocity, dx, dy, diameter);
-    } else if (n_touching == 1 && (dy = y - y_touch[0]) >= 0.0) {
-      dx = x - x_touch[0];
-      go_around(&x, &y, velocity, dx, dy, diameter);
-    } else {
-      y -= velocity;
-    }
-
-  redraw(n_fixed, x_result, y_result, radius, diameter_dot);
-  arc(x, y, radius, diameter_dot); 
+  if (n_touching == 2) {
+    dy = y - y_touch[0];
+    go_around(&x, &y, velocity, dx, dy, diameter);
+  } else if (n_touching == 1 && (dy = y - y_touch[0]) >= 0.0) {
+    dx = x - x_touch[0];
+    go_around(&x, &y, velocity, dx, dy, diameter);
+  } else {
+    y -= velocity;
   }
+
+  // Clear the canvas
+  ctx->clearRect(ctx, 0, 0, canvas->getWidth(canvas), canvas->getHeight(canvas));
+  // Draw the current ball
+  arc(x, y);
+  // Reraw all balls
+  redraw();
+  if (y<0.0) y=height;
+}
   /*     n_touching = n_touch(dxd, x, y, n_fixed, */
   /*                          *x_result, *y_result, */
   /*                          x_touch, y_touch); */
@@ -97,10 +86,9 @@ int WASMsim()
   /*       } */
   /*     } */
   /*   } */
+  /* for (i = 0; i < MAX_N_BALL && y < (0.97 * height - diameter); i++) { */
   /* } */
 
-  return 0;
-}
 
 int main(void)
 {
@@ -132,9 +120,9 @@ int main(void)
     x_result[n_fixed] = x;
     y_result[n_fixed++] = y;
   }
-  redraw(n_fixed, x_result, y_result, radius, diameter_dot);
-
-  // WASMsim();
+  redraw();
+  // Start animation
+  emscripten_set_main_loop(WASMsim, 0, 1);
 
   free(x_result);
   free(y_result);
