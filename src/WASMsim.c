@@ -9,6 +9,7 @@ static CanvasRenderingContext2D *ctx;
 #define WIDTH 600
 #define MAX_N_TOUCH 3
 #define MAX_N_BALL 10000
+#define STEPS_PER_FRAME 40
 
 // Simulation parameter
 static double diameter  = 0.04999;
@@ -46,14 +47,37 @@ void WASMsim()
   static double dx=0.0;
   static double dy=0.0;
 
-  if (n_touching == 2) {
-    dy = y - y_touch[0];
-    go_around(&x, &y, velocity, dx, dy, diameter);
-  } else if (n_touching == 1 && (dy = y - y_touch[0]) >= 0.0) {
-    dx = x - x_touch[0];
-    go_around(&x, &y, velocity, dx, dy, diameter);
-  } else {
-    y -= velocity;
+  for (int inner_step=0; inner_step<STEPS_PER_FRAME; ++inner_step) {
+    if (n_touching == 2) {
+      dy = y - y_touch[0];
+      go_around(&x, &y, velocity, dx, dy, diameter);
+    } else if (n_touching == 1 && (dy = y - y_touch[0]) >= 0.0) {
+      dx = x - x_touch[0];
+      go_around(&x, &y, velocity, dx, dy, diameter);
+    } else {
+      y -= velocity;
+    }
+    n_touching = n_touch(dxd, x, y, n_fixed, x_result, y_result, x_touch, y_touch);
+
+    if (y <= radius || n_touching > criterion) {
+      add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
+      y=height;
+      x=uni64();
+      break;
+    } else if (n_touching == 2) {
+      if (y_touch[0] > y_touch[1]) {
+        double tmp = x_touch[0]; x_touch[0] = x_touch[1]; x_touch[1] = tmp;
+        tmp = y_touch[0]; y_touch[0] = y_touch[1]; y_touch[1] = tmp;
+      }
+      double dx  = x - x_touch[0];
+      double dx1 = x_touch[1] - x_touch[0];
+      if (dx * dx1 > 0) {
+        add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
+        y=height;
+        x=uni64();
+	break;
+      }
+    }
   }
 
   // Clear the canvas
@@ -62,29 +86,7 @@ void WASMsim()
   arc(x, y);
   // Reraw all balls
   redraw();
-  if (y<0.0) y=height;
 }
-  /*     n_touching = n_touch(dxd, x, y, n_fixed, */
-  /*                          *x_result, *y_result, */
-  /*                          x_touch, y_touch); */
-
-  /*     if (y <= radius || n_touching > criterion) { */
-  /*       add_to_result(x, y, diameter3, &n_fixed, */
-  /*                     *x_result, *y_result); */
-  /*       break; */
-  /*     } else if (n_touching == 2) { */
-  /*       if (y_touch[0] > y_touch[1]) { */
-  /*         double tmp = x_touch[0]; x_touch[0] = x_touch[1]; x_touch[1] = tmp; */
-  /*         tmp = y_touch[0]; y_touch[0] = y_touch[1]; y_touch[1] = tmp; */
-  /*       } */
-  /*       double dx  = x - x_touch[0]; */
-  /*       double dx1 = x_touch[1] - x_touch[0]; */
-  /*       if (dx * dx1 > 0) { */
-  /*         add_to_result(x, y, diameter3, &n_fixed, */
-  /*                       *x_result, *y_result); */
-  /*         break; */
-  /*       } */
-  /*     } */
   /*   } */
   /* for (i = 0; i < MAX_N_BALL && y < (0.97 * height - diameter); i++) { */
   /* } */
