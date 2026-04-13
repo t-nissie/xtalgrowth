@@ -9,7 +9,7 @@ static CanvasRenderingContext2D *ctx;
 #define WIDTH 600
 #define MAX_N_TOUCH 3
 #define MAX_N_BALL 10000
-#define STEPS_PER_FRAME 40
+#define STEPS_PER_FRAME 60
 
 // Simulation parameter
 static double diameter  = 0.04999;
@@ -61,6 +61,7 @@ void WASMsim()
 
     if (y <= radius || n_touching > criterion) {
       add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
+      if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) emscripten_cancel_main_loop();
       y=height;
       x=uni64();
       break;
@@ -73,9 +74,10 @@ void WASMsim()
       double dx1 = x_touch[1] - x_touch[0];
       if (dx * dx1 > 0) {
         add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
+        if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) emscripten_cancel_main_loop();
         y=height;
         x=uni64();
-	break;
+        break;
       }
     }
   }
@@ -87,10 +89,6 @@ void WASMsim()
   // Reraw all balls
   redraw();
 }
-  /*   } */
-  /* for (i = 0; i < MAX_N_BALL && y < (0.97 * height - diameter); i++) { */
-  /* } */
-
 
 int main(void)
 {
