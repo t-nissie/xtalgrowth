@@ -41,11 +41,13 @@ static void redraw() {
 void WASMsim()
 {
   static double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
-  static double x = 0.5;
+  static double x = -1.0e10;
   static double y = height;
   static int n_touching = 0;
   static double dx=0.0;
   static double dy=0.0;
+
+  if (x < -100.0) x=uni64();
 
   // Clear the canvas
   ctx->clearRect(ctx, 0, 0, canvas->getWidth(canvas), canvas->getHeight(canvas));
