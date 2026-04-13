@@ -9,10 +9,10 @@ static CanvasRenderingContext2D *ctx;
 #define WIDTH 600
 #define MAX_N_TOUCH 3
 #define MAX_N_BALL 10000
-#define STEPS_PER_FRAME 60
+#define STEPS_PER_FRAME 100
 
 // Simulation parameter
-static double diameter  = 0.04999;
+static double diameter  = 0.048;
 static const double height    = 1.2;
 static int criterion = 3;
 static double velocity = 0.0008;
@@ -46,6 +46,13 @@ void WASMsim()
   static int n_touching = 0;
   static double dx=0.0;
   static double dy=0.0;
+
+  // Clear the canvas
+  ctx->clearRect(ctx, 0, 0, canvas->getWidth(canvas), canvas->getHeight(canvas));
+  // Draw the current ball
+  arc(x, y);
+  // Reraw all balls
+  redraw();
 
   for (int inner_step=0; inner_step<STEPS_PER_FRAME; ++inner_step) {
     if (n_touching == 2) {
@@ -81,13 +88,6 @@ void WASMsim()
       }
     }
   }
-
-  // Clear the canvas
-  ctx->clearRect(ctx, 0, 0, canvas->getWidth(canvas), canvas->getHeight(canvas));
-  // Draw the current ball
-  arc(x, y);
-  // Reraw all balls
-  redraw();
 }
 
 int main(void)
