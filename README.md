@@ -180,8 +180,9 @@ emrum index.html
 ```
 
 ### My wasm-canvas examples
-* Draw an arc: https://gist.github.com/t-nissie/8fb6c7b521227634cbcfed8f72f6c7d7
-* Animation: https://gist.github.com/t-nissie/0ff20f2de652b16acc72ef4b01893998
+* Draw an arc:        https://gist.github.com/t-nissie/8fb6c7b521227634cbcfed8f72f6c7d7
+* Animation:          https://gist.github.com/t-nissie/0ff20f2de652b16acc72ef4b01893998
+* Get URL parameters: https://gist.github.com/t-nissie/1bc52a3cbb64475860989feff201ab0f
 
 ### Emacs setting for wasm-canvas development
 See the output of `source SOMEWHERE/wasm/emsdk/emsdk_env.sh`.
