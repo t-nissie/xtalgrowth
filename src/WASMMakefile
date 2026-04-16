@@ -2,7 +2,7 @@
 ##
 CC=emcc
 wasm_canvas_dir = /Users/takeshi/wasm/wasm-canvas
-xtalgrowth.html: template.html WASMsim.o sim_core.o canvas.o uni64.o
+xtalgrowth.html: template.html WASMsim.o sim_core.o canvas.o uni64.o hashpjw.o
 	emcc --shell-file $^ -o $@
 	emrun $@
 #	emrun --browser=/Applications/Safari.app/Contents/MacOS/Safari --kill_exit $@

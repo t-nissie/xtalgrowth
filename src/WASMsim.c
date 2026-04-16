@@ -1,8 +1,10 @@
 #include "canvas.h"
 #include "sim_core.h"
 #include "uni64.h"
+#include "hashpjw.h"
 #include <emscripten.h>
 #include <stdio.h>
+#include <stdlib.h>
 static HTMLCanvasElement *canvas;
 static CanvasRenderingContext2D *ctx;
 
@@ -92,10 +94,13 @@ void WASMsim()
   }
 }
 
-int main(void)
+int main(int argc, char** argv)
 {
-  const int seed1=12345678;
-  const int seed2=87654321;
+  int seed1   = hashpjw(argv[1]); /* guest */
+  diameter    =    atof(argv[2]);
+  velocity    =    atof(argv[3]);
+  criterion   =    atoi(argv[4]);
+  int seed2 = 1234567890 ^ seed1;
   fillU(seed1,seed2);
 
   canvas = createCanvas("xtalCanvas");
@@ -125,6 +130,9 @@ int main(void)
   redraw();
   // Start animation
   emscripten_set_main_loop(WASMsim, 0, 1);
+  ctx->setFont(ctx, "48px serif"); /* We cannot reach here... */
+  ctx->fillText(ctx, "Thank you,",   0,  50, -1);
+  ctx->fillText(ctx,      argv[1], 100,  50, -1);
 
   free(x_result);
   free(y_result);

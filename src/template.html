@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<script>
+  const params = new URLSearchParams(location.search);
+
+  const guest     = params.get("guest")     || "Ms. Crystal Growth";
+  const diameter  = params.get("diameter")  || "0.048";
+  const velocity  = params.get("velocity")  || "0.0008";
+  const criterion = params.get("criterion") || "3";
+
+  var Module = {
+      arguments: [guest, diameter, velocity, criterion]
+  };
+</script>
 <html>
   <head>
     <meta charset="UTF-8">
