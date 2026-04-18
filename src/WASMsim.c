@@ -37,11 +37,19 @@ static void arc(const double x, const double y)
   ctx->fill(ctx);
 }
 
-static void clear_and_redraw() {
+static void clear_and_redraw()
+{
   // Clear the canvas
   ctx->clearRect(ctx, 0, 0, canvas->getWidth(canvas), canvas->getHeight(canvas));
   // Redraw
   for (int j = 0; j < n_fixed; j++) arc(x_result[j], y_result[j]);
+}
+
+static inline void swap_double(double *a, double *b)
+{
+  double t = *a;
+  *a = *b;
+  *b = t;
 }
 
 static void fix_and_reset(double *x, double *y)
@@ -95,8 +103,8 @@ void WASMsim()
       break;
     } else if (n_touching == 2) {
       if (y_touch[0] > y_touch[1]) {
-        double tmp = x_touch[0]; x_touch[0] = x_touch[1]; x_touch[1] = tmp;
-        tmp = y_touch[0]; y_touch[0] = y_touch[1]; y_touch[1] = tmp;
+        swap_double(&x_touch[0], &x_touch[1]);
+        swap_double(&y_touch[0], &y_touch[1]);
       }
       double dx  = x - x_touch[0];
       double dx1 = x_touch[1] - x_touch[0];
