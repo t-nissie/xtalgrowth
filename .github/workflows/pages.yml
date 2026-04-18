@@ -1,0 +1,50 @@
+GitHub Actionsでxtalgrowth.htmlをデプロイしたいのですが、
+.github/workflows/pages.yml はこんなかんじでよいですか？
+
+name: Deploy index.html index.en.html index.es.html index.ja.html and xtalgrowth.html
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # emcc をセットアップ
+      - uses: emscripten-core/setup-emsdk@v15
+
+      - run: |
+          mkdir dist
+          test -d figures && cp -r figures dist
+          cp index.html index.en.html index.es.html index.ja.html favicon.ico style.css README.md COPYING dist
+          git clone https://github.com/alextyner/wasm-canvas.git
+          cd src
+          ln -s ../wasm-canvas/canvas.c .
+          ln -s ../wasm-canvas/canvas.h .
+          make -f WASMMakefile
+          cp xtalgrowth.wasm xtalgrowth.html xtalgrowth.js apple-touch-icon-precomposed.png ../dist
+
+      # Pages 用 artifact をアップロード
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
