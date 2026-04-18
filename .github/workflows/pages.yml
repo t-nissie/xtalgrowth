@@ -25,8 +25,8 @@ jobs:
           cp index.html index.en.html index.es.html index.ja.html favicon.ico style.css README.md COPYING dist
           git clone https://github.com/alextyner/wasm-canvas.git
           cd src
-          ln -s ../wasm-canvas/canvas.c .
-          ln -s ../wasm-canvas/canvas.h .
+          ln -s ../wasm-canvas/src/canvas.c .
+          ln -s ../wasm-canvas/src/canvas.h .
           make -f WASMMakefile
           cp xtalgrowth.wasm xtalgrowth.html xtalgrowth.js apple-touch-icon-precomposed.png ../dist
 
