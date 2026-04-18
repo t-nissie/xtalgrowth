@@ -1,3 +1,4 @@
+/* WASMsim.c */
 #include "canvas.h"
 #include "sim_core.h"
 #include "uni64.h"
@@ -22,13 +23,14 @@ static double diameter3, dxd, radius, diameter_dot;
 static int n_fixed;
 static double *x_result = NULL;
 static double *y_result = NULL;
+static char* guest;
 
 static void arc(const double x, const double y)
 {
   double px = WIDTH * (x - radius);
   double py = WIDTH * (height - y - radius);
 
-  ctx->setFillStyle(ctx, "red");
+  ctx->setFillStyle(ctx, "lightgray");
   ctx->beginPath(ctx);
   ctx->arc(ctx, px + radius*WIDTH, py + radius*WIDTH,
            radius * WIDTH, 0, 2.0 * 3.1415926535);
@@ -42,6 +44,23 @@ static void clear_and_redraw() {
   for (int j = 0; j < n_fixed; j++) arc(x_result[j], y_result[j]);
 }
 
+static void fix_and_reset(double *x, double *y)
+{
+    add_to_result(*x, *y, diameter3, &n_fixed, x_result, y_result);
+
+    if (n_fixed >= MAX_N_BALL || *y >= (0.97 * height - diameter)) {
+        clear_and_redraw();
+        ctx->setFillStyle(ctx, "black");
+        ctx->setFont(ctx, "45px serif");
+        ctx->fillText(ctx, "Thank you for your simulation,",
+                                  10, 40, -1);
+        ctx->fillText(ctx, guest, 10, 90, -1);
+        emscripten_cancel_main_loop();
+    }
+
+    *y = height;
+    *x = uni64();
+}
 
 void WASMsim()
 {
@@ -72,13 +91,7 @@ void WASMsim()
     n_touching = n_touch(dxd, x, y, n_fixed, x_result, y_result, x_touch, y_touch);
 
     if (y <= radius || n_touching >= criterion) {
-      add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
-      if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) {
-        clear_and_redraw();
-        emscripten_cancel_main_loop();
-      }
-      y=height;
-      x=uni64();
+      fix_and_reset(&x, &y);
       break;
     } else if (n_touching == 2) {
       if (y_touch[0] > y_touch[1]) {
@@ -88,13 +101,7 @@ void WASMsim()
       double dx  = x - x_touch[0];
       double dx1 = x_touch[1] - x_touch[0];
       if (dx * dx1 > 0) {
-        add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
-        if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) {
-          clear_and_redraw();
-          emscripten_cancel_main_loop();
-        }
-        y=height;
-        x=uni64();
+        fix_and_reset(&x, &y);
         break;
       }
     }
@@ -104,6 +111,7 @@ void WASMsim()
 int main(int argc, char** argv)
 {
   int seed1   = hashpjw(argv[1]); /* guest */
+  guest       =         argv[1] ;
   diameter    =    atof(argv[2]);
   velocity    =    atof(argv[3]);
   criterion   =    atoi(argv[4]);
@@ -137,9 +145,6 @@ int main(int argc, char** argv)
   clear_and_redraw();
   // Start animation
   emscripten_set_main_loop(WASMsim, 0, 1);
-  ctx->setFont(ctx, "48px serif"); /* We cannot reach here... */
-  ctx->fillText(ctx, "Thank you,",   0,  50, -1);
-  ctx->fillText(ctx,      argv[1], 100,  50, -1);
 
   free(x_result);
   free(y_result);
