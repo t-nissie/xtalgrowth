@@ -14,7 +14,7 @@ static CanvasRenderingContext2D *ctx;
 #define STEPS_PER_FRAME 100
 
 // Simulation parameter
-static double diameter  = 0.048;
+static double diameter  = 0.0499;
 static const double height    = 1.2;
 static int criterion = 3;
 static double velocity = 0.0008;
@@ -35,7 +35,10 @@ static void arc(const double x, const double y)
   ctx->fill(ctx);
 }
 
-static void redraw() {
+static void clear_and_redraw() {
+  // Clear the canvas
+  ctx->clearRect(ctx, 0, 0, canvas->getWidth(canvas), canvas->getHeight(canvas));
+  // Redraw
   for (int j = 0; j < n_fixed; j++) arc(x_result[j], y_result[j]);
 }
 
@@ -51,12 +54,10 @@ void WASMsim()
 
   if (x < -100.0) x=uni64();
 
-  // Clear the canvas
-  ctx->clearRect(ctx, 0, 0, canvas->getWidth(canvas), canvas->getHeight(canvas));
+  // Reraw all balls
+  clear_and_redraw();
   // Draw the current ball
   arc(x, y);
-  // Reraw all balls
-  redraw();
 
   for (int inner_step=0; inner_step<STEPS_PER_FRAME; ++inner_step) {
     if (n_touching == 2) {
@@ -70,9 +71,12 @@ void WASMsim()
     }
     n_touching = n_touch(dxd, x, y, n_fixed, x_result, y_result, x_touch, y_touch);
 
-    if (y <= radius || n_touching > criterion) {
+    if (y <= radius || n_touching >= criterion) {
       add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
-      if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) emscripten_cancel_main_loop();
+      if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) {
+        clear_and_redraw();
+        emscripten_cancel_main_loop();
+      }
       y=height;
       x=uni64();
       break;
@@ -85,7 +89,10 @@ void WASMsim()
       double dx1 = x_touch[1] - x_touch[0];
       if (dx * dx1 > 0) {
         add_to_result(x, y, diameter3, &n_fixed, x_result, y_result);
-        if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) emscripten_cancel_main_loop();
+        if (n_fixed>=MAX_N_BALL || y>= (0.97 * height - diameter)) {
+          clear_and_redraw();
+          emscripten_cancel_main_loop();
+        }
         y=height;
         x=uni64();
         break;
@@ -127,7 +134,7 @@ int main(int argc, char** argv)
     x_result[n_fixed] = x;
     y_result[n_fixed++] = y;
   }
-  redraw();
+  clear_and_redraw();
   // Start animation
   emscripten_set_main_loop(WASMsim, 0, 1);
   ctx->setFont(ctx, "48px serif"); /* We cannot reach here... */
