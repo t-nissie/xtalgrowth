@@ -45,13 +45,6 @@ static void clear_and_redraw()
   for (int j = 0; j < n_fixed; j++) arc(x_result[j], y_result[j]);
 }
 
-static inline void swap_double(double *a, double *b)
-{
-  double t = *a;
-  *a = *b;
-  *b = t;
-}
-
 static void fix_and_reset(double *x, double *y)
 {
     add_to_result(*x, *y, diameter3, &n_fixed, x_result, y_result);

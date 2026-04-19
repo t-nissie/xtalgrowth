@@ -1,7 +1,14 @@
 /* sim_core.c
    Author: Takeshi NISHIMATSU
 */
-#include "uni64.h"
+#include "sim_core.h"
+
+void swap_double(double *a, double *b)
+{
+  double t = *a;
+  *a = *b;
+  *b = t;
+}
 
 int n_touch(double dxd, double x, double y, int n_ary,
             double x_ary[], double y_ary[], /* input */

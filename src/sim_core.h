@@ -5,6 +5,11 @@
 */
 
 /**
+ * @brief  swap two doubles
+ */
+void swap_double(double *a, double *b);
+
+/**
  * @brief  search and return the number of spheres in {x,y}_ary[]s touching with spheres at (x,y)
  * @param [in] dxd : d square
  * @param [in] x,y : coordinates

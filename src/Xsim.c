@@ -1,5 +1,5 @@
 /* Xsim.c
-   Time-stamp: <2026-02-23 08:20:29 takeshi>
+   Time-stamp: <2026-04-19 09:39:07 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <unistd.h>
@@ -20,16 +20,16 @@ GC      gc;
 void arc(double x, double y, double radius, int diameter_dot)
 {
   XFillArc(d, w, gc,
-	   (int)(WIDTH*(x-radius)),
-	   (int)(WIDTH*(height-y-radius)),
-	   diameter_dot, diameter_dot, 0*64, 360*64);
+           (int)(WIDTH*(x-radius)),
+           (int)(WIDTH*(height-y-radius)),
+           diameter_dot, diameter_dot, 0*64, 360*64);
   return;
 }
 
 /* Redraw the window if it has been exposed. */
 void exposure(const int n_fixed,
-	      const double x_result[],
-	      const double y_result[], const double radius, const int diameter_dot)
+              const double x_result[],
+              const double y_result[], const double radius, const int diameter_dot)
 {
   XEvent event;
   int j;
@@ -40,7 +40,7 @@ void exposure(const int n_fixed,
 }
 
 int Xsim(struct GrowthParameters *params, /* input */
-	 double **x_result, double **y_result)   /* output */
+         double **x_result, double **y_result)   /* output */
 {
   int i, n_substrate, n_fixed, n_touching;
   double x, y, dx, dy, dx1, tmp;
@@ -61,11 +61,11 @@ int Xsim(struct GrowthParameters *params, /* input */
 
   d = XOpenDisplay (NULL);
   w = XCreateSimpleWindow( d, RootWindow(d,0),
-			   400,   2,
-			   WIDTH, (int)(WIDTH*height),
-			   1,
-			   BlackPixel(d,0),
-			   WhitePixel(d,0));
+                           400,   2,
+                           WIDTH, (int)(WIDTH*height),
+                           1,
+                           BlackPixel(d,0),
+                           WhitePixel(d,0));
   XSelectInput(d, w, ExposureMask);
   XMapWindow(d, w);
 
@@ -100,32 +100,31 @@ int Xsim(struct GrowthParameters *params, /* input */
           arc(x, y, radius, diameter_dot); /* remove the last ball */
       exposure(n_fixed, *x_result, *y_result, radius, diameter_dot); /* Redraw the window if it has been exposed. */
       if (n_touching==2) { /* Here, n_touching may be 0, 1, or the spetial case of 2. */
-	dy = y - y_touch[0]; /* dx has already been calculated. */
-	go_around(&x, &y, params->velocity, dx, dy, diameter);
+        dy = y - y_touch[0]; /* dx has already been calculated. */
+        go_around(&x, &y, params->velocity, dx, dy, diameter);
       } else if (n_touching==1 && (dy = y - y_touch[0])>=0.0) {
-	dx = x - x_touch[0];
-	go_around(&x, &y, params->velocity, dx, dy, diameter);
+        dx = x - x_touch[0];
+        go_around(&x, &y, params->velocity, dx, dy, diameter);
       } else {
-	y -= params->velocity;
+        y -= params->velocity;
       }
       arc(x, y, radius, diameter_dot); /* draw a new ball */
       XFlush(d);
       n_touching = n_touch(dxd, x, y, n_fixed, *x_result, *y_result, x_touch, y_touch);
       if (y<=radius || n_touching>=params->criterion) {
-	add_to_result(x, y, diameter3, &n_fixed, *x_result, *y_result);
-	break;
+        add_to_result(x, y, diameter3, &n_fixed, *x_result, *y_result);
+        break;
       } else if (n_touching==2) {
-	if (y_touch[0] > y_touch[1]) {
-	  /* SWAP to let (x,y)_touch[0] is the bottom ball.*/
-	  tmp=x_touch[0]; x_touch[0]=x_touch[1]; x_touch[1]=tmp;
-	  tmp=y_touch[0]; y_touch[0]=y_touch[1]; y_touch[1]=tmp;
-	}
-	dx  = x          - x_touch[0];
-	dx1 = x_touch[1] - x_touch[0];
-	if (dx*dx1>0) {
-	  add_to_result(x, y, diameter3, &n_fixed, *x_result, *y_result);
-	  break;
-	}
+        if (y_touch[0] > y_touch[1]) {
+          swap_double(&x_touch[0], &x_touch[1]);
+          swap_double(&y_touch[0], &y_touch[1]);
+        }
+        dx  = x          - x_touch[0];
+        dx1 = x_touch[1] - x_touch[0];
+        if (dx*dx1>0) {
+          add_to_result(x, y, diameter3, &n_fixed, *x_result, *y_result);
+          break;
+        }
       }
     }
   }
