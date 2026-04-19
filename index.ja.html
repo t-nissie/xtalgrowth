@@ -77,6 +77,7 @@ Contents:
   <li><a href="#LABEL-3">コンパイルおよびインストールの方法</a></li>
   <li><a href="#LABEL-4">シミュレーションの計算条件と結果</a></li>
   <li><a href="#LABEL-5">展示方法</a></li>
+  <li><a href="#WASM">Emscripten/WebAssembly/wasm-canvas version of xtalgrowth</a></li>
   <li><a href="#LABEL-6">参考文献</a></li>
   <li><a href="#LABEL-7">ソースコードリポジトリ、作者とソフトウエアの再配布について</a></li>
   <li><a href="#LABEL-8">本ソフトウエアの開発方法</a></li>
@@ -274,8 +275,24 @@ $ sudo ninja uninstall
   </div>
 </div>
 
+<h2 id="WASM">Emscripten/WebAssembly/wasm-canvas version of xtalgrowth</h2>
+<p>
+  You can execute xtalgrowth from your browsers.
+  Simulation parameters can be given via URL parameters.
+</p>
+<ul>
+  <li><a href="https://t-nissie.github.io/xtalgrowth/xtalgrowth.html">
+               https://t-nissie.github.io/xtalgrowth/xtalgrowth.html</a></li>
+  <li><a href="https://t-nissie.github.io/xtalgrowth/xtalgrowth.html?guest=Dr%2e%20Takeshi%20Nishimatsu&diameter=0.0495&velocity=0.0008&criterion=3">
+               https://t-nissie.github.io/xtalgrowth/xtalgrowth.html?guest=Dr%2e%20Takeshi%20Nishimatsu&diameter=0.0495&velocity=0.0008&criterion=3</a></li>
+  <li><a href="https://t-nissie.github.io/xtalgrowth/xtalgrowth.html?guest=Miss%20Crystal%20Growth&diameter=0.024&velocity=0.001&criterion=1">
+               https://t-nissie.github.io/xtalgrowth/xtalgrowth.html?guest=Miss%20Crystal%20Growth&diameter=0.024&velocity=0.001&criterion=1</a></li>
+</ul>
+<p>
+  How to make `xtalgrowth.html` is described in the bottom of
+  <a href="./README.md">README.md</a>.
+</p>
 
-<div class="pagebreak">
 <h2 id="LABEL-6">参考文献</h2>
 <p>
 [1] Jean-François Gouyet, Michel Rosso and Bernard Sapoval: "Fractal surfaces and interfaces"
@@ -308,7 +325,6 @@ of p.186, "y=(8888*x)%65579;" should be replaced by "y=(8888*y)%65579;".
 Consequently, 5 values of "The correct output" in p.187 are incorrect.
 See <a href="https://sci4um.com/about16220-asc.html">https://sci4um.com/about16220-asc.html</a> .
 </p>
-</div>
 
 
 <h2 id="LABEL-7">ソースコードリポジトリ、作者そしてソフトウエアの再配布について</h2>

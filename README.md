@@ -156,28 +156,27 @@ Add `source SOMEWHERE/wasm/emsdk/emsdk_env.sh` to `$HOME/.profile`.
 wasm-canvas: https://github.com/alextyner/wasm-canvas
 
 Prepare Makefile, hello.c and template.html in hello/ directory.
-Make symlinks in the hello/ directory.
-After `make`, do `emrun`.
 
 ```Makefile
 #-*-Makefile-*- for the "Hello World" example in https://github.com/alextyner/wasm-canvas
 ##
 CC=emcc
-all: template.html hello.o canvas.o
-	emcc --shell-file $^ -o index.html
+index.html: template.html hello.o canvas.o
+	emcc --shell-file $^ -o $@
 clean:
 	rm -f canvas.o hello.o index.html index.js index.wasm
 ```
 
-```shell
-git clone https://github.com/alextyner/wasm-canvas.git
-mkdir hello
-cd hello
-ln -s ../wasm-canvas/src/canvas.c .
-ln -s ../wasm-canvas/src/canvas.h .
-make
-emrum index.html
-```
+Make symlinks of canvas.c and canvas.h into the hello/ directory.
+After you `make index.html`, you need to test it with `emrun` locally.
+
+    git clone https://github.com/alextyner/wasm-canvas.git
+    mkdir hello
+    cd hello          # Put Makefile, hello.c and template.html in this hello/ directory.
+    ln -s ../wasm-canvas/src/canvas.c .
+    ln -s ../wasm-canvas/src/canvas.h .
+    make  index.html
+    emrun index.html
 
 ### My wasm-canvas examples
 * Draw an arc:        https://gist.github.com/t-nissie/8fb6c7b521227634cbcfed8f72f6c7d7
@@ -195,3 +194,20 @@ See the output of `source SOMEWHERE/wasm/emsdk/emsdk_env.sh`.
 (setenv "EMSDK_PYTHON" "SOMEWHERE/wasm/emsdk/python/3.13.3_64bit/bin/python3")
 (setenv "SSL_CERT_FILE" "SOMEWHERE/wasm/emsdk/python/3.13.3_64bit/lib/python3.13/site-packages/certifi/cacert.pem")
 ```
+
+### How to compile Emscripten/WebAssembly/wasm-canvas version of xtalgrowth
+To test generated `xtalgrowth.html` locally, you need to `emrun` it.
+
+    cd src/
+    make -f WASMMakefile
+    emrun xtalgrowth.html
+
+See also https://github.com/t-nissie/xtalgrowth/blob/master/.github/workflows/pages.yml
+for the details of deployment of xtalgrowth.html.
+
+### Examples of URL parameters for xtalgrowth.html
+You can execute xtalgrowth.html as:
+
+* https://t-nissie.github.io/xtalgrowth/xtalgrowth.html
+* https://t-nissie.github.io/xtalgrowth/xtalgrowth.html?guest=Dr%2e%20Takeshi%20Nishimatsu&diameter=0.0495&velocity=0.0008&criterion=3
+* https://t-nissie.github.io/xtalgrowth/xtalgrowth.html?guest=Miss%20Crystal%20Growth&diameter=0.024&velocity=0.001&criterion=1
