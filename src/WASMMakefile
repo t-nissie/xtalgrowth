@@ -1,4 +1,4 @@
-#-*-Makefile-*- for WebAssembly（WASM) version of xtalgrowth
+#-*-Makefile-*- for Emscripten/WebAssembly/wasm-canvas version of xtalgrowth
 ##
 CC=emcc
 wasm_canvas_dir = /Users/takeshi/wasm/wasm-canvas
@@ -8,9 +8,9 @@ xtalgrowth.html: template.html WASMsim.o sim_core.o canvas.o uni64.o hashpjw.o
 #	emrun --browser=/Applications/Safari.app/Contents/MacOS/Safari --kill_exit $@
 
 canvas.%: $(wasm_canvas_dir)/src/canvas.%
-	ln -s $< .
+	ln -sf $< .
 
 canvas.o: canvas.c canvas.h
 
 clean:
-	rm -f canvas.o hello.o index.html index.js index.wasm
+	rm -f *.o *.log xtalgrowth.html xtalgrowth.js xtalgrowth.wasm
