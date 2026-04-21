@@ -1,5 +1,5 @@
 # -*-Makefile-*- for xtalgrowth
-# Time-stamp: <2026-03-29 08:11:20 takeshi>
+# Time-stamp: <2026-04-21 22:59:25 takeshi>
 # Author: Takeshi NISHIMATSU
 ##
 bin_PROGRAMS = xtalgrowth
@@ -11,7 +11,13 @@ EXTRA_DIST = marsaglia2d.gp pjw.c certification.eps againagain.sh\
                      meson.build.in\
                      meson.build\
                      CMakeLists.txt.in\
-                     CMakeLists.txt FindPOPT.cmake
+                     CMakeLists.txt FindPOPT.cmake\
+                     apple-touch-icon-precomposed.png\
+                     WASMMakefile\
+                     WASMsim.c\
+                     xtalgrowth.ico\
+                     template.html
+
 marsaglia_SOURCES = marsaglia.c uni64.c
 marsaglia2d_SOURCES = marsaglia2d.c uni64.c
 TESTS = marsaglia marsaglia2d marsaglia2d.gp xtalgrowth
