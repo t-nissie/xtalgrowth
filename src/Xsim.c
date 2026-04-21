@@ -1,5 +1,5 @@
 /* Xsim.c
-   Time-stamp: <2026-04-19 09:39:07 takeshi>
+   Time-stamp: <2026-04-21 23:00:49 takeshi>
    Author: Takeshi NISHIMATSU
 */
 #include <unistd.h>
@@ -43,7 +43,7 @@ int Xsim(struct GrowthParameters *params, /* input */
          double **x_result, double **y_result)   /* output */
 {
   int i, n_substrate, n_fixed, n_touching;
-  double x, y, dx, dy, dx1, tmp;
+  double x, y, dx, dy, dx1;
   double diameter, diameter3, dxd, radius;
   int diameter_dot;
   double x_touch[MAX_N_TOUCH], y_touch[MAX_N_TOUCH];
