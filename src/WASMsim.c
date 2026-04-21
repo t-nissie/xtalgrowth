@@ -52,7 +52,7 @@ static void fix_and_reset(double *x, double *y)
     if (n_fixed >= MAX_N_BALL || *y >= (0.97 * height - diameter)) {
         clear_and_redraw();
         ctx->setFillStyle(ctx, "black");
-        ctx->setFont(ctx, "40px serif");
+        ctx->setFont( ctx, "36px serif");
         ctx->fillText(ctx, "Thank you for your simulation,",
                                   10, 40, -1);
         ctx->fillText(ctx, guest, 10, 90, -1);
