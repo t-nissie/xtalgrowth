@@ -11,7 +11,7 @@ https://sourceforge.net/projects/loto/files/xtalgrowth/ .
 xtalgrowth is under continuous integration at GitHub Actions:
 [![CI](https://github.com/t-nissie/xtalgrowth/workflows/CI/badge.svg)](https://github.com/t-nissie/xtalgrowth/actions)
 
-## Please read webpages:
+## Please read web pages:
 https://t-nissie.github.io/xtalgrowth/ or
 https://loto.sourceforge.net/xtalgrowth/
 
@@ -136,8 +136,8 @@ Just `meson mesonbuilddir [options]` without `setup` is ambiguous and deprecated
     $ rm -rf build/ && meson setup build/ && cd build/ && ninja && ninja test && src/xtalgrowth --help && cd ..
 
 
-## Development of WebAssembly（WASM) version of xtalgrowth
-WebAssembly（WASM) version of xtalgrowth is under development now!
+## Development of Emscripten/WebAssembly/wasm-canvas version of xtalgrowth
+Emscripten/WebAssembly/wasm-canvas version of xtalgrowth is ready!
 Here, I explain step-by-step procedure.
 
 ### Setup Emscripten SDK
