@@ -1,6 +1,4 @@
-dnl -*-Autoconf-*-
 dnl configure.ac for xtalgrowth
-dnl Time-stamp: <2026-02-10 04:35:03 takeshi>
 dnl Author: Takeshi NISHIMATSU
 
 ## Initialize.
@@ -15,22 +13,10 @@ AC_PROG_INSTALL
 
 ## Check for C compiler
 CFLAGS_PRESERVE=$CFLAGS
-AC_PROG_CC([gcc cl cc])
+AC_PROG_CC([gcc cc])
 CFLAGS=$CFLAGS_PRESERVE
 test -n  "$CFLAGS" || CFLAGS="-g -Wall -O3"
 test -n "$LDFLAGS" || LDFLAGS="-L/usr/local/lib -L/usr/X11R6/lib"
-
-
-## Check for Objective-C compiler
-dnl Here, add "if OS==Darwin" etc.
-dnl For GNUstep, see https://blog.lyxite.com/2008/01/compile-objective-c-programs-using-gcc.html ,
-dnl https://stackoverflow.com/questions/11358000/how-to-compile-objective-c-code-in-ubuntu and
-dnl `gnustep-config --help`.
-OBJCFLAGS_PRESERVE=$OBJCFLAGS
-AC_PROG_OBJC([gcc objcc objc])
-OBJCFLAGS=$OBJCFLAGS_PRESERVE
-test -n      "$OBJCFLAGS" || OBJCFLAGS="-g -O3 -Wall"
-test -n "$OBJCFRAMEWORKS" || OBJCFRAMEWORKS="-framework Foundation -framework Cocoa -framework AppKit"
 
 ## Checks for some libraries
 AC_CHECK_LIB(X11, main)
@@ -42,8 +28,6 @@ AC_CHECK_HEADERS([X11/Xlib.h],,[AC_MSG_ERROR([You need header files for X11 libr
 
 ## Finalize.
 AC_SUBST(CPPFLAGS)
-AC_SUBST(OBJCFLAGS)
-AC_SUBST(OBJCFRAMEWORKS)
 AC_CONFIG_FILES([Makefile
              xtalgrowth.1
              meson.build
