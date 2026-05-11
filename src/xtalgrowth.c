@@ -1,5 +1,5 @@
 /* xtalgrowth.c
-   Time-stamp: <2026-05-08 21:48:38 takeshi>
+   Time-stamp: <2026-05-11 22:23:22 takeshi>
    Author: NISHIMATSU Takeshi */
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,8 +13,6 @@
 
 int main(int argc, char **argv)
 {
-  double *x=NULL;
-  double *y=NULL;
   struct GrowthParameters *params;
   int n_fixed;
   int seed1, seed2;
@@ -41,13 +39,13 @@ int main(int argc, char **argv)
   fillU(seed1,seed2);
 
   /* Simulation */
-  n_fixed = Xsim(params, x, y);
+  n_fixed = Xsim(params);
 
   /* Generate a PostScript file */
-  PostScript_generate(params, n_fixed, x, y);
+  PostScript_generate(params, n_fixed);
 
-  free(x);
-  free(y);
+  free(params->x_results);
+  free(params->y_results);
   free(params);
   return 0;
 }

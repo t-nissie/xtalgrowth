@@ -10,4 +10,6 @@ struct GrowthParameters
   int     n_ball;
   double  velocity;
   char   *guest;
+  double *x_results;
+  double *y_results;
 };

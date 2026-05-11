@@ -5,7 +5,7 @@
 #include "PostScript_eps.h"
 #include "PostScript_memo.h"
 
-void PostScript_generate(struct GrowthParameters *params, int n_fixed, double *x, double *y)
+void PostScript_generate(struct GrowthParameters *params, int n_fixed)
 {
   FILE *fp;
   fp = fopen("certification.eps", "r");
@@ -15,7 +15,7 @@ void PostScript_generate(struct GrowthParameters *params, int n_fixed, double *x
     PostScript_header();
     PostScript_eps(fp);
     PostScript_memo(params);
-    PostScript_show_xtal(params, n_fixed, x, y);
+    PostScript_show_xtal(params, n_fixed);
     fclose(fp);
   }
 }
@@ -50,7 +50,7 @@ void PostScript_header()
        "%---End of Definition------------\n");
 }
 
-void PostScript_show_xtal(struct GrowthParameters *params, int n_fixed_balls, double *x, double *y)
+void PostScript_show_xtal(struct GrowthParameters *params, int n_fixed_balls)
 {
   static const double paper_width = 210.0; /* mm */
   static const double fig_width = 120.0; /* mm */
@@ -65,7 +65,7 @@ void PostScript_show_xtal(struct GrowthParameters *params, int n_fixed_balls, do
   printf("newpath\n");
   printf("0.4 setgray\n");
   for (i=0; i<n_fixed_balls; i++) {
-    printf("  %.5g %.5g %.5g 0 360 arc fill\n", x[i], y[i], params->diameter/2);
+    printf("  %.5g %.5g %.5g 0 360 arc fill\n", params->x_results[i], params->y_results[i], params->diameter/2);
   }
   printf("0.0 setgray\n");
 
